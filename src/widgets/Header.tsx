@@ -1,11 +1,11 @@
-"use client";
-
 import { ActionIcon, Box, Button, Group, Image, Menu, MenuDropdown, MenuItem, MenuTarget, Stack, Text, TextInput } from "@mantine/core"
 import { IconChevronDown, IconMapPin, IconSearch, IconUser } from "@tabler/icons-react"
 import styles from "@/shared/styles/header/header.module.scss";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export const Header = () => {
+    const nav = useRouter();
     const [isAuth, setAuth] = useState(false);
     const [inputOpened, setInputOpened] = useState(false);
     return (
@@ -66,10 +66,10 @@ export const Header = () => {
                         ) : (
                             <>
                                 <Button classNames={{root: styles.login}} variant="transparent" onClick={
-                                    () => setAuth(true)
+                                    () => nav.push("/login")
                                 } leftSection={<IconUser></IconUser>} c="white">Войти</Button>
                                 <Button classNames={{root: styles.loginMob}} variant="transparent" onClick={
-                                    () => setAuth(true)
+                                    () => nav.push("/login")
                                 } leftSection={<IconUser></IconUser>} c="white"></Button>
                             </>
                         )}
