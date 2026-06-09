@@ -1,0 +1,124 @@
+@use "@/shared/styles/properties/mixins" as *;
+@use "@/shared/styles/properties/vars" as *;
+
+.headerUp {
+    padding: 6px 15px;
+    background-color: $bg-header-2;
+}
+.headerMain {
+    padding: 20px;
+    background-color: $bg-header;
+    position: relative;
+}
+
+.companyName {
+    font-size: 20px;
+    @include mobile375 {
+        font-size: 16px;
+    }
+    color: white;
+}
+
+.searchInput {
+    border-radius: 8px;
+    width: 900px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 120%;
+    padding-inline: 16px;
+
+    @include desktop1200 {
+        width: 750px;
+    }
+    @include tablet900 {
+        width: 450px;
+    }
+    @include mobile600 {
+        display: none;
+    }
+    @include mobile375 {
+        display: none;
+    }
+}
+.searchInputMob {
+    display: none;
+    border-radius: 8px;
+    width: 900px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 120%;
+    padding-inline: 16px;
+    z-index: 1;
+    @include mobile600 {
+        width: 75%;
+        &[data-visible="true"] {
+            display: block;
+        }
+    }
+    @include mobile375 {
+        width: 62.5%;
+        &[data-visible="true"] {
+            display: block;
+        }
+    }
+}
+.inputMob {
+    position: absolute;
+    top: 25%;
+    left: 16px;
+    width: 100%;
+}
+.searchSection {
+    margin-right: 8px;
+}
+
+.searchIcon, .searchIconMob {
+    background-color: $bg-button;
+    & svg path {
+        stroke: $text-button;
+    }
+}
+.searchIcon {
+    @include mobile600 {
+        display: none;
+    }
+    @include mobile375 {
+        display: none;
+    }
+}
+.searchIconMob {
+    display: none;
+    @include mobile600 {
+        display: block;
+    }
+    @include mobile375 {
+        display: block;
+    }
+}
+
+.login, .loginMob {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.login {
+    @include mobile600 {
+        display: none;
+    }
+    @include mobile375 {
+        display: none;
+    }
+}
+.loginMob {
+    display: none;
+    padding: 0;
+    @include mobile600 {
+        display: block;
+    }
+    @include mobile375 {
+        display: block;
+    }
+}
