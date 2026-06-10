@@ -10,7 +10,7 @@ export const LoginPage = () => {
     const nav = useRouter();
     const form = useForm<LoginFormValues>({
         defaultValues: {
-            login: "",
+            email: "",
             password: ""
         },
         resolver: zodResolver(loginSchema)
@@ -24,7 +24,7 @@ export const LoginPage = () => {
                 <form onSubmit={form.handleSubmit(onSubmit)}>
                     <Stack classNames={{root: styles.loginCard}}>
                         <Title order={1} ta="center">Войти в систему</Title>
-                        <TextInput label="Логин или телефон" {...form.register("login")} c="dimmed" error={form.formState.errors.login?.message}></TextInput>
+                        <TextInput type="email" label="Email" {...form.register("email")} c="dimmed" error={form.formState.errors.email?.message}></TextInput>
                         <PasswordInput label="Пароль" {...form.register("password")} c="dimmed" error={form.formState.errors.password?.message}></PasswordInput>
                         <Anchor component={Link} href="#">Забыли пароль?</Anchor>
                         <Button type="submit" mt="sm" classNames={{root: styles.loginBtn}}>Войти в систему</Button>
