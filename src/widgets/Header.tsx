@@ -23,7 +23,7 @@ export const Header = () => {
                 </Group>
             </Box>
             <Box className={styles.headerMain}>
-                <Group justify="space-between" align="center">
+                <Group justify="space-between" align="center" pr="md">
                     <Group gap="sm">
                         <Image w={50} h={50} radius="50%" src="../favicon.ico"></Image>
                         <Text classNames={{root: styles.companyName}}>здесь имя компании</Text>
@@ -76,6 +76,27 @@ export const Header = () => {
                     </Group>
                 </Group>
             </Box>
+            <Group classNames={{root: styles.navBtns}}>
+                <Menu width="target" offset={0} position="bottom-start">
+                    <MenuTarget>
+                        <Button variant="subtle" rightSection={
+                            <IconChevronDown size={16}></IconChevronDown>
+                        }>Категории</Button>
+                    </MenuTarget>
+                    <MenuDropdown classNames={{dropdown: styles.categories}}>
+                        <MenuItem classNames={{item: styles.cat}}>Масла</MenuItem>
+                        <MenuItem classNames={{item: styles.cat}}>Фильтры</MenuItem>
+                        <MenuItem classNames={{item: styles.cat}}>Свечи</MenuItem>
+                        <MenuItem classNames={{item: styles.cat}}>Плюшки</MenuItem>
+                        <MenuItem classNames={{item: styles.cat}}>Медведи</MenuItem>
+                    </MenuDropdown>
+                </Menu>
+                <Button variant="subtle">Новости</Button>
+                <Button variant="subtle">Акции</Button>
+                <Button variant="subtle">О компании</Button>
+                <Button variant="subtle">Поставщикам</Button>
+                <Button variant="subtle">Контакты</Button>
+            </Group>
         </Stack>
     )
 }

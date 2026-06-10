@@ -1,10 +1,13 @@
 import { Header } from "@/widgets/Header"
-import { Box } from "@mantine/core"
+import { Box, Container, Title } from "@mantine/core"
 
 export const MainPage = () => {
     return (
         <Box mih="100vh">
             <Header></Header>
+            <Container py="xl">
+                <Title order={1} ta="center">Добро пожаловать на главную страницу!</Title>
+            </Container>
         </Box>
     )
 }
