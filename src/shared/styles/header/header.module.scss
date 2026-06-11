@@ -6,7 +6,7 @@
     background-color: $bg-header-2;
 }
 .headerMain {
-    padding: 20px;
+    padding: 20px 24px;
     background-color: $bg-header;
     position: relative;
 }
@@ -98,6 +98,11 @@
     }
 }
 
+.cartIcon {
+    background: $bg-header;
+    stroke-color: $text-button;
+}
+
 .login, .loginMob {
     display: flex;
     justify-content: center;
@@ -121,6 +126,11 @@
     @include mobile375 {
         display: block;
     }
+}
+
+.profileBtn:hover {
+    background-color: $text-button;
+    color: $bg-button;
 }
 
 .navBtns {

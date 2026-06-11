@@ -1,5 +1,5 @@
 import { ActionIcon, Box, Button, Group, Image, Menu, MenuDropdown, MenuItem, MenuTarget, Stack, Text, TextInput } from "@mantine/core"
-import { IconChevronDown, IconMapPin, IconSearch, IconUser } from "@tabler/icons-react"
+import { IconChevronDown, IconMapPin, IconSearch, IconShoppingCart, IconUser } from "@tabler/icons-react"
 import styles from "@/shared/styles/header/header.module.scss";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -23,7 +23,7 @@ export const Header = () => {
                 </Group>
             </Box>
             <Box className={styles.headerMain}>
-                <Group justify="space-between" align="center" pr="md">
+                <Group justify="space-between" align="center">
                     <Group gap="sm">
                         <Image w={50} h={50} radius="50%" src="../favicon.ico"></Image>
                         <Text classNames={{root: styles.companyName}}>здесь имя компании</Text>
@@ -48,6 +48,11 @@ export const Header = () => {
                             root: styles.searchIconMob
                         }} size={40} aria-label="Поиск" onClick={() => setInputOpened(!inputOpened)}>
                             <IconSearch></IconSearch>
+                        </ActionIcon>
+                        <ActionIcon classNames={{
+                            root: styles.cartIcon
+                        }} size={40} aria-label="Корзина">
+                            <IconShoppingCart></IconShoppingCart>
                         </ActionIcon>
                         {isAuth ? (
                             <Menu width={200} position="bottom-end">
@@ -91,11 +96,11 @@ export const Header = () => {
                         <MenuItem classNames={{item: styles.cat}}>Медведи</MenuItem>
                     </MenuDropdown>
                 </Menu>
-                <Button variant="subtle">Новости</Button>
-                <Button variant="subtle">Акции</Button>
-                <Button variant="subtle">О компании</Button>
-                <Button variant="subtle">Поставщикам</Button>
-                <Button variant="subtle">Контакты</Button>
+                <Button variant="subtle" onClick={() => nav.push("/news")}>Новости</Button>
+                <Button variant="subtle" onClick={() => nav.push("/discounts")}>Акции</Button>
+                <Button variant="subtle" onClick={() => nav.push("/about")}>О компании</Button>
+                <Button variant="subtle" onClick={() => nav.push("/for_suppliers")}>Поставщикам</Button>
+                <Button variant="subtle" onClick={() => nav.push("/contacts")}>Контакты</Button>
             </Group>
         </Stack>
     )
