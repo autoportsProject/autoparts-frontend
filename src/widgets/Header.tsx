@@ -1,13 +1,23 @@
-import { ActionIcon, Box, Button, Group, Image, Menu, MenuDropdown, MenuItem, MenuTarget, Stack, Text, TextInput } from "@mantine/core"
-import { IconChevronDown, IconMapPin, IconSearch, IconShoppingCart, IconUser } from "@tabler/icons-react"
+import { ActionIcon, Box, Button, Divider, Group, Image, Menu, MenuDropdown, MenuItem, MenuTarget, Stack, Text, TextInput } from "@mantine/core"
+import { IconBolt, IconCar, IconChevronDown, IconDroplet, IconEngine, IconFilter, IconFlame, IconMapPin, IconSearch, IconSettings, IconShoppingCart, IconTool, IconUser } from "@tabler/icons-react"
 import styles from "@/shared/styles/header/header.module.scss";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export const Header = () => {
     const nav = useRouter();
     const [isAuth, setAuth] = useState(false);
     const [inputOpened, setInputOpened] = useState(false);
+    const categories = [
+        { id: 1, name: "Масла и жидкости", icon: IconDroplet },
+        { id: 2, name: "Фильтры", icon: IconFilter },
+        { id: 3, name: "Тормозная система", icon: IconTool },
+        { id: 4, name: "Подвеска", icon: IconSettings },
+        { id: 5, name: "Двигатель", icon: IconEngine },
+        { id: 6, name: "Электрика", icon: IconBolt },
+        { id: 7, name: "Кузов", icon: IconCar },
+        { id: 8, name: "Свечи зажигания", icon: IconFlame },
+    ];
     return (
         <Stack gap={0}>
             <Box className={styles.headerUp}>
@@ -24,7 +34,7 @@ export const Header = () => {
             </Box>
             <Box className={styles.headerMain}>
                 <Group justify="space-between" align="center">
-                    <Group gap="sm">
+                    <Group classNames={{root: styles.companyGroup}} onClick={() => nav.push("/")}>
                         <Image w={50} h={50} radius="50%" src="../favicon.ico"></Image>
                         <Text classNames={{root: styles.companyName}}>здесь имя компании</Text>
                     </Group>
@@ -89,11 +99,14 @@ export const Header = () => {
                         }>Категории</Button>
                     </MenuTarget>
                     <MenuDropdown classNames={{dropdown: styles.categories}}>
-                        <MenuItem classNames={{item: styles.cat}}>Масла</MenuItem>
-                        <MenuItem classNames={{item: styles.cat}}>Фильтры</MenuItem>
-                        <MenuItem classNames={{item: styles.cat}}>Свечи</MenuItem>
-                        <MenuItem classNames={{item: styles.cat}}>Плюшки</MenuItem>
-                        <MenuItem classNames={{item: styles.cat}}>Медведи</MenuItem>
+                        {categories.map((c,i) => (
+                            <Fragment key={i}>
+                                <MenuItem leftSection={
+                                    <c.icon size={32}></c.icon>
+                                } classNames={{item: styles.cat}}>{c.name}</MenuItem>
+                                {i < categories.length - 1 && <Divider></Divider>}
+                            </Fragment>
+                        ))}
                     </MenuDropdown>
                 </Menu>
                 <Button variant="subtle" onClick={() => nav.push("/news")}>Новости</Button>

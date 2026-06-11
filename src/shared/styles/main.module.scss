@@ -1,0 +1,62 @@
+@use "@/shared/styles/properties/vars" as *;
+@use "@/shared/styles/properties/mixins" as *;
+
+.tabsDiv {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.tab {
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 120%;
+
+    &[data-active="true"] {
+        background-color: $bg-header;
+        color: $text;
+        border: none;
+    }
+}
+
+.panel {
+    background-color: $bg-header;
+    color: $text;
+    padding: 24px 32px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.input {
+    height: 43px;
+    padding: 8px 16px;
+}
+
+.submitBtn, .clearBtn {
+    width: 220px;
+    height: 43px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 120%;
+    letter-spacing: 3%;
+}
+.submitBtn {
+    background-color: $bg-button;
+    color: $text-button;
+}
+.clearBtn, .clearBtn:hover {
+    background-color: $bg;
+    border: 1px solid $text-4;
+    color: $text-4;
+}
+
+.whyUsDiv {
+    padding: 30px 40px;
+    background: $bg-whyus-card;
+}
+.whyUsDiv {
+    color: $text;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 120%;
+}

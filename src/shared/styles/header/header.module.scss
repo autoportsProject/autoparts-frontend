@@ -11,6 +11,11 @@
     position: relative;
 }
 
+.companyGroup {
+    gap: 12px;
+    cursor: pointer;
+}
+
 .companyName {
     font-size: 20px;
     @include mobile375 {
@@ -153,6 +158,7 @@
 }
 
 .categories {
+    background-color: #F4F4F4;
     padding: 0;
     left: 0 !important;
     offset: 0;

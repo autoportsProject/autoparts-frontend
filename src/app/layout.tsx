@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { ColorSchemeScript, MantineProvider } from "@mantine/core";
+import { Flex, MantineProvider } from "@mantine/core";
+import { Footer } from "@/widgets/Footer";
 import "./globals.css";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
@@ -18,7 +19,10 @@ export default function RootLayout({
         <html lang="ru" suppressHydrationWarning>
             <body>
                 <MantineProvider>
-                    {children}
+                    <Flex direction="column" mih="100vh">
+                        {children}
+                        <Footer></Footer>
+                    </Flex>
                 </MantineProvider>
             </body>
         </html>
