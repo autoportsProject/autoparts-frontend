@@ -60,3 +60,41 @@
     font-size: 28px;
     line-height: 120%;
 }
+
+.reasonDiv {
+    padding: 20px;
+    background-color: $bg;
+    color: $text-2;
+    gap: 10px;
+}
+.reasonDescr {
+    font-size: 16px;
+    line-height: 120%;
+    color: $text-3;
+}
+
+.brandLogo {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid $text-4;
+}
+
+.brandsTrack {
+    width: 100%;
+    overflow: hidden;
+}
+.brandsDiv {
+    width: max-content;
+    animation: marque 15s linear infinite;
+}
+
+@keyframes marque {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
