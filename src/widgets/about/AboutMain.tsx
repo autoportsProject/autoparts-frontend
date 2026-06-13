@@ -41,7 +41,7 @@ const certs = [
 
 export const AboutMain = () => {
     return (
-        <Container size="100%" px={0} py={60}>
+        <Container size="100%" px={0} py="xl">
             <Stack gap={60}>
                 <Stack gap="sm" px={40}>
                     <Title order={1} ta="center">О нас</Title>

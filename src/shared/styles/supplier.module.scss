@@ -1,0 +1,38 @@
+@use "@/shared/styles/properties/vars" as *;
+@use "@/shared/styles/properties/mixins" as *;
+
+.description {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 120%;
+    border-radius: 8px;
+    padding: 16px 20px;
+    background-color: $bg;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.conditionsDiv {
+    background: $bg-whyus-card;
+    padding: 32px 40px;
+    color: $text;
+}
+
+.form {
+    width: 750px;
+    padding: 16px 24px;
+    background-color: $bg;
+    border-radius: 8px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
+    color: $text-3;
+}
+
+.submitBtn {
+    background-color: $bg-button;
+    color: $text-button;
+    padding: 15px 42px 15px 40px;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 3%;
+}

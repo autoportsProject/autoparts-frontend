@@ -1,3 +1,5 @@
+"use client";
+
 import { ActionIcon, Box, Button, Divider, Group, Image, Menu, MenuDropdown, MenuItem, MenuTarget, Stack, Text, TextInput } from "@mantine/core"
 import { IconBolt, IconCar, IconChevronDown, IconDroplet, IconEngine, IconFilter, IconFlame, IconMapPin, IconSearch, IconSettings, IconShoppingCart, IconTool, IconUser } from "@tabler/icons-react"
 import styles from "@/shared/styles/header/header.module.scss";
@@ -101,7 +103,7 @@ export const Header = () => {
                     <MenuDropdown classNames={{dropdown: styles.categories}}>
                         {categories.map((c,i) => (
                             <Fragment key={i}>
-                                <MenuItem leftSection={
+                                <MenuItem onClick={() => nav.push(`/catalog/${c.id}`)} leftSection={
                                     <c.icon size={32}></c.icon>
                                 } classNames={{item: styles.cat}}>{c.name}</MenuItem>
                                 {i < categories.length - 1 && <Divider></Divider>}
