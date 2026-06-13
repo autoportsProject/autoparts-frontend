@@ -1,0 +1,83 @@
+@use "@/shared/styles/properties/vars" as *;
+@use "@/shared/styles/properties/mixins" as *;
+
+.statCard {
+    padding: 24px 16px;
+    background-color: $bg;
+    border-radius: 8px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.statValue {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 120%;
+    color: $bg-button;
+}
+.statLabel {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 120%;
+    color: $text-3;
+}
+
+.aboutDiv {
+    background-color: $bg-card-2;
+    padding: 32px 40px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.aboutBlock {
+    background-color: $bg;
+    border-radius: 8px;
+    padding: 20px 26px;
+}
+.aboutTxt {
+    font-size: 16px;
+    line-height: 150%;
+    color: $text-3;
+    max-width: 800px;
+}
+
+.advantagesDiv {
+    padding: 30px 0;
+    background: $bg-whyus-card;
+}
+.advantageCard {
+    padding: 20px;
+    background-color: $bg;
+    border-radius: 8px;
+}
+
+.advantageTitle {
+    font-weight: 600;
+    line-height: 120%;
+    color: $text-2;
+}
+.advantageDescr {
+    font-size: 14px;
+    line-height: 140%;
+    color: $text-3;
+}
+
+.certCard {
+    padding: 24px 16px;
+    border: 1px solid $text-4;
+    border-radius: 8px;
+    background-color: $bg;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease;
+
+    &:hover {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+}
+.certIcon {
+    color: $bg-button;
+}
+.certName {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 130%;
+    color: $text-3;
+}
