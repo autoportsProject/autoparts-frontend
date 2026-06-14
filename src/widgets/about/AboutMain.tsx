@@ -1,6 +1,7 @@
 import { Container, Group, SimpleGrid, Stack, Text, ThemeIcon, Title } from "@mantine/core"
 import styles from "@/shared/styles/about.module.scss";
 import { IconCertificate, IconShieldCheck, IconStarFilled, IconTruck } from "@tabler/icons-react";
+import { AppLinkText } from "../AppLinkText";
 
 const advantages = [
     {
@@ -44,6 +45,7 @@ export const AboutMain = () => {
         <Container size="100%" px={0} py="xl">
             <Stack gap={60}>
                 <Stack gap="sm" px={40}>
+                    <AppLinkText></AppLinkText>
                     <Title order={1} ta="center">О нас</Title>
                     <Text ta="center" size="lg" c="dimmed">Поставщик оригинальных автозапчастей для иномарок</Text>
                 </Stack>

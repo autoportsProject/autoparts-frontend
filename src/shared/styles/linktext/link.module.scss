@@ -1,0 +1,11 @@
+@use "@/shared/styles/properties/vars" as *;
+@use "@/shared/styles/properties/mixins" as *;
+
+.link, .linkActive {
+    color: $text-3;
+    font-size: 20px;
+}
+.linkActive {
+    font-weight: 500;
+    color: $bg-button;
+}

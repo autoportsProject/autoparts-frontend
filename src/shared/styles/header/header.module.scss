@@ -169,4 +169,12 @@
 .cat {
     padding: 8px 20px;
     font-size: 20px;
+
+    &:hover {
+        color: $bg-button;
+        font-weight: 500;
+        background-color: $bg-catalog-card-hover;
+        cursor: pointer;
+        box-shadow: 0 4px 12px $shadow;
+    }
 }

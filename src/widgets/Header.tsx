@@ -5,21 +5,12 @@ import { IconBolt, IconCar, IconChevronDown, IconDroplet, IconEngine, IconFilter
 import styles from "@/shared/styles/header/header.module.scss";
 import { Fragment, useState } from "react";
 import { useRouter } from "next/navigation";
+import { categories } from "@/shared/mocks/catalogs";
 
 export const Header = () => {
     const nav = useRouter();
     const [isAuth, setAuth] = useState(false);
     const [inputOpened, setInputOpened] = useState(false);
-    const categories = [
-        { id: 1, name: "Масла и жидкости", icon: IconDroplet },
-        { id: 2, name: "Фильтры", icon: IconFilter },
-        { id: 3, name: "Тормозная система", icon: IconTool },
-        { id: 4, name: "Подвеска", icon: IconSettings },
-        { id: 5, name: "Двигатель", icon: IconEngine },
-        { id: 6, name: "Электрика", icon: IconBolt },
-        { id: 7, name: "Кузов", icon: IconCar },
-        { id: 8, name: "Свечи зажигания", icon: IconFlame },
-    ];
     return (
         <Stack gap={0}>
             <Box className={styles.headerUp}>
@@ -103,9 +94,9 @@ export const Header = () => {
                     <MenuDropdown classNames={{dropdown: styles.categories}}>
                         {categories.map((c,i) => (
                             <Fragment key={i}>
-                                <MenuItem onClick={() => nav.push(`/catalog/${c.id}`)} leftSection={
-                                    <c.icon size={32}></c.icon>
-                                } classNames={{item: styles.cat}}>{c.name}</MenuItem>
+                                <MenuItem onClick={() => nav.push(`/catalog/${c.id}`)} classNames={{
+                                    item: styles.cat
+                                }}>{c.name}</MenuItem>
                                 {i < categories.length - 1 && <Divider></Divider>}
                             </Fragment>
                         ))}

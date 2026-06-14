@@ -1,0 +1,15 @@
+@use "@/shared/styles/properties/vars" as *;
+@use "@/shared/styles/properties/mixins" as *;
+
+.container {
+    padding-inline: 250px;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.filterDiv {
+    background-color: $bg;
+    box-shadow: 5px 5px 5px $shadow;
+    padding: 24px 32px;
+    border-radius: 8px;
+}
