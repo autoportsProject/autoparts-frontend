@@ -16,3 +16,17 @@ export * from "./dto/user";
 export * from "./enums/appeal";
 export * from "./enums/product";
 export * from "./enums/user";
+
+export * from "./repos/IAppealsRepo";
+export * from "./repos/IAttributesRepo";
+export * from "./repos/IAuthRepo";
+export * from "./repos/IBrandsRepo";
+export * from "./repos/ICatalogsRepo";
+export * from "./repos/ICategoriesRepo";
+export * from "./repos/ICertificatesRepo";
+export * from "./repos/ICompanyRepo";
+export * from "./repos/IContactsRepo";
+export * from "./repos/INewsRepo";
+export * from "./repos/IProductsRepo";
+export * from "./repos/IPromotionsRepo";
+export * from "./repos/IUsersRepo";

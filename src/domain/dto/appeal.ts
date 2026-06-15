@@ -43,6 +43,6 @@ export interface AppealStatusUpdateDto {
 }
 
 export interface AppealContactsUpdateDto {
-    contactPhone: string;
-    contactEmail: string;
+    contactPhone?: string;
+    contactEmail?: string;
 }
