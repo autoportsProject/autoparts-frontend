@@ -4,12 +4,11 @@ interface Catalog {
 }
 
 export const categories: Catalog[] = [
-    { id: crypto.randomUUID(), name: "Масла и жидкости" },
+    { id: crypto.randomUUID(), name: "Автомасла" },
     { id: crypto.randomUUID(), name: "Фильтры" },
-    { id: crypto.randomUUID(), name: "Тормозная система" },
-    { id: crypto.randomUUID(), name: "Подвеска" },
-    { id: crypto.randomUUID(), name: "Двигатель" },
-    { id: crypto.randomUUID(), name: "Электрика" },
-    { id: crypto.randomUUID(), name: "Кузов" },
-    { id: crypto.randomUUID(), name: "Свечи зажигания" },
+    { id: crypto.randomUUID(), name: "Запчасти для двигателей" },
+    { id: crypto.randomUUID(), name: "Ремни" },
+    { id: crypto.randomUUID(), name: "Топливная аппаратура" },
+    { id: crypto.randomUUID(), name: "Автохимия" },
+    { id: crypto.randomUUID(), name: "Автолампы" },
 ];

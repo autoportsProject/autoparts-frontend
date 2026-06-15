@@ -17,11 +17,11 @@ export const Header = () => {
                 <Group gap={5} c="white" justify="space-between">
                     <Group gap="sm">
                         <IconMapPin></IconMapPin>
-                        <Text>здесь будет адрес</Text>
+                        <Text>г. Томск, ул. Смирнова 44/2</Text>
                     </Group>
                     <Group gap="sm">
                         <Text>Тел:</Text>
-                        <Text>+7 800 555-35-35</Text>
+                        <Text>+7 (961) 888-89-57</Text>
                     </Group>
                 </Group>
             </Box>
@@ -29,7 +29,7 @@ export const Header = () => {
                 <Group justify="space-between" align="center">
                     <Group classNames={{root: styles.companyGroup}} onClick={() => nav.push("/")}>
                         <Image w={50} h={50} radius="50%" src="../favicon.ico"></Image>
-                        <Text classNames={{root: styles.companyName}}>здесь имя компании</Text>
+                        <Text classNames={{root: styles.companyName}}>АвтоИноМир</Text>
                     </Group>
                     <TextInput classNames={{
                         input: styles.searchInput,

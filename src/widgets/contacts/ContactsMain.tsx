@@ -3,17 +3,11 @@ import styles from "@/shared/styles/contacts.module.scss";
 import { CitySearch } from "./CitySearch";
 import { CoordsDto } from "@/domain/dto/CitySearch/CoordsDto";
 import { useState } from "react";
-
-const contacts = [
-    {name: "Телефон", value: "+7 800 555 35-35"},
-    {name: "Email", value: "example@test.ru"},
-    {name: "Telegram", value: "@testTag"},
-    {name: "VK", value: "@testVK"}
-]
+import { CompanyInfo } from "@/shared/mocks/companyInfo";
 
 const DEFAULT: CoordsDto = {
-    lat: "55.751244",
-    lon: "37.618423"
+    lat: "56.526733",
+    lon: "84.983375"
 };
 
 export const ContactsMain = () => {
@@ -24,16 +18,20 @@ export const ContactsMain = () => {
             <Stack gap={60}>
                 <Title order={1} ta="center">Наши контакты</Title>
                 <Group classNames={{root: styles.contactsSection}}>
-                    {contacts.map((c,i) => (
+                    {CompanyInfo.phones.map((c,i) => (
                         <Stack key={i} classNames={{root: styles.contactDiv}}>
                             <Title order={2} classNames={{root: styles.name}}>{c.name}</Title>
                             <Text c="dimmed" classNames={{root: styles.value}}>{c.value}</Text>
                         </Stack>
                     ))}
+                    <Stack classNames={{root: styles.contactDiv}}>
+                        <Title order={2} classNames={{root: styles.name}}>{CompanyInfo.email.name}</Title>
+                        <Text c="dimmed" classNames={{root: styles.value}}>{CompanyInfo.email.value}</Text>
+                    </Stack>
                 </Group>
                 <Group classNames={{root: styles.mapSection}}>
                     <Stack classNames={{root: styles.selectRegion}}>
-                        <Title order={3} ta="center">Выберите регион</Title>
+                        <Title order={3} ta="center">Выберите город</Title>
                         <CitySearch onCitySelect={setCoords}></CitySearch>
                     </Stack>
                     <iframe src={mapSrc} className={styles.map} allowFullScreen></iframe>

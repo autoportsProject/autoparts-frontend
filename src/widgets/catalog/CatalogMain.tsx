@@ -1,4 +1,4 @@
-import { Container, Stack, Title } from "@mantine/core"
+import { Button, Container, Group, Select, Stack, Title } from "@mantine/core"
 import styles from "@/shared/styles/catalog/catalog.module.scss";
 import { AppLinkText } from "../AppLinkText";
 
@@ -15,7 +15,11 @@ export const CatalogMain = ({categoryName}: CatalogProps) => {
                     <Stack classNames={{root: styles.container}}>
                         <Title order={1}>Найти запчасти</Title>
                         <Stack gap="lg" classNames={{root: styles.filterDiv}}>
-
+                            <Select label="Тип"></Select>
+                            <Group gap="md" justify="flex-end">
+                                <Button classNames={{root: styles.submitBtn}}>Поиск</Button>
+                                <Button classNames={{root: styles.cancelBtn}}>Отмена</Button>
+                            </Group>
                         </Stack>
                     </Stack>
                 </Stack>

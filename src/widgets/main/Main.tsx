@@ -11,14 +11,14 @@ export const Main = () => {
                     <Title order={1}>Подобрать запчасти:</Title>
                     <Tabs defaultValue="carBrand" classNames={{root: styles.tabsDiv}}>
                         <Tabs.List classNames={{list: styles.tabs}}>
-                            <Tabs.Tab classNames={{tab: styles.tab}} value="carBrand">По марке авто</Tabs.Tab>
+                            <Tabs.Tab classNames={{tab: styles.tab}} value="carBrand">По марке техники</Tabs.Tab>
                             <Tabs.Tab classNames={{tab: styles.tab}} value="vin">По VIN-номеру</Tabs.Tab>
                         </Tabs.List>
                         <Tabs.Panel classNames={{panel: styles.panel}} value="carBrand">
                             <Stack gap="md">
                                 <Group grow>
-                                    <Select classNames={{input: styles.input}} placeholder="Марка авто"></Select>
-                                    <Select classNames={{input: styles.input}} placeholder="Модель авто"></Select>
+                                    <Select classNames={{input: styles.input}} placeholder="Марка техники"></Select>
+                                    <Select classNames={{input: styles.input}} placeholder="Модель техники"></Select>
                                 </Group>
                                 <Group gap="sm">
                                     <Button classNames={{

@@ -2,6 +2,7 @@ import { Container, Group, SimpleGrid, Stack, Text, ThemeIcon, Title } from "@ma
 import styles from "@/shared/styles/about.module.scss";
 import { IconCertificate, IconShieldCheck, IconStarFilled, IconTruck } from "@tabler/icons-react";
 import { AppLinkText } from "../AppLinkText";
+import { brands } from "@/shared/mocks/brands";
 
 const advantages = [
     {
@@ -27,9 +28,9 @@ const advantages = [
 ];
 
 const stats = [
-    {value: "5 лет", label: "на рынке"},
-    {value: "10000+", label: "позиций в каталоге"},
-    {value: "100+", label: "брендов запчастей"},
+    {value: "20 лет", label: "на рынке"},
+    {value: "40000+", label: "позиций в каталоге"},
+    {value: "17+", label: "брендов запчастей"},
     {value: "РФ", label: "Доставка по всей России"}
 ];
 
@@ -46,8 +47,8 @@ export const AboutMain = () => {
             <Stack gap={60}>
                 <Stack gap="sm" px={40}>
                     <AppLinkText></AppLinkText>
-                    <Title order={1} ta="center">О нас</Title>
-                    <Text ta="center" size="lg" c="dimmed">Поставщик оригинальных автозапчастей для иномарок</Text>
+                    <Title order={1} mb="sm" ta="center">О нас</Title>
+                    <Text ta="center" size="20px" c="dimmed">20 лет на рынке автозапчастей для спецтехники</Text>
                 </Stack>
                 <SimpleGrid cols={4} px={40} spacing="lg">
                     {stats.map(s => (
@@ -61,21 +62,32 @@ export const AboutMain = () => {
                     <Title order={2}>О компании</Title>
                     <Stack gap="md" classNames={{root: styles.aboutBlock}}>
                         <Title order={3}>Кто мы?</Title>
-                        <Text classNames={{root: styles.aboutTxt}}>
-                            {"<здесь будет информация о компании - история, год начала работы и откуда они>"}
-                        </Text>
+                        <Stack gap={5}>
+                            <Text classNames={{root: styles.aboutTxt}} size="lg">
+                                Приветствуем вас на странице компании <em>«АвтоИноМир»</em>!
+                            </Text>
+                            <Text classNames={{root: styles.aboutTxt}}>
+                                Уже 20 лет наша компания занимается 
+                                продажей автозапчастей для лесозаготовительной, сельскохозяйственной, строительной и дорожно-строительной 
+                                спецтехники.
+                            </Text>
+                            <Text classNames={{root: styles.aboutTxt}}>
+                                Наш каталог включает более 40 000 позиций оригинальных автозапчастей.
+                            </Text>
+                        </Stack>
                     </Stack>
                     <Stack gap="md" classNames={{root: styles.aboutBlock}}>
                         <Title order={3}>Что мы предоставляем?</Title>
-                        <Text classNames={{root: styles.aboutTxt}}>
-                            В каталоге предоставлены различные запчасти для автомобилей иностранных марок.
-                        </Text>
-                    </Stack>
-                    <Stack gap="md" classNames={{root: styles.aboutBlock}}>
-                        <Title order={3}>Где мы?</Title>
-                        <Text className={styles.aboutText}>
-                            {"<здесь будет третий абзац — про склад, регионы работы, команду>"}
-                        </Text>
+                        <Stack gap={5}>
+                            <Text classNames={{root: styles.aboutTxt}}>
+                                В ассортименте представлены ведущие мировые производители:
+                            </Text>
+                            {brands.map(b => (
+                                <Text key={b.category} classNames={{root: styles.aboutTxt}}>
+                                    <strong>{b.category}:</strong> {b.names}
+                                </Text>
+                            ))}
+                        </Stack>
                     </Stack>
                 </Stack>
                 <Stack gap="xl" classNames={{root: styles.advantagesDiv}}>
