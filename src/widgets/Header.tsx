@@ -71,7 +71,7 @@ export const Header = () => {
                                     </Button>
                                 </MenuTarget>
                                 <MenuDropdown>
-                                    <MenuItem>Профиль</MenuItem>
+                                    <MenuItem onClick={() => nav.push("/profile")}>Профиль</MenuItem>
                                     <MenuItem onClick={() => {
                                         localStorage.removeItem("token");
                                         nav.refresh();

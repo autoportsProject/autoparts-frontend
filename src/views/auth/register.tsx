@@ -16,7 +16,7 @@ export const RegisterPage = () => {
         defaultValues: {
             name: "",
             email: "",
-            phone: "",
+            phoneNumber: "",
             password: "",
             confirmPassword: ""
         },
@@ -34,8 +34,8 @@ export const RegisterPage = () => {
                         <Title order={1} ta="center">Регистрация</Title>
                         <TextInput label="Имя" withAsterisk {...form.register("name")} c="dimmed" error={form.formState.errors.name?.message}></TextInput>
                         <TextInput type="email" label="Email" withAsterisk {...form.register("email")} c="dimmed" error={form.formState.errors.email?.message}></TextInput>
-                        <Controller control={form.control} name="phone" render={({field}) => (
-                            <InputBase label="Телефон" component={IMaskInput} mask="+7 (000) 000-00-00" {...field} c="dimmed" error={form.formState.errors.phone?.message}></InputBase>
+                        <Controller control={form.control} name="phoneNumber" render={({field}) => (
+                            <InputBase label="Телефон" component={IMaskInput} mask="+7 (000) 000-00-00" {...field} c="dimmed" error={form.formState.errors.phoneNumber?.message}></InputBase>
                         )}></Controller>
                         <PasswordInput withAsterisk label="Пароль" {...form.register("password")} c="dimmed" error={form.formState.errors.password?.message}></PasswordInput>
                         <PasswordInput withAsterisk label="Повторите пароль" {...form.register("confirmPassword")} c="dimmed" error={form.formState.errors.confirmPassword?.message}></PasswordInput>
