@@ -46,3 +46,5 @@ export interface AppealContactsUpdateDto {
     contactPhone?: string;
     contactEmail?: string;
 }
+
+export type AnyAppealDto = ClientQuestionDto | SupplierRequestDto;

@@ -4,6 +4,7 @@ import { Footer } from "@/widgets/Footer";
 import "./globals.css";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
+import { QueryProvider } from "@/shared/providers/QueryProvider";
 
 export const metadata: Metadata = {
     title: "Магазин автозапчастей",
@@ -19,10 +20,12 @@ export default function RootLayout({
         <html lang="ru" suppressHydrationWarning>
             <body>
                 <MantineProvider>
-                    <Flex direction="column" mih="100vh">
-                        {children}
-                        <Footer></Footer>
-                    </Flex>
+                    <QueryProvider>
+                        <Flex direction="column" mih="100vh">
+                            {children}
+                            <Footer></Footer>
+                        </Flex>
+                    </QueryProvider>
                 </MantineProvider>
             </body>
         </html>

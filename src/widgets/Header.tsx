@@ -6,10 +6,14 @@ import styles from "@/shared/styles/header/header.module.scss";
 import { Fragment, useState } from "react";
 import { useRouter } from "next/navigation";
 import { categories } from "@/shared/mocks/catalogs";
+import { UsersRepo } from "@/data/repos/UsersRepo";
+import { useAuthCheck } from "@/features/auth/useAuthCheck";
+
+const repo = new UsersRepo();
 
 export const Header = () => {
     const nav = useRouter();
-    const [isAuth, setAuth] = useState(false);
+    const {authorized, user, isLoading, serverError} = useAuthCheck(repo);
     const [inputOpened, setInputOpened] = useState(false);
     return (
         <Stack gap={0}>
@@ -57,18 +61,21 @@ export const Header = () => {
                         }} size={40} aria-label="Корзина">
                             <IconShoppingCart></IconShoppingCart>
                         </ActionIcon>
-                        {isAuth ? (
+                        {authorized ? (
                             <Menu width={200} position="bottom-end">
                                 <MenuTarget>
                                     <Button variant="transparent" c="white" rightSection={
                                         <IconChevronDown size={16}></IconChevronDown>
                                     } size="md">
-                                        здесь имя
+                                        {user?.name}
                                     </Button>
                                 </MenuTarget>
                                 <MenuDropdown>
                                     <MenuItem>Профиль</MenuItem>
-                                    <MenuItem onClick={() => setAuth(false)}>Выйти</MenuItem>
+                                    <MenuItem onClick={() => {
+                                        localStorage.removeItem("token");
+                                        nav.refresh();
+                                    }}>Выйти</MenuItem>
                                 </MenuDropdown>
                             </Menu>
                         ) : (

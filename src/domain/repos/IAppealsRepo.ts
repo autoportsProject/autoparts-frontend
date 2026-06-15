@@ -1,16 +1,12 @@
-import { ClientQuestionDto, ClientQuestionCreateDto, SupplierRequestDto, CreateSupplierRequestDto, AppealStatusUpdateDto, AppealContactsUpdateDto, PagedList } from "@/domain";
+import { ClientQuestionDto, ClientQuestionCreateDto, SupplierRequestDto, CreateSupplierRequestDto, AppealStatusUpdateDto, AppealContactsUpdateDto, AnyAppealDto } from "@/domain";
 
 export interface IAppealsRepo {
-    getMyAppeals(): Promise<ClientQuestionDto[] | SupplierRequestDto[]>;
-    getQuestions(page: number, pageSize: number): Promise<PagedList<ClientQuestionDto>>;
-    getQuestionById(id: string): Promise<ClientQuestionDto>;
+    getAll(): Promise<AnyAppealDto[]>;
+    getById(id: string): Promise<AnyAppealDto>;
+    getMy(): Promise<AnyAppealDto[]>;
+    getByUserId(userId: string): Promise<AnyAppealDto[]>;
     createQuestion(req: ClientQuestionCreateDto): Promise<ClientQuestionDto>;
-    updateQuestionStatus(id: string, req: AppealStatusUpdateDto): Promise<void>;
-    updateQuestionContacts(id: string, req: AppealContactsUpdateDto): Promise<void>;
-
-    getSupplierRequests(page: number, pageSize: number): Promise<PagedList<SupplierRequestDto>>;
-    getSupplierRequestById(id: string): Promise<SupplierRequestDto>;
     createSupplierRequest(req: CreateSupplierRequestDto): Promise<SupplierRequestDto>;
-    updateSupplierRequestStatus(id: string, req: AppealStatusUpdateDto): Promise<void>;
-    updateSupplierRequestContacts(id: string, req: AppealContactsUpdateDto): Promise<void>;
+    updateStatus(id: string, req: AppealStatusUpdateDto): Promise<void>;
+    updateContacts(id: string, req: AppealContactsUpdateDto): Promise<void>;
 }
