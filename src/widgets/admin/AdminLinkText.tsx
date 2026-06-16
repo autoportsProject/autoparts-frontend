@@ -1,13 +1,15 @@
 "use client";
 
-import { useCategories } from "@/features/catalogs/useCategories";
+import { useCategoriesList } from "@/features/catalogs/useCategoriesList";
 import { Breadcrumbs, Anchor, Text } from "@mantine/core";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "@/shared/styles/linktext/link.module.scss";
+import { CategoriesRepo } from "@/data/repos/CategoriesRepo";
 
 const routeNames: Record<string, string> = {
-    "": "Главная",
+    "admin": "Главная",
+    "categories": "Категории",
     "brands": "Бренды",
     "products": "Товары",
     "news": "Новости",
@@ -16,16 +18,17 @@ const routeNames: Record<string, string> = {
     "appeals": "Обращения"
 };
 
+const repo = new CategoriesRepo();
+
 export const AdminLinkText = () => {
     const pathname = usePathname();
     const segs = pathname.split("/").filter(Boolean);
-    const {catalogs} = useCategories();
+    const {categories} = useCategoriesList(repo);
     
     const parts = [
-        {label: "Главная", href: "/"},
         ...segs.map((s,i) => ({
             label: /^[0-9a-f-]{36}$/i.test(s) 
-                ? (catalogs.find(c => c.id === s)?.name ?? s)
+                ? (categories?.find(c => c.id === s)?.name ?? s)
                 : (routeNames[s] ?? s),
             href: "/" + segs.slice(0, i+1).join("/")
         }))

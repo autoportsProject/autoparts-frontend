@@ -5,15 +5,18 @@ import { IconBolt, IconCar, IconChevronDown, IconDroplet, IconEngine, IconFilter
 import styles from "@/shared/styles/header/header.module.scss";
 import { Fragment, useState } from "react";
 import { useRouter } from "next/navigation";
-import { categories } from "@/shared/mocks/catalogs";
 import { UsersRepo } from "@/data/repos/UsersRepo";
 import { useAuthCheck } from "@/features/auth/useAuthCheck";
+import { CategoriesRepo } from "@/data/repos/CategoriesRepo";
+import { useCategoriesList } from "@/features/catalogs/useCategoriesList";
 
 const repo = new UsersRepo();
+const cRepo = new CategoriesRepo();
 
 export const Header = () => {
     const nav = useRouter();
     const {authorized, user, isLoading, serverError} = useAuthCheck(repo);
+    const {categories} = useCategoriesList(repo);
     const [inputOpened, setInputOpened] = useState(false);
     return (
         <Stack gap={0}>
@@ -99,7 +102,7 @@ export const Header = () => {
                         }>Категории</Button>
                     </MenuTarget>
                     <MenuDropdown classNames={{dropdown: styles.categories}}>
-                        {categories.map((c,i) => (
+                        {categories?.map((c,i) => (
                             <Fragment key={i}>
                                 <MenuItem onClick={() => nav.push(`/catalog/${c.id}`)} classNames={{
                                     item: styles.cat

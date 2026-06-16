@@ -4,7 +4,8 @@ import { Anchor, Breadcrumbs, Text } from "@mantine/core";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "@/shared/styles/linktext/link.module.scss";
-import { useCategories } from "@/features/catalogs/useCategories";
+import { useCategoriesList } from "@/features/catalogs/useCategoriesList";
+import { CategoriesRepo } from "@/data/repos/CategoriesRepo";
 
 const routeNames: Record<string, string> = {
     "": "Главная",
@@ -16,16 +17,18 @@ const routeNames: Record<string, string> = {
     "catalog": "Каталог товаров"
 };
 
+const repo = new CategoriesRepo();
+
 export const AppLinkText = () => {
     const pathname = usePathname();
     const segs = pathname.split("/").filter(Boolean);
-    const {catalogs} = useCategories();
+    const {categories} = useCategoriesList(repo);
     
     const parts = [
         {label: "Главная", href: "/"},
         ...segs.map((s,i) => ({
             label: /^[0-9a-f-]{36}$/i.test(s) 
-                ? (catalogs.find(c => c.id === s)?.name ?? s)
+                ? (categories?.find(c => c.id === s)?.name ?? s)
                 : (routeNames[s] ?? s),
             href: "/" + segs.slice(0, i+1).join("/")
         }))

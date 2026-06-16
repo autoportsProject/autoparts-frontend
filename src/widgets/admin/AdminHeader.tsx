@@ -37,11 +37,7 @@ export const AdminHeader = () => {
     }, [user, isLoading]);
     return (
         <Stack gap={0}>
-            {isLoading ? (
-                <Center py="xl">
-                    <Loader size="xl"></Loader>
-                </Center>
-            ) : (serverError || !user) ? (
+            {(!isLoading && (serverError || !user)) ? (
                 <Text c="red" fw={700} ta="center">Ошибка загрузки профиля {serverError ? `(${getErrorMessage(serverError)})` : ""}</Text>
             ) : (
                 <>
@@ -97,7 +93,7 @@ export const AdminHeader = () => {
                 </Box>
                 <Group classNames={{root: styles.navBtns}}>
                     {pages.map(p => (
-                        p.admin ? (user.role === UserRole.Admin) && (
+                        p.admin ? (user?.role === UserRole.Admin) && (
                             <Button key={p.href} variant="subtle" onClick={() => nav.push(p.href)}>{p.label}</Button>
                         ) : (
                             <Button key={p.href} variant="subtle" onClick={() => nav.push(p.href)}>{p.label}</Button>
