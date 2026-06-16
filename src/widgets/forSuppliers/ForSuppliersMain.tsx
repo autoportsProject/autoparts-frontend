@@ -1,14 +1,18 @@
 import { Button, Container, Group, InputBase, Stack, Text, TextInput, Title } from "@mantine/core"
 import styles from "@/shared/styles/supplier.module.scss";
 import { IMaskInput } from "react-imask";
+import { AppLinkText } from "../AppLinkText";
 
 export const ForSuppliersMain = () => {
     return (
         <Container size="100%" px={0} py="xl">
             <Stack gap={60}>
-                <Stack gap="lg" px={40}>
-                    <Title order={1} ta="center">{"<название карточки поставщикам>"}</Title>
-                    <Text classNames={{root: styles.description}}>{"<описание карточки поставщикам>"}</Text>
+                <Stack gap="sm" px={40}>
+                    <AppLinkText></AppLinkText>
+                    <Stack gap="lg">
+                        <Title order={1} ta="center">{"<название карточки поставщикам>"}</Title>
+                        <Text classNames={{root: styles.description}}>{"<описание карточки поставщикам>"}</Text>
+                    </Stack>
                 </Stack>
                 <Stack gap="lg" align="center" classNames={{root: styles.conditionsDiv}}>
                     <Stack gap={8} classNames={{root: styles.form}}>

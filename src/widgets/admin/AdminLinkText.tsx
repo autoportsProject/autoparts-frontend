@@ -1,22 +1,22 @@
 "use client";
 
-import { Anchor, Breadcrumbs, Text } from "@mantine/core";
+import { useCategories } from "@/features/catalogs/useCategories";
+import { Breadcrumbs, Anchor, Text } from "@mantine/core";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "@/shared/styles/linktext/link.module.scss";
-import { useCategories } from "@/features/catalogs/useCategories";
 
 const routeNames: Record<string, string> = {
     "": "Главная",
+    "brands": "Бренды",
+    "products": "Товары",
     "news": "Новости",
-    "discounts": "Акции",
-    "about": "О нас",
-    "for_suppliers": "Поставщикам",
-    "contacts": "Контакты",
-    "catalog": "Каталог товаров"
+    "discount": "Акции",
+    "users": "Пользователи",
+    "appeals": "Обращения"
 };
 
-export const AppLinkText = () => {
+export const AdminLinkText = () => {
     const pathname = usePathname();
     const segs = pathname.split("/").filter(Boolean);
     const {catalogs} = useCategories();

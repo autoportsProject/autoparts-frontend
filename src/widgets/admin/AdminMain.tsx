@@ -4,7 +4,7 @@ import { IconAlertCircle } from "@tabler/icons-react";
 
 export const AdminMain = () => {
     return (
-        <Container py={60}>
+        <Container py="xl">
             <Stack classNames={{root: styles.container}}>
                 <Group gap="sm" justify="center" align="center">
                     <IconAlertCircle size={44} className={styles.icon}></IconAlertCircle>

@@ -4,6 +4,7 @@ import { CitySearch } from "./CitySearch";
 import { CoordsDto } from "@/domain/dto/CitySearch/CoordsDto";
 import { useState } from "react";
 import { CompanyInfo } from "@/shared/mocks/companyInfo";
+import { AppLinkText } from "../AppLinkText";
 
 const DEFAULT: CoordsDto = {
     lat: "56.526733",
@@ -16,7 +17,10 @@ export const ContactsMain = () => {
     return (
         <Container size="100%" px={0} py="xl">
             <Stack gap={60}>
-                <Title order={1} ta="center">Наши контакты</Title>
+                <Stack gap="sm" px={40}>
+                    <AppLinkText></AppLinkText>
+                    <Title order={1} ta="center">Наши контакты</Title>
+                </Stack>
                 <Group classNames={{root: styles.contactsSection}}>
                     {CompanyInfo.phones.map((c,i) => (
                         <Stack key={i} classNames={{root: styles.contactDiv}}>
