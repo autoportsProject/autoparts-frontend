@@ -15,7 +15,7 @@ export const useDeleteCategory = (repo: ICategoriesRepo) => {
             });
         },
         onError: (error) => {
-            console.error("Delete category error", error);
+            console.error("Ошибка удаления категории", error);
         }
     });
 

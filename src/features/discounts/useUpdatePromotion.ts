@@ -1,26 +1,26 @@
-import { CategoryUpdateDto, ICategoriesRepo } from "@/domain";
+import { PromotionUpdateDto, IPromotionsRepo } from "@/domain";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface UpdateProps {
     id: string;
-    req: CategoryUpdateDto;
+    req: PromotionUpdateDto;
 }
 
-export const useUpdateCategory = (repo: ICategoriesRepo) => {
+export const useUpdatePromotion = (repo: IPromotionsRepo) => {
     const queryClient = useQueryClient();
 
     const update = useMutation({
         mutationFn: ({id, req}: UpdateProps) => repo.update(id, req),
         onSuccess: (_, id) => {
             queryClient.invalidateQueries({
-                queryKey: ["category", id]
+                queryKey: ["promotion", id]
             });
             queryClient.invalidateQueries({
-                queryKey: ["categories"]
+                queryKey: ["promotions"]
             });
         },
         onError: (error) => {
-            console.error("Ошибка обновления категории", error);
+            console.error("Ошибка обновления акции", error);
         }
     });
 

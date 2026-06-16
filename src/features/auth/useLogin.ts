@@ -16,7 +16,7 @@ export const useLogin = (repo: IAuthRepo) => {
             else nav.push("/");
         },
         onError: (error) => {
-            console.error("Login error", error);
+            console.error("Ошибка входа в систему", error);
         }
     });
 

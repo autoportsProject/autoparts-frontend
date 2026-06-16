@@ -6,15 +6,14 @@ export const useUpdateProfile = (repo: IUsersRepo) => {
 
     const update = useMutation({
         mutationFn: (req: ProfileUpdateDto) => repo.updateProfile(req),
-        onSuccess: (data) => {
+        onSuccess: () => {
             queryClient.invalidateQueries({
                 queryKey: ["profile"]
             });
             alert("Успешно!");
         },
         onError: (error) => {
-            alert("Ошибка обновления профиля");
-            console.error("Profile update error", error);
+            console.error("Ошибка обновления профиля", error);
         }
     });
 

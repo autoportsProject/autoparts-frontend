@@ -12,7 +12,7 @@ export const useCreateNews = (repo: INewsRepo) => {
             });
         },
         onError: (error) => {
-            console.error("Create news error", error);
+            console.error("Ошибка создания новости", error);
         }
     });
     

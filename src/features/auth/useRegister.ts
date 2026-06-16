@@ -16,7 +16,7 @@ export const useRegister = (repo: IAuthRepo) => {
             else nav.push("/");
         },
         onError: (error) => {
-            console.error("Register error", error);
+            console.error("Ошибка регистрации", error);
         }
     });
 

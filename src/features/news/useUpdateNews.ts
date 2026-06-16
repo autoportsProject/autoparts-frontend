@@ -20,7 +20,7 @@ export const useUpdateNews = (repo: INewsRepo) => {
             });
         },
         onError: (error) => {
-            console.error("Update news error", error);
+            console.error("Ошибка обновления новости", error);
         }
     });
 
