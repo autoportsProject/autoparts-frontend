@@ -16,7 +16,7 @@ const cRepo = new CategoriesRepo();
 export const Header = () => {
     const nav = useRouter();
     const {authorized, user, isLoading, serverError} = useAuthCheck(repo);
-    const {categories} = useCategoriesList(repo);
+    const {categories} = useCategoriesList(cRepo);
     const [inputOpened, setInputOpened] = useState(false);
     return (
         <Stack gap={0}>

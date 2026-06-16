@@ -7,9 +7,10 @@ interface CardProps {
     title: string;
     description?: string;
     createdAt: string;
+    imagePath?: string;
 }
 
-export const ContentCard = ({type, title, description, createdAt}: CardProps) => {
+export const ContentCard = ({type, title, description, createdAt, imagePath}: CardProps) => {
     return (
         <Stack gap="md" classNames={{root: styles.card}}>
             <Group justify="space-between">

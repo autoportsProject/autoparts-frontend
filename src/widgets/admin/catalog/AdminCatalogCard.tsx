@@ -50,7 +50,7 @@ export const AdminCatalogCard = ({category}: CardProps) => {
     return (
         <Group gap="sm" classNames={{root: styles.catalogCard}}>
             <Text onClick={
-                () => nav.push(`/catalog/${category.id}`)
+                () => nav.push(`/admin/categories/${category.id}`)
             }>{category.name}</Text>
             <Stack gap={4}>
                 <ActionIcon size="lg" onClick={
@@ -64,12 +64,12 @@ export const AdminCatalogCard = ({category}: CardProps) => {
                     <IconTrash></IconTrash>
                 </ActionIcon>
             </Stack>
-            <Modal title="Обновление категории" opened={modalOpened} onClose={() => setModalOpened(false)}>
+            <Modal title="Изменение категории" opened={modalOpened} onClose={() => setModalOpened(false)}>
                 <form onSubmit={form.handleSubmit(onSubmit)}>
                     <Stack gap="md">
                         <TextInput {...form.register("name")} classNames={{
                             input: styles.input
-                        }} placeholder="Введите название категории" error={
+                        }} c="dimmed" label="Название категории" error={
                             form.formState.errors.name?.message
                         }></TextInput>
                         <Button type="submit" classNames={{

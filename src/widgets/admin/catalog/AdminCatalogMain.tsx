@@ -87,7 +87,7 @@ export const AdminCatalogMain = () => {
                             <Stack gap="md">
                                 <TextInput {...form.register("name")} classNames={{
                                     input: styles.input
-                                }} placeholder="Введите название категории" error={
+                                }} c="dimmed" label="Название категории" error={
                                     form.formState.errors.name?.message
                                 }></TextInput>
                                 <Button type="submit" classNames={{
