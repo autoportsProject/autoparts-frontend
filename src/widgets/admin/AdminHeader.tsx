@@ -6,6 +6,8 @@ import { UsersRepo } from "@/data/repos/UsersRepo";
 import { useAuthCheck } from "@/features/auth/useAuthCheck";
 import { getErrorMessage } from "@/shared/utils/getError";
 import { UserRole } from "@/domain";
+import { useEffect } from "react";
+import { normalizeRole } from "@/shared/utils/normalizeRole";
 
 const repo = new UsersRepo();
 
@@ -23,6 +25,17 @@ const pages = [
 export const AdminHeader = () => {
     const nav = useRouter();
     const {authorized, user, isLoading, serverError} = useAuthCheck(repo);
+    useEffect(() => {
+        if (isLoading) return;
+        if (!user) {
+            nav.push("/");
+            return;
+        }
+
+        const role = normalizeRole(user.role);
+        if (role !== UserRole.Admin && role !== UserRole.Creator)
+            nav.push("/");
+    }, [user, isLoading]);
     return (
         <Stack gap={0}>
             {isLoading ? (
@@ -66,7 +79,7 @@ export const AdminHeader = () => {
                                         <MenuItem onClick={() => nav.push("/profile")}>Профиль</MenuItem>
                                         <MenuItem onClick={() => {
                                             localStorage.removeItem("token");
-                                            nav.refresh();
+                                            nav.push("/");
                                         }}>Выйти</MenuItem>
                                     </MenuDropdown>
                                 </Menu>
@@ -85,7 +98,7 @@ export const AdminHeader = () => {
                 </Box>
                 <Group classNames={{root: styles.navBtns}}>
                     {pages.map(p => (
-                        p.admin ? (user.role === UserRole.Admin || user.role === UserRole.Creator) && (
+                        p.admin ? (user.role === UserRole.Admin) && (
                             <Button key={p.href} variant="subtle" onClick={() => nav.push(p.href)}>{p.label}</Button>
                         ) : (
                             <Button key={p.href} variant="subtle" onClick={() => nav.push(p.href)}>{p.label}</Button>

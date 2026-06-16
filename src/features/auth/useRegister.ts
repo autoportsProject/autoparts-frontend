@@ -1,4 +1,5 @@
-import { IAuthRepo, RegisterDto, TokenResponse, UserRole } from "@/domain";
+import { IAuthRepo, RegisterDto, UserRole } from "@/domain";
+import { normalizeRole } from "@/shared/utils/normalizeRole";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
@@ -8,9 +9,9 @@ export const useRegister = (repo: IAuthRepo) => {
     const reg = useMutation({
         mutationFn: (req: RegisterDto) => repo.register(req),
         onSuccess: (data) => {
-            console.log("success register", data);
             localStorage.setItem("token", data.token);
-            if (data.role === UserRole.Admin || data.role === UserRole.Creator)
+            const role = normalizeRole(data.role);
+            if (role === UserRole.Admin || role === UserRole.Creator)
                 nav.push("/admin");
             else nav.push("/");
         },

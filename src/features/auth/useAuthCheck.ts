@@ -1,8 +1,12 @@
 import { IUsersRepo } from "@/domain";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 
 export const useAuthCheck = (repo: IUsersRepo) => {
-    const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+    const [token, setToken] = useState<string | null>(null);
+    useEffect(() => {
+        setToken(localStorage.getItem("token"));
+    }, []);
     const {data: user, isLoading, error} = useQuery({
         queryKey: ["profile"],
         queryFn: async () => {
@@ -17,7 +21,7 @@ export const useAuthCheck = (repo: IUsersRepo) => {
     return {
         authorized: flag,
         user: user ?? null,
-        isLoading,
+        isLoading: !token || isLoading,
         serverError: error
     };
 }
