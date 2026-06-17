@@ -41,7 +41,7 @@ export const Header = () => {
                     <TextInput classNames={{
                         input: styles.searchInput,
                         section: styles.searchSection
-                    }} placeholder="Найти запчасти по названию, VIN или артикулу" rightSection={
+                    }} placeholder="Найти запчасти по названию" rightSection={
                         <ActionIcon variant="filled" classNames={{
                             root: styles.searchIcon
                         }} size={40} aria-label="Поиск">
@@ -52,7 +52,7 @@ export const Header = () => {
                         root: styles.inputMob,
                         input: styles.searchInputMob,
                         section: styles.searchSection
-                    }} placeholder="Найти запчасти по названию, VIN или артикулу"></TextInput>
+                    }} placeholder="Найти запчасти по названию"></TextInput>
                      <Group gap="sm">
                         <ActionIcon variant="filled" classNames={{
                             root: styles.searchIconMob

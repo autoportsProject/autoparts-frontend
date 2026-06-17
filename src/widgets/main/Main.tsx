@@ -1,7 +1,30 @@
 import { Container, Stack, Title, Tabs, Group, Select, Button, TextInput, SimpleGrid, Image, Box } from "@mantine/core"
-import { IconSearch, IconTrash } from "@tabler/icons-react"
+import { IconCertificate, IconSearch, IconShieldCheck, IconStarFilled, IconTrash, IconTruck } from "@tabler/icons-react"
 import styles from "@/shared/styles/main.module.scss";
 import { ReasonCard } from "@/ui/main/ReasonCard";
+
+const advantages = [
+    {
+        icon: IconShieldCheck,
+        title: "Оригинальные запчасти",
+        description: "Мы работаем только с официальными дистрибьюторами. Каждая позиция проходит проверку подлинности"
+    },
+    {
+        icon: IconTruck,
+        title: "Быстрая доставка",
+        description: "Мы доставляем запчасти по всей России. Срок доставки - от 1 до 7 дней, в зависимости от региона доставки"
+    },
+    {
+        icon: IconStarFilled,
+        title: "Гарантия качества",
+        description: "Мы предоставляем гарантию на все наши товары. При несоответствии - возврат или замена"
+    },
+    {
+        icon: IconCertificate,
+        title: "Сертифицированная продукция",
+        description: "Вся наша продукция сертифицирована и соответствует всем стандартам качества"
+    }
+];
 
 export const Main = () => {
     return (
@@ -56,16 +79,11 @@ export const Main = () => {
                 <Stack gap="xl" classNames={{root: styles.whyUsDiv}}>
                     <Title order={2} classNames={{root: styles.whyUsTxt}}>Почему мы?</Title>
                     <Group justify="space-between">
-                        <SimpleGrid w="70%" cols={2} spacing="lg">
-                            {[1,2,3,4].map(i => (
-                                <ReasonCard key={i} title={`Название ${i}`} description={
-                                    `Это тестирование описания №${i} для карточки №${i}`
-                                }></ReasonCard>
+                        <SimpleGrid cols={4} spacing="xl">
+                            {advantages.map(a => (
+                                <ReasonCard key={a.title} title={a.title} description={a.description}></ReasonCard>
                             ))}
                         </SimpleGrid>
-                        <Image w={400} h={230} fit="fill" onClick={
-                            () => alert("Это картинка для теста")
-                        } src="https://hagleysbeauty.com/wp-content/uploads/2023/03/test-button-1.jpg"></Image>
                     </Group>
                 </Stack>
                 <Stack gap="xl">

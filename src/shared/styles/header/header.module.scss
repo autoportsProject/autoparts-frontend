@@ -105,7 +105,9 @@
 
 .cartIcon {
     background: $bg-header;
-    stroke-color: $text-button;
+    & svg {
+        stroke: $text-button;
+    }
 }
 
 .login, .loginMob {
@@ -168,7 +170,8 @@
 }
 .cat {
     padding: 8px 20px;
-    font-size: 20px;
+    font-size: 21px;
+    word-break: break-word;
 
     &:hover {
         color: $bg-button;
