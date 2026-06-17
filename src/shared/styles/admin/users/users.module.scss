@@ -1,12 +1,14 @@
 @use "@/shared/styles/properties/vars" as *;
 @use "@/shared/styles/properties/mixins" as *;
 
-.profileForm {
-    padding: 24px 32px;
-    background-color: $bg;
-    box-shadow: 5px 5px 5px $shadow;
-    border-radius: 8px;
-    gap: 12px;
+.addBtn {
+    height: 43px;
+    border: 1px solid $bg-button;
+    color: $bg-button;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 3%;
 }
 
 .input {
@@ -17,17 +19,18 @@
     line-height: 120%;
     color: $text-3;
 }
+.textarea {
+    padding: 12px 16px;
+    height: unset;
+}
 
 .submitBtn {
-    background-color: $bg-button;
-    color: $text-button;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 100%;
-    letter-spacing: 3%;
     height: 48px;
     padding: 15px 42px 15px 40px;
-}
-.adminBtn {
-    background-color: unset;
+    background-color: $bg-button;
+    color: $text-button;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 3%;
 }
