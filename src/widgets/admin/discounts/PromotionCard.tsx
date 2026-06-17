@@ -1,61 +1,61 @@
-import { ActionIcon, Button, Group, Modal, Stack, Text, Textarea, TextInput } from "@mantine/core";
+import { PromotionsRepo } from "@/data/repos/PromotionsRepo";
+import { PromotionDto } from "@/domain"
+import { UpdatePromotionFormValues, updatePromotionSchema } from "@/domain/schemas/admin/discounts/promotions";
+import { useDeletePromotion } from "@/features/discounts/useDeletePromotion";
+import { useUpdatePromotion } from "@/features/discounts/useUpdatePromotion";
 import styles from "@/shared/styles/contentCard/news.module.scss";
-import dayjs from "dayjs";
-import { NewsDto } from "@/domain";
-import { IconPencil, IconTrash } from "@tabler/icons-react";
-import { useEffect, useState } from "react";
-import { useUpdateNews } from "@/features/news/useUpdateNews";
-import { NewsRepo } from "@/data/repos/NewsRepo";
-import { useDeleteNews } from "@/features/news/useDeleteNews";
-import { useForm } from "react-hook-form";
-import { UpdateNewsFormValues, updateNewsSchema } from "@/domain/schemas/admin/news/news";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Stack, Group, ActionIcon, Modal, TextInput, Textarea, Button, Text } from "@mantine/core";
+import { IconPencil, IconTrash } from "@tabler/icons-react";
+import dayjs from "dayjs";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
-interface Props {
-    news: NewsDto;
+interface CardProps {
+    promotion: PromotionDto;
 }
 
-const repo = new NewsRepo();
+const repo = new PromotionsRepo();
 
-export const NewsCard = ({news}: Props) => {
+export const PromotionCard = ({promotion}: CardProps) => {
     const [modalOpened, setModalOpened] = useState(false);
-    const update = useUpdateNews(repo);
-    const del = useDeleteNews(repo);
-    const form = useForm<UpdateNewsFormValues>({
+    const update = useUpdatePromotion(repo);
+    const del = useDeletePromotion(repo);
+    const form = useForm<UpdatePromotionFormValues>({
         defaultValues: {
             name: "",
             description: undefined,
             publishedAt: dayjs().toISOString(),
             imagePath: undefined
         },
-        resolver: zodResolver(updateNewsSchema)
+        resolver: zodResolver(updatePromotionSchema)
     });
-    const onSubmit = (data: UpdateNewsFormValues) => {
+    const onSubmit = (data: UpdatePromotionFormValues) => {
         update.mutate({
-            id: news.id,
+            id: promotion.id,
             req: data
         });
         setModalOpened(false);
         form.reset();
     }
     const onDelete = (id: string) => {
-        if (confirm("Вы уверены, что хотите удалить эту новость?"))
+        if (confirm("Вы уверены, что хотите удалить эту акцию?"))
             del.mutate(id);
     }
     useEffect(() => {
-        if (news) {
+        if (promotion) {
             form.reset({
-                name: news.name,
-                description: news.description,
-                publishedAt: news.publishedAt,
-                imagePath: news.imagePath
+                name: promotion.name,
+                description: promotion.description,
+                publishedAt: promotion.publishedAt,
+                imagePath: promotion.imagePath
             });
         }
-    }, [form, news]);
+    }, [form, promotion]);
     return (
         <Stack gap={8} classNames={{root: styles.card}}>
             <Group justify="space-between">
-                <Text c="dimmed">Дата публикации: {dayjs(news.publishedAt).format("DD.MM.YYYY в HH:mm")}</Text>
+                <Text c="dimmed">Дата публикации: {dayjs(promotion.publishedAt).format("DD.MM.YYYY в HH:mm")}</Text>
                 <Group gap="sm">
                     <ActionIcon size="xl" onClick={
                         () => setModalOpened(true)
@@ -63,24 +63,24 @@ export const NewsCard = ({news}: Props) => {
                         <IconPencil></IconPencil>
                     </ActionIcon>
                     <ActionIcon size="xl" onClick={
-                        () => onDelete(news.id)
+                        () => onDelete(promotion.id)
                     } color="red">
                         <IconTrash></IconTrash>
                     </ActionIcon>
                 </Group>
             </Group>
             <Stack gap="sm">
-                <Text classNames={{root: styles.title}}>{news.name}</Text>
-                <Text>{news.description || "Нет описания"}</Text>
+                <Text classNames={{root: styles.title}}>{promotion.name}</Text>
+                <Text>{promotion.description || "Нет описания"}</Text>
             </Stack>
-            <Modal title="Изменение новости" opened={modalOpened} onClose={() => setModalOpened(false)}>
+            <Modal title="Изменение акции" opened={modalOpened} onClose={() => setModalOpened(false)}>
                 <form onSubmit={form.handleSubmit(onSubmit)}>
                     <Stack gap="md">
                         <TextInput {...form.register("name")} classNames={{
                             input: styles.input
                         }} c="dimmed" error={
                             form.formState.errors.name?.message
-                        } label="Название новости"></TextInput>
+                        } label="Название акции"></TextInput>
                         <Textarea {...form.register("description")} classNames={{
                             input: `${styles.input} ${styles.textarea}`
                         }} c="dimmed" label="Описание"></Textarea>
@@ -91,7 +91,7 @@ export const NewsCard = ({news}: Props) => {
                         }></TextInput>
                         <Button type="submit" classNames={{
                             root: styles.submitBtn
-                        }}>Опубликовать новость</Button>
+                        }}>Обновить акцию</Button>
                     </Stack>
                 </form>
             </Modal>

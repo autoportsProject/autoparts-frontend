@@ -1,24 +1,14 @@
 @use "@/shared/styles/properties/vars" as *;
 @use "@/shared/styles/properties/mixins" as *;
 
-.card {
-    background-color: $bg;
-    padding: 16px 24px;
-    border-radius: 12px;
-    border: 1px solid $shadow;
-    box-shadow: 5px 5px 5px $shadow;
-
-    &:hover {
-        background-color: $bg-card;
-        cursor: pointer;
-        box-shadow: 0 4px 12px $shadow;
-    }
-}
-
-.title {
-    font-size: 36px;
-    font-weight: 600;
-    word-break: break-word;
+.addBtn {
+    height: 43px;
+    border: 1px solid $bg-button;
+    color: $bg-button;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 3%;
 }
 
 .input {

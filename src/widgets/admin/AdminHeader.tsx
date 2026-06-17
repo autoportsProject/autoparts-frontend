@@ -16,7 +16,7 @@ const pages = [
     { label: "Бренды", href: "/admin/brands", admin: false },
     { label: "Товары", href: "/admin/products", admin: false },
     { label: "Новости", href: "/admin/news", admin: false },
-    { label: "Акции", href: "/admin/promotions", admin: false },
+    { label: "Акции", href: "/admin/discount", admin: false },
     { label: "Пользователи", href: "/admin/users", admin: true },
     { label: "Обращения", href: "/admin/appeals", admin: true }
 ];
