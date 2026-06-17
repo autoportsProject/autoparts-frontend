@@ -62,7 +62,7 @@ export const AdminCatalogMain = () => {
                                 } onKeyDown={
                                     (e) => e.key === "Enter" && setQuery(value)
                                 }></TextInput>
-                                <Button w={230} classNames={{root: styles.submitBtn}}>Поиск</Button>
+                                <Button w={230} classNames={{root: styles.submitBtn}} onClick={() => setQuery(value)}>Поиск</Button>
                             </Group>
                         </Stack>
                         <Stack gap={40} px={140}>
@@ -71,7 +71,7 @@ export const AdminCatalogMain = () => {
                                     <Title order={3} ml="md">{l}</Title>
                                     <Divider size="md" color="blue"></Divider>
                                     <Group gap="md" ml="md">
-                                        {categories
+                                        {filtered!
                                             .filter(c => c.name[0].toUpperCase() === l)
                                             .sort((a,b) => a.name.localeCompare(b.name, "ru"))
                                             .map(cat => (

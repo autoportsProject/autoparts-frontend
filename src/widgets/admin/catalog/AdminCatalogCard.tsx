@@ -53,12 +53,12 @@ export const AdminCatalogCard = ({category}: CardProps) => {
                 () => nav.push(`/admin/categories/${category.id}`)
             }>{category.name}</Text>
             <Stack gap={4}>
-                <ActionIcon size="lg" onClick={
+                <ActionIcon size="xl" onClick={
                     () => setModalOpened(true)
                 } color="green">
                     <IconPencil></IconPencil>
                 </ActionIcon>
-                <ActionIcon size="lg" onClick={
+                <ActionIcon size="xl" onClick={
                     () => onDelete(category.id)
                 } color="red">
                     <IconTrash></IconTrash>
