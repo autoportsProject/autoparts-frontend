@@ -4,7 +4,9 @@ import { Footer } from "@/widgets/Footer";
 import "./globals.css";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
+import "@mantine/notifications/styles.css";
 import { QueryProvider } from "@/shared/providers/QueryProvider";
+import { Notifications } from "@mantine/notifications";
 
 export const metadata: Metadata = {
     title: "Магазин автозапчастей",
@@ -20,6 +22,7 @@ export default function RootLayout({
         <html lang="ru" suppressHydrationWarning>
             <body>
                 <MantineProvider>
+                    <Notifications></Notifications>
                     <QueryProvider>
                         <Flex direction="column" mih="100vh">
                             {children}

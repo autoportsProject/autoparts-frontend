@@ -1,0 +1,65 @@
+@use "@/shared/styles/properties/vars" as *;
+@use "@/shared/styles/properties/mixins" as *;
+
+.form {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: $bg;
+    padding: 24px 32px;
+    box-shadow: 5px 5px 5px $shadow;
+    border-radius: 8px;
+    gap: 32px;
+}
+
+.addBtn {
+    height: 43px;
+    border: 1px solid $bg-button;
+    color: $bg-button;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 3%;
+}
+
+.input {
+    height: 48px;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 120%;
+    color: $text-3;
+}
+.textarea {
+    padding: 12px 16px;
+    height: unset;
+}
+
+.submitBtn {
+    height: 48px;
+    padding: 15px 42px 15px 40px;
+    background-color: $bg-button;
+    color: $text-button;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 3%;
+}
+
+.contactDiv {
+    background-color: $bg-card;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 24px 32px;
+}
+
+.name {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 120%;
+}
+.value {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 100%;
+}

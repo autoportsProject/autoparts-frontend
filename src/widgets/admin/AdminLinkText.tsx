@@ -14,6 +14,7 @@ const routeNames: Record<string, string> = {
     "products": "Товары",
     "news": "Новости",
     "discount": "Акции",
+    "company": "О компании",
     "users": "Пользователи",
     "appeals": "Обращения"
 };
