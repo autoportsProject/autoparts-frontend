@@ -11,9 +11,9 @@ export const useUpdateBrand = (repo: IBrandsRepo) => {
 
     const update = useMutation({
         mutationFn: ({id, req}: Props) => repo.update(id, req),
-        onSuccess: (_, id) => {
+        onSuccess: (_, vars) => {
             queryClient.invalidateQueries({
-                queryKey: ["brand", id]
+                queryKey: ["brand", vars.id]
             });
             queryClient.invalidateQueries({
                 queryKey: ["brands"]

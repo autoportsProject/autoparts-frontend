@@ -67,7 +67,7 @@ export const ProfileMain = () => {
                             } mask="+7 (000) 000-00-00" {...field}></InputBase>
                         )}></Controller>    
                         <Group grow>
-                            {normalizeRole(profile.role) === UserRole.Admin && (
+                            {(normalizeRole(profile.role) === UserRole.Admin || normalizeRole(profile.role) === UserRole.Creator) && (
                                 <Button classNames={{
                                     root: `${styles.submitBtn} ${styles.adminBtn}`
                                 }} bg="green" onClick={() => nav.push("/admin")}>Перейти в Администрирование</Button>

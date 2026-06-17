@@ -11,9 +11,9 @@ export const useUpdatePromotion = (repo: IPromotionsRepo) => {
 
     const update = useMutation({
         mutationFn: ({id, req}: UpdateProps) => repo.update(id, req),
-        onSuccess: (_, id) => {
+        onSuccess: (_, vars) => {
             queryClient.invalidateQueries({
-                queryKey: ["promotion", id]
+                queryKey: ["promotion", vars.id]
             });
             queryClient.invalidateQueries({
                 queryKey: ["promotions"]

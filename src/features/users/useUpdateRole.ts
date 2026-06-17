@@ -11,9 +11,9 @@ export const useUpdateRole = (repo: IUsersRepo) => {
 
     const update = useMutation({
         mutationFn: ({id, req}: Props) => repo.updateRole(id, req),
-        onSuccess: (_, id) => {
+        onSuccess: (_, vars) => {
             queryClient.invalidateQueries({
-                queryKey: ["user", id]
+                queryKey: ["user", vars.id]
             });
             queryClient.invalidateQueries({
                 queryKey: ["users"]

@@ -14,7 +14,6 @@ const repo = new UsersRepo();
 const pages = [
     { label: "Категории", href: "/admin/categories", admin: false },
     { label: "Бренды", href: "/admin/brands", admin: false },
-    { label: "Товары", href: "/admin/products", admin: false },
     { label: "Новости", href: "/admin/news", admin: false },
     { label: "Акции", href: "/admin/discount", admin: false },
     { label: "Пользователи", href: "/admin/users", admin: true },

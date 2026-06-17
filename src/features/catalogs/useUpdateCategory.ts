@@ -11,9 +11,9 @@ export const useUpdateCategory = (repo: ICategoriesRepo) => {
 
     const update = useMutation({
         mutationFn: ({id, req}: UpdateProps) => repo.update(id, req),
-        onSuccess: (_, id) => {
+        onSuccess: (_, vars) => {
             queryClient.invalidateQueries({
-                queryKey: ["category", id]
+                queryKey: ["category", vars.id]
             });
             queryClient.invalidateQueries({
                 queryKey: ["categories"]

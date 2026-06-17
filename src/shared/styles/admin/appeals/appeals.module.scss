@@ -1,0 +1,31 @@
+@use "@/shared/styles/properties/vars" as *;
+@use "@/shared/styles/properties/mixins" as *;
+
+.tabsDiv {
+    border-radius: 16px;
+    margin-inline: 140px;
+    background-color: $bg;
+    border: 1px solid $shadow;
+    box-shadow: 0 4px 12px $shadow;
+}
+
+.tabs {
+    gap: 10px;
+}
+
+.tab {
+    padding: 24px 32px;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 120%;
+
+    &[data-active="true"] {
+        color: $bg-button;
+        border-bottom: 2px solid $bg-button;
+    }
+}
+
+.panel {
+    color: $text-3;
+    padding: 24px 32px;
+}
