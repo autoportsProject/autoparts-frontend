@@ -48,22 +48,30 @@ export const AdminCatalogCard = ({category}: CardProps) => {
         }
     }, [form, category]);
     return (
-        <Group gap="sm" classNames={{root: styles.catalogCard}}>
-            <Text onClick={
+        <>
+            <Group gap="sm" classNames={{root: styles.catalogCard}} onClick={
                 () => nav.push(`/admin/categories/${category.id}`)
-            }>{category.name}</Text>
-            <Stack gap={4}>
-                <ActionIcon size="xl" onClick={
-                    () => setModalOpened(true)
-                } color="green">
-                    <IconPencil></IconPencil>
-                </ActionIcon>
-                <ActionIcon size="xl" onClick={
-                    () => onDelete(category.id)
-                } color="red">
-                    <IconTrash></IconTrash>
-                </ActionIcon>
-            </Stack>
+            }>
+                <Text>{category.name}</Text>
+                <Stack gap={4}>
+                    <ActionIcon size="xl" onClick={
+                        (e) => {
+                            e.stopPropagation();
+                            setModalOpened(true)
+                        }
+                    } color="green">
+                        <IconPencil></IconPencil>
+                    </ActionIcon>
+                    <ActionIcon size="xl" onClick={
+                        (e) => {
+                            e.stopPropagation();
+                            onDelete(category.id)
+                        }
+                    } color="red">
+                        <IconTrash></IconTrash>
+                    </ActionIcon>
+                </Stack>
+            </Group>
             <Modal title="Изменение категории" opened={modalOpened} onClose={() => setModalOpened(false)}>
                 <form onSubmit={form.handleSubmit(onSubmit)}>
                     <Stack gap="md">
@@ -78,6 +86,6 @@ export const AdminCatalogCard = ({category}: CardProps) => {
                     </Stack>
                 </form>
             </Modal>
-        </Group>
+        </>
     )
 }

@@ -1,0 +1,41 @@
+import { IProductsRepo, ProductStockUpdateDto } from "@/domain";
+import { notifications } from "@mantine/notifications";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+interface Props {
+    id: string;
+    req: ProductStockUpdateDto;
+}
+
+export const useUpdateProductStock = (repo: IProductsRepo) => {
+    const queryClient = useQueryClient();
+
+    const update = useMutation({
+        mutationFn: ({id, req}: Props) => repo.updateStock(id, req),
+        onSuccess: (_, id) => {
+            queryClient.invalidateQueries({
+                queryKey: ["product", id]
+            });
+            queryClient.invalidateQueries({
+                queryKey: ["products"]
+            });
+            notifications.show({
+                title: "Успех",
+                message: "Наличие товара успешно обновлено",
+                color: "green",
+                position: "top-right"
+            });
+        },
+        onError: (error) => {
+            notifications.show({
+                title: "Ошибка",
+                message: "Ошибка обновления наличия товара",
+                color: "red",
+                position: "top-right"
+            });
+            console.error("Ошибка обновления наличия товара", error);
+        }
+    });
+
+    return update;
+}

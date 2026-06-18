@@ -15,8 +15,10 @@ const routeNames: Record<string, string> = {
     "news": "Новости",
     "discount": "Акции",
     "company": "О компании",
+    "for_suppliers": "Карточка \"Поставщикам\"",
     "users": "Пользователи",
-    "appeals": "Обращения"
+    "appeals": "Обращения",
+    "create": "Создание товара"
 };
 
 const repo = new CategoriesRepo();
@@ -31,7 +33,7 @@ export const AdminLinkText = () => {
             label: /^[0-9a-f-]{36}$/i.test(s) 
                 ? (categories?.find(c => c.id === s)?.name ?? s)
                 : (routeNames[s] ?? s),
-            href: "/" + segs.slice(0, i+1).join("/")
+            href: s !== "products" ? "/" + segs.slice(0, i+1).join("/") : "/admin/categories"
         }))
     ];
 

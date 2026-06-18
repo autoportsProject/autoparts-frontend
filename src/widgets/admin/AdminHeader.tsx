@@ -1,3 +1,5 @@
+"use client";
+
 import { Box, Button, Center, Group, Image, Loader, Menu, MenuDropdown, MenuItem, MenuTarget, Stack, Text } from "@mantine/core"
 import { IconChevronDown, IconMapPin, IconUser } from "@tabler/icons-react"
 import styles from "@/shared/styles/header/header.module.scss";
@@ -17,6 +19,7 @@ const pages = [
     { label: "Новости", href: "/admin/news", admin: false },
     { label: "Акции", href: "/admin/discount", admin: false },
     { label: "О компании", href: "/admin/company", admin: false },
+    { label: "Поставщикам", href: "/admin/for_suppliers", admin: false },
     { label: "Пользователи", href: "/admin/users", admin: true },
     { label: "Обращения", href: "/admin/appeals", admin: true }
 ];
@@ -56,7 +59,7 @@ export const AdminHeader = () => {
                 <Box className={styles.headerMain}>
                     <Group justify="space-between" align="center">
                         <Group classNames={{root: styles.companyGroup}} onClick={() => nav.push("/")}>
-                            <Image w={50} h={50} radius="50%" src="../favicon.ico"></Image>
+                            <Image w={50} h={50} radius="50%" src="/favicon.ico"></Image>
                             <Text classNames={{root: styles.companyName}}>АвтоИноМир</Text>
                         </Group>
                         <Text fw={700} ta="center" size="40px" c="white" td="underline">Страница Администратора</Text>

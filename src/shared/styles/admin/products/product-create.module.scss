@@ -31,29 +31,10 @@
     letter-spacing: 3%;
 }
 
-.catalogCard {
-    background-color: $bg-catalog-card;
-    padding: 8px 12px;
-    border-radius: 8px;
-    border: 1px solid $shadow;
-
-    & * {
-        font-size: 20px;
-        font-weight: 500;
-    }
-
-    &:hover {
-        background-color: $bg-catalog-card-hover;
-        color: $bg-button;
-        cursor: pointer;
-        box-shadow: 0 4px 12px $shadow;
-    }
-}
-
-.attributesDiv {
+.form {
     padding: 24px 32px;
     background-color: $bg;
-    box-shadow: 0 4px 12px $shadow;
-    border: 1px solid $shadow;
+    box-shadow: 5px 5px 5px $shadow;
     border-radius: 8px;
+    gap: 12px;
 }
