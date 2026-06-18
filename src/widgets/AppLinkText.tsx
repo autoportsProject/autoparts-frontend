@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import styles from "@/shared/styles/linktext/link.module.scss";
 import { useCategoriesList } from "@/features/catalogs/useCategoriesList";
 import { CategoriesRepo } from "@/data/repos/CategoriesRepo";
+import { useBreadcrumbs } from "@/shared/hooks/useBreadcrumbs";
 
 const routeNames: Record<string, string> = {
     "": "Главная",
@@ -17,22 +18,10 @@ const routeNames: Record<string, string> = {
     "catalog": "Каталог товаров"
 };
 
-const repo = new CategoriesRepo();
-
 export const AppLinkText = () => {
-    const pathname = usePathname();
-    const segs = pathname.split("/").filter(Boolean);
-    const {categories} = useCategoriesList(repo);
-    
-    const parts = [
-        {label: "Главная", href: "/"},
-        ...segs.map((s,i) => ({
-            label: /^[0-9a-f-]{36}$/i.test(s) 
-                ? (categories?.find(c => c.id === s)?.name ?? s)
-                : (routeNames[s] ?? s),
-            href: "/" + segs.slice(0, i+1).join("/")
-        }))
-    ];
+    const parts = useBreadcrumbs(routeNames, {
+        homeLabel: "Главная"
+    });
 
     return (
         <Breadcrumbs>

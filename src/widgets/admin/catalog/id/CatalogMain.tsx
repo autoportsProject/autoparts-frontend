@@ -103,7 +103,7 @@ export const CatalogMain = ({id}: Props) => {
                                             <Table.Td>{getAttribTypeLabel(a.type)}</Table.Td>
                                             <Table.Td>{a.unit || "нет"}</Table.Td>
                                             <Table.Td>
-                                                <Group gap={4} grow justify="center">
+                                                <Group gap="md" justify="center">
                                                     <ActionIcon color="green" size="xl" onClick={
                                                         () => {
                                                             setEditAttr(a);
@@ -163,9 +163,9 @@ export const CatalogMain = ({id}: Props) => {
                                             <Table.Td>{p.quantity} шт.</Table.Td>
                                             <Table.Td>{p.inStock ? "Да" : "Нет"}</Table.Td>
                                             <Table.Td>
-                                                <Group gap={4} justify="center">
+                                                <Group gap="md" justify="center">
                                                     <ActionIcon color="green" size="xl" onClick={
-                                                        () => nav.push(`/admin/products/${p.id}`)
+                                                        () => nav.push(`/admin/products/${p.id}?categoryId=${id}`)
                                                     }>
                                                         <IconPencil></IconPencil>
                                                     </ActionIcon>
@@ -185,7 +185,7 @@ export const CatalogMain = ({id}: Props) => {
                 </Stack>
             )}
             <AddAttributeModal categoryId={id} opened={modalOpened} onClose={() => setModalOpened(false)}></AddAttributeModal>
-            <EditAttributeModal categoryId={id} opened={updModalOpened} onClose={() => {
+            <EditAttributeModal opened={updModalOpened} onClose={() => {
                 setUpdModalOpened(false);
                 setEditAttr(null);
             }} attribute={editAttr!} onAttrChange={setEditAttr}></EditAttributeModal>

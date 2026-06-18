@@ -9,7 +9,6 @@ import { useForm, Controller } from "react-hook-form";
 import styles from "@/shared/styles/admin/category/category.module.scss";
 
 interface Props {
-    categoryId: string;
     attribute: AttributeDto;
     onAttrChange: (x: AttributeDto | null) => void;
     opened: boolean;
@@ -18,7 +17,7 @@ interface Props {
 
 const aRepo = new AttributesRepo();
 
-export const EditAttributeModal = ({categoryId, attribute, onAttrChange, opened, onClose}: Props) => {
+export const EditAttributeModal = ({attribute, onAttrChange, opened, onClose}: Props) => {
     const update = useUpdateAttrib(aRepo);
     const updateForm = useForm<UpdateAttribFormValues>({
         defaultValues: {
@@ -57,10 +56,10 @@ export const EditAttributeModal = ({categoryId, attribute, onAttrChange, opened,
                     }} error={updateForm.formState.errors.name?.message}></TextInput>
                     <Controller control={updateForm.control} name="type" render={({field}) => (
                         <Select label="Тип значения" data={[
-                            {value: AttributeType.String, label: "Текст"},
-                            {value: AttributeType.Number, label: "Число"},
-                            {value: AttributeType.Boolean, label: "\"Да/Нет\""}
-                        ]} value={field.value} onChange={
+                            {value: String(AttributeType.String), label: "Текст"},
+                            {value: String(AttributeType.Number), label: "Число"},
+                            {value: String(AttributeType.Boolean), label: "\"Да/Нет\""}
+                        ]} value={String(field.value)} onChange={
                             (x) => field.onChange(x ? Number(x) : null)
                         } classNames={{
                             input: styles.input

@@ -6,6 +6,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "@/shared/styles/linktext/link.module.scss";
 import { CategoriesRepo } from "@/data/repos/CategoriesRepo";
+import { ProductsRepo } from "@/data/repos/ProductsRepo";
+import { useProductDetails } from "@/features/products/useProductDetails";
+import { useBreadcrumbs } from "@/shared/hooks/useBreadcrumbs";
 
 const routeNames: Record<string, string> = {
     "admin": "Главная",
@@ -21,21 +24,15 @@ const routeNames: Record<string, string> = {
     "create": "Создание товара"
 };
 
-const repo = new CategoriesRepo();
+interface Props {
+    currentEntityName?: string;
+}
 
-export const AdminLinkText = () => {
-    const pathname = usePathname();
-    const segs = pathname.split("/").filter(Boolean);
-    const {categories} = useCategoriesList(repo);
-    
-    const parts = [
-        ...segs.map((s,i) => ({
-            label: /^[0-9a-f-]{36}$/i.test(s) 
-                ? (categories?.find(c => c.id === s)?.name ?? s)
-                : (routeNames[s] ?? s),
-            href: s !== "products" ? "/" + segs.slice(0, i+1).join("/") : "/admin/categories"
-        }))
-    ];
+export const AdminLinkText = ({currentEntityName}: Props) => {
+    const parts = useBreadcrumbs(routeNames, {
+        productsHrefOverride: "/admin/categories",
+        currentEntityName: currentEntityName
+    });
 
     return (
         <Breadcrumbs>

@@ -25,7 +25,7 @@
     height: unset;
 }
 
-.submitBtn {
+.submitBtn, .cancelBtn {
     height: 53px;
     padding: 15px 42px 15px 40px;
     background-color: $bg-button;
@@ -34,4 +34,17 @@
     font-weight: 500;
     line-height: 100%;
     letter-spacing: 3%;
+}
+.cancelBtn, .cancelBtn:hover {
+    background-color: $bg;
+    border: 1px solid $text-4;
+    color: $text-4;
+}
+
+.form {
+    padding: 24px 32px;
+    background-color: $bg;
+    box-shadow: 0 4px 12px $shadow;
+    border-radius: 8px;
+    gap: 12px;
 }

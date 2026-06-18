@@ -12,9 +12,9 @@ export const useUpdateProductPrice = (repo: IProductsRepo) => {
 
     const update = useMutation({
         mutationFn: ({id, req}: Props) => repo.updatePrice(id, req),
-        onSuccess: (_, id) => {
+        onSuccess: (_, vars) => {
             queryClient.invalidateQueries({
-                queryKey: ["product", id]
+                queryKey: ["product", vars.id]
             });
             queryClient.invalidateQueries({
                 queryKey: ["products"]
