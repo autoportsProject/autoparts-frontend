@@ -1,4 +1,4 @@
-import { Container, Group, Loader, SimpleGrid, Stack, Text, ThemeIcon, Title } from "@mantine/core"
+import { Container, Group, Loader, Modal, SimpleGrid, Stack, Text, ThemeIcon, Title } from "@mantine/core"
 import styles from "@/shared/styles/about.module.scss";
 import { IconCertificate, IconShieldCheck, IconStarFilled, IconTruck } from "@tabler/icons-react";
 import { AppLinkText } from "../AppLinkText";
@@ -7,6 +7,8 @@ import { CompanyRepo } from "@/data/repos/CompanyRepo";
 import { useCompany } from "@/features/company/useCompany";
 import { CertificatesRepo } from "@/data/repos/CertificatesRepo";
 import { useCertificatesList } from "@/features/certificates/useCertificatesList";
+import { Fragment, useState } from "react";
+import { CertificateDto } from "@/domain";
 
 const advantages = [
     {
@@ -32,19 +34,13 @@ const stats = [
     {value: "17+", label: "брендов запчастей"}
 ];
 
-const certs = [
-    {name: "Сертификат соответствия ISO 9001"},
-    { name: "Официальный дистрибьютор Bosch" },
-    { name: "Авторизованный партнёр Mann-Filter" },
-    { name: "<здесь название сертификата>" },
-];
-
 const repo = new CompanyRepo();
 const cRepo = new CertificatesRepo();
 
 export const AboutMain = () => {
     const {company, isLoading, serverError} = useCompany(repo);
     const {certificates, isLoading: areCertsLoading, serverError: certError} = useCertificatesList(cRepo);
+    const [opened, setOpened] = useState<CertificateDto | null>(null);
     return (
         <Container size="100%" px={0} py="xl">
             {isLoading ? (
@@ -131,14 +127,23 @@ export const AboutMain = () => {
                         ) : (
                             <SimpleGrid cols={4} spacing="lg">
                                 {certificates.map(c => (
-                                    <Stack key={c.name} classNames={{root: styles.certCard}} align="center" gap="sm">
-                                        {c.imagePath ? (
-                                            <img src={c.imagePath} alt={c.name} className={styles.certIcon}></img>
-                                        ) : (
-                                            <IconCertificate size={48} className={styles.certIcon}></IconCertificate>
-                                        )}
-                                        <Text ta="center" classNames={{root: styles.certName}}>{c.name}</Text>
-                                    </Stack>
+                                    <Fragment key={c.id}>
+                                        <Stack classNames={{root: styles.certCard}} onClick={
+                                            () => c.imagePath && setOpened(c)
+                                        } align="center" gap="sm">
+                                            {c.imagePath ? (
+                                                <img src={c.imagePath} alt={c.name} className={styles.certIcon}></img>
+                                            ) : (
+                                                <IconCertificate size={48} className={styles.certIcon}></IconCertificate>
+                                            )}
+                                            <Text ta="center" classNames={{root: styles.certName}}>{c.name}</Text>
+                                        </Stack>
+                                        <Modal opened={!!opened} onClose={() => setOpened(null)} title={opened?.name} size="xl">
+                                            {opened?.imagePath && (
+                                                <img src={opened.imagePath} alt={opened.name} width="100%"></img>
+                                            )}
+                                        </Modal>
+                                    </Fragment>
                                 ))}
                             </SimpleGrid>
                         )}

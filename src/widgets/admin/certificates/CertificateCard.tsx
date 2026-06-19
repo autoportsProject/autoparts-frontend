@@ -48,8 +48,8 @@ export const CertificateCard = ({certificate}: CardProps) => {
         }
     }, [form, certificate]);
     return (
-        <Group classNames={{root: styles.brandCard}}>
-            <Text   >{certificate.name}</Text>
+        <Group classNames={{root: styles.certificateCard}}>
+            <Text>{certificate.name}</Text>
             <Group justify="space-between">
                 <Stack gap={4}>
                     <ActionIcon size="xl" onClick={

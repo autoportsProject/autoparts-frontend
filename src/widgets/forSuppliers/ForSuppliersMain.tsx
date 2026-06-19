@@ -79,7 +79,7 @@ export const ForSuppliersMain = () => {
                                         }} placeholder="+7 (___) ___-__-__"></InputBase>
                                     )}></Controller>
                                 </Group>
-                                <Textarea label="Комментарий (опционально)" classNames={{
+                                <Textarea label="Комментарий" classNames={{
                                     input: `${styles.input} ${styles.textarea}`
                                 }} {...form.register("comment")}></Textarea>
                                 <Group grow>

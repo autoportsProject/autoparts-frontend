@@ -53,7 +53,7 @@ export const AdminCertificatesMain = () => {
                     <Stack gap="md" px={140}>
                         <Button variant="outline" classNames={{
                             root: styles.addBtn
-                        }} leftSection="+" onClick={() => setModalOpened(true)}>Добавить бренд</Button>
+                        }} leftSection="+" onClick={() => setModalOpened(true)}>Добавить сертификат</Button>
                         <Group gap="md">
                             <TextInput flex={1} classNames={{
                                 input: styles.input
