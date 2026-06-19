@@ -15,9 +15,14 @@ const cRepo = new CategoriesRepo();
 
 export const Header = () => {
     const nav = useRouter();
-    const {authorized, user, isLoading, serverError} = useAuthCheck(repo);
+    const {authorized, user} = useAuthCheck(repo);
     const {categories} = useCategoriesList(cRepo);
     const [inputOpened, setInputOpened] = useState(false);
+    const [query, setQuery] = useState("");
+    const onSearch = () => {
+        if (query.trim())
+            nav.push(`/catalog/search?search=${encodeURIComponent(query)}`);
+    }
     return (
         <Stack gap={0}>
             <Box className={styles.headerUp}>
@@ -41,20 +46,28 @@ export const Header = () => {
                     <TextInput classNames={{
                         input: styles.searchInput,
                         section: styles.searchSection
-                    }} placeholder="Найти запчасти по названию/артикулу" rightSection={
+                    }} placeholder="Найти запчасти по названию/артикулу" onKeyDown={
+                        (e) => e.key === "Enter" && onSearch()
+                    } rightSection={
                         <ActionIcon variant="filled" classNames={{
                             root: styles.searchIcon
-                        }} size={40} aria-label="Поиск">
+                        }} size={40} aria-label="Поиск" onClick={onSearch}>
                             <IconSearch></IconSearch>
                         </ActionIcon>
+                    } value={query} onChange={
+                        (e) => setQuery(e.currentTarget.value)
                     }></TextInput>
                     <TextInput data-visible={inputOpened} classNames={{
                         root: styles.inputMob,
                         input: styles.searchInputMob,
                         section: styles.searchSection
-                    }} placeholder="Найти запчасти по названию/артикулу"></TextInput>
+                    }} placeholder="Найти запчасти по названию/артикулу" onChange={
+                        (e) => setQuery(e.currentTarget.value)
+                    } value={query}></TextInput>
                      <Group gap="sm">
-                        <ActionIcon variant="filled" classNames={{
+                        <ActionIcon variant="filled" onKeyDown={
+                            (e) => e.key === "Enter" && onSearch()
+                        } classNames={{
                             root: styles.searchIconMob
                         }} size={40} aria-label="Поиск" onClick={() => setInputOpened(!inputOpened)}>
                             <IconSearch></IconSearch>

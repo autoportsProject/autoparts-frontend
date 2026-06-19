@@ -15,7 +15,8 @@ const routeNames: Record<string, string> = {
     "about": "О нас",
     "for_suppliers": "Поставщикам",
     "contacts": "Контакты",
-    "catalog": "Каталог товаров"
+    "catalog": "Каталог товаров",
+    "search": "Результаты поиска"
 };
 
 export const AppLinkText = () => {
