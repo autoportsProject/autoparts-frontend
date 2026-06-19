@@ -20,6 +20,7 @@ const pages = [
     { label: "Акции", href: "/admin/discount", admin: false },
     { label: "О компании", href: "/admin/company", admin: false },
     { label: "Поставщикам", href: "/admin/for_suppliers", admin: false },
+    { label: "Сертификаты", href: "/admin/certificates", admin: false },
     { label: "Пользователи", href: "/admin/users", admin: true },
     { label: "Обращения", href: "/admin/appeals", admin: true }
 ];

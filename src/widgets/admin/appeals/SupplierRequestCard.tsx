@@ -81,7 +81,7 @@ export const SupplierRequestCard = ({request}: CardProps) => {
                     }} leftSection={<IconPencil></IconPencil>}>Изменить контакты</Button>
                 </Group>
                 <Text classNames={{root: styles.info}}>Email: <span>{request.contactEmail}</span></Text>
-                <Text classNames={{root: styles.info}}>Комментарий менеджера: <span>{request.managerComment || "Нет"}</span></Text>
+                <Text classNames={{root: styles.info}}>Комментарий: <span><strong>{request.managerComment || "Нет"}</strong></span></Text>
             </Stack>
             <Modal title="Изменение контактов" opened={modalOpened} onClose={() => setModalOpened(false)}>
                 <form onSubmit={form.handleSubmit(onSaveContacts)}>

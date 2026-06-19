@@ -64,6 +64,9 @@
     padding: 24px 16px;
     border: 1px solid $text-4;
     border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: $bg;
     cursor: pointer;
     transition: box-shadow 0.2s ease;

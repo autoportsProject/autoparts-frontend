@@ -83,7 +83,7 @@ export const ClientQuestionCard = ({question}: CardProps) => {
                     }} leftSection={<IconPencil></IconPencil>}>Изменить контакты</Button>
                 </Group>
                 <Text classNames={{root: styles.info}}>Email: <span>{question.contactEmail}</span></Text>
-                <Text classNames={{root: styles.info}}>Комментарий менеджера: <span>{question.managerComment || "Нет"}</span></Text>
+                <Text classNames={{root: styles.info}}>Комментарий: <span><strong>{question.managerComment || "Нет"}</strong></span></Text>
             </Stack>
             <Modal title="Изменение контактов" opened={modalOpened} onClose={() => setModalOpened(false)}>
                 <form onSubmit={form.handleSubmit(onSaveContacts)}>

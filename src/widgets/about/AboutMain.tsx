@@ -5,6 +5,8 @@ import { AppLinkText } from "../AppLinkText";
 import { brands } from "@/shared/mocks/brands";
 import { CompanyRepo } from "@/data/repos/CompanyRepo";
 import { useCompany } from "@/features/company/useCompany";
+import { CertificatesRepo } from "@/data/repos/CertificatesRepo";
+import { useCertificatesList } from "@/features/certificates/useCertificatesList";
 
 const advantages = [
     {
@@ -38,9 +40,11 @@ const certs = [
 ];
 
 const repo = new CompanyRepo();
+const cRepo = new CertificatesRepo();
 
 export const AboutMain = () => {
     const {company, isLoading, serverError} = useCompany(repo);
+    const {certificates, isLoading: areCertsLoading, serverError: certError} = useCertificatesList(cRepo);
     return (
         <Container size="100%" px={0} py="xl">
             {isLoading ? (
@@ -115,14 +119,29 @@ export const AboutMain = () => {
                     </Stack>
                     <Stack gap="xl" px={40}>
                         <Title order={2}>Сертификаты</Title>
-                        <SimpleGrid cols={4} spacing="lg">
-                            {certs.map(c => (
-                                <Stack key={c.name} classNames={{root: styles.certCard}} align="center" gap="sm">
-                                    <IconCertificate size={48} className={styles.certIcon}></IconCertificate>
-                                    <Text ta="center" classNames={{root: styles.certName}}>{c.name}</Text>
-                                </Stack>
-                            ))}
-                        </SimpleGrid>
+                        {areCertsLoading ? (
+                            <Group gap="md" justify="center">
+                                <Loader size="xl"></Loader>
+                                <Text c="blue" size="lg">Пожалуйста, подождите...</Text>
+                            </Group>
+                        ) : (certError || !certificates) ? (
+                            <Text c="red" fw={700} ta="center">Произошла ошибка при загрузке сертификатов</Text>
+                        ) : certificates.length === 0 ? (
+                            <Text c="blue" fw={500} size="xl" ta="center">Пока нет сертификатов</Text>
+                        ) : (
+                            <SimpleGrid cols={4} spacing="lg">
+                                {certificates.map(c => (
+                                    <Stack key={c.name} classNames={{root: styles.certCard}} align="center" gap="sm">
+                                        {c.imagePath ? (
+                                            <img src={c.imagePath} alt={c.name} className={styles.certIcon}></img>
+                                        ) : (
+                                            <IconCertificate size={48} className={styles.certIcon}></IconCertificate>
+                                        )}
+                                        <Text ta="center" classNames={{root: styles.certName}}>{c.name}</Text>
+                                    </Stack>
+                                ))}
+                            </SimpleGrid>
+                        )}
                     </Stack>
                 </Stack>
             )}

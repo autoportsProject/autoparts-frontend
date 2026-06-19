@@ -1,4 +1,4 @@
-import { Box, Container, Group, Image, Loader, Select, Stack, Text, Title } from "@mantine/core"
+import { Box, Button, Container, Group, Image, InputBase, Loader, Select, Stack, Text, Textarea, TextInput, Title } from "@mantine/core"
 import styles from "@/shared/styles/contacts.module.scss";
 import { CitySearch } from "./CitySearch";
 import { CoordsDto } from "@/domain/dto/CitySearch/CoordsDto";
@@ -7,6 +7,13 @@ import { CompanyInfo } from "@/shared/mocks/companyInfo";
 import { AppLinkText } from "../AppLinkText";
 import { ContactsRepo } from "@/data/repos/ContactsRepo";
 import { useContactsList } from "@/features/company/contacts/useContactsList";
+import { AppealsRepo } from "@/data/repos/AppealsRepo";
+import { Controller, useForm } from "react-hook-form";
+import { AddClientQuestionFormValues, addClientQuestionSchema } from "@/domain/schemas/contacts/form";
+import { AppealType } from "@/domain";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useCreateClientQuestion } from "@/features/appeals/useCreateAppealQuestion";
+import { IMaskInput } from "react-imask";
 
 const DEFAULT: CoordsDto = {
     lat: "56.526733",
@@ -14,11 +21,35 @@ const DEFAULT: CoordsDto = {
 };
 
 const repo = new ContactsRepo();
+const aRepo = new AppealsRepo();
 
 export const ContactsMain = () => {
     const {contacts, isLoading, serverError} = useContactsList(repo);
     const [coords, setCoords] = useState<CoordsDto>(DEFAULT);
     const mapSrc = `https://maps.google.com/maps?q=${coords.lat},${coords.lon}&z=12&output=embed`;
+    
+    const create = useCreateClientQuestion(aRepo);
+    const form = useForm<AddClientQuestionFormValues>({
+        defaultValues: {
+            category: AppealType.OtherQuestion,
+            managerComment: "",
+            contactPhone: "",
+            contactEmail: ""
+        },
+        resolver: zodResolver(addClientQuestionSchema)
+    });
+    const onSubmit = (data: AddClientQuestionFormValues) => {
+        create.mutate({
+            category: data.category,
+            managerComment: data.managerComment || "",
+            contactPhone: data.contactPhone,
+            contactEmail: data.contactEmail
+        }, {
+            onSuccess: () => {
+                form.reset();
+            }
+        });
+    }
     return (
         <Container size="100%" px={0} py="xl">
             <Stack gap={60}>
@@ -48,6 +79,45 @@ export const ContactsMain = () => {
                     </Stack>
                     <iframe src={mapSrc} className={styles.map} allowFullScreen></iframe>
                 </Group>
+                <Stack gap="xl">
+                    <Title order={2} ta="center">Остались вопросы? Напишите нам!</Title>
+                    <Group classNames={{root: styles.formSection}}>
+                        <form onSubmit={form.handleSubmit(onSubmit)}>
+                            <Stack gap="md" classNames={{root: styles.form}}>
+                                <Controller control={form.control} name="category" render={({field}) => (
+                                    <Select label="Тип вопроса" withAsterisk classNames={{
+                                        input: styles.input
+                                    }} value={String(field.value)} data={[
+                                        { value: String(AppealType.Order), label: "Заказать" },
+                                        { value: String(AppealType.Reserve), label: "Забронировать" },
+                                        { value: String(AppealType.OtherQuestion), label: "Другой вопрос" }
+                                    ]} onChange={
+                                        (x) => field.onChange(x ? Number(x) : AppealType.OtherQuestion)
+                                    } error={form.formState.errors.category?.message}></Select>
+                                )}></Controller>
+                                <Textarea label="Ваш вопрос" withAsterisk classNames={{
+                                    input: `${styles.input} ${styles.textarea}`
+                                }} {...form.register("managerComment")} error={form.formState.errors.managerComment?.message}></Textarea>
+                                <Group grow>
+                                    <TextInput type="email" label="Контактный Email" withAsterisk classNames={{
+                                        input: styles.input
+                                    }} {...form.register("contactEmail")} error={form.formState.errors.contactEmail?.message}></TextInput>
+                                    <Controller control={form.control} name="contactPhone" render={({field}) => (
+                                        <InputBase component={IMaskInput} mask="+7 (000) 000-00-00" classNames={{
+                                            input: styles.input
+                                        }} {...field} withAsterisk label="Контактный телефон" error={
+                                            form.formState.errors.contactPhone?.message
+                                        } placeholder="+7 (___) ___-__-__"></InputBase>
+                                    )}></Controller>
+                                </Group>
+                                <Group grow>
+                                    <Button type="submit" mt={8} classNames={{root: styles.submitBtn}}>Отправить</Button>
+                                    <Button variant="outline" type="reset" mt={8} classNames={{root: styles.cancelBtn}}>Сбросить</Button>
+                                </Group>
+                            </Stack>
+                        </form>
+                    </Group>
+                </Stack>
             </Stack>
         </Container>
     )

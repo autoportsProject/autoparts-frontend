@@ -1,9 +1,11 @@
-import { Container, Stack, Title, Tabs, Group, Select, Button, TextInput, SimpleGrid, Image, Box } from "@mantine/core"
+import { Container, Stack, Title, Tabs, Group, Select, Button, TextInput, SimpleGrid, Image, Box, Loader, Text } from "@mantine/core"
 import { IconCertificate, IconSearch, IconShieldCheck, IconStarFilled, IconTrash, IconTruck } from "@tabler/icons-react"
 import styles from "@/shared/styles/main.module.scss";
 import { ReasonCard } from "@/ui/main/ReasonCard";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { BrandsRepo } from "@/data/repos/BrandsRepo";
+import { useBrandsList } from "@/features/brands/useBrandsList";
 
 const advantages = [
     {
@@ -23,9 +25,13 @@ const advantages = [
     }
 ];
 
+const repo = new BrandsRepo();
+
 export const Main = () => {
     const [query, setQuery] = useState("");
     const nav = useRouter();
+
+    const {brands, isLoading, serverError} = useBrandsList(repo);
 
     const onSearch = () => {
         if (query.trim())
@@ -55,16 +61,27 @@ export const Main = () => {
                         </Group>
                     </Group>
                 </Stack>
-                <Stack gap="xl">
-                    <Title order={2} ml={40}>Бренды</Title>
-                    <Box className={styles.brandsTrack}>
-                        <Group gap={40} classNames={{root: styles.brandsDiv}}>
-                            {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map(i => (
-                                <Image key={i} classNames={{root: styles.brandLogo}}></Image>
-                            ))}
-                        </Group>
-                    </Box>
-                </Stack>
+                {isLoading ? (
+                    <Group gap="md" justify="center">
+                        <Loader size="xl"></Loader>
+                        <Text c="blue" size="lg">Пожалуйста, подождите...</Text>
+                    </Group>
+                ) : (serverError || !brands) ? (
+                    <Text c="red" fw={700} ta="center">Произошла ошибка при загрузке брендов</Text>
+                ) : (
+                    <Stack gap="xl">
+                        <Title order={2} ml={40}>Бренды</Title>
+                        <Box className={styles.brandsTrack}>
+                            <Group gap={40} classNames={{root: styles.brandsDiv}}>
+                                {[...brands, ...brands].map((b,i) => (
+                                    <Text key={i} fw={700} size="lg" classNames={{root: styles.brandLogo}}>
+                                        {b.name}
+                                    </Text>
+                                ))}
+                            </Group>
+                        </Box>
+                    </Stack>
+                )}
             </Stack>
         </Container>
     )

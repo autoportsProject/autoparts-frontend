@@ -21,7 +21,8 @@ const routeNames: Record<string, string> = {
     "for_suppliers": "Карточка \"Поставщикам\"",
     "users": "Пользователи",
     "appeals": "Обращения",
-    "create": "Создание товара"
+    "create": "Создание товара",
+    "certificates": "Сертификаты"
 };
 
 interface Props {
