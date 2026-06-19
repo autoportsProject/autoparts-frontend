@@ -41,7 +41,7 @@ export const Header = () => {
                     <TextInput classNames={{
                         input: styles.searchInput,
                         section: styles.searchSection
-                    }} placeholder="Найти запчасти по названию" rightSection={
+                    }} placeholder="Найти запчасти по названию/артикулу" rightSection={
                         <ActionIcon variant="filled" classNames={{
                             root: styles.searchIcon
                         }} size={40} aria-label="Поиск">
@@ -52,17 +52,12 @@ export const Header = () => {
                         root: styles.inputMob,
                         input: styles.searchInputMob,
                         section: styles.searchSection
-                    }} placeholder="Найти запчасти по названию"></TextInput>
+                    }} placeholder="Найти запчасти по названию/артикулу"></TextInput>
                      <Group gap="sm">
                         <ActionIcon variant="filled" classNames={{
                             root: styles.searchIconMob
                         }} size={40} aria-label="Поиск" onClick={() => setInputOpened(!inputOpened)}>
                             <IconSearch></IconSearch>
-                        </ActionIcon>
-                        <ActionIcon classNames={{
-                            root: styles.cartIcon
-                        }} size={40} aria-label="Корзина">
-                            <IconShoppingCart></IconShoppingCart>
                         </ActionIcon>
                         {authorized ? (
                             <Menu width={200} position="bottom-end">

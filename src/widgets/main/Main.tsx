@@ -10,11 +10,6 @@ const advantages = [
         description: "Мы работаем только с официальными дистрибьюторами. Каждая позиция проходит проверку подлинности"
     },
     {
-        icon: IconTruck,
-        title: "Быстрая доставка",
-        description: "Мы доставляем запчасти по всей России. Срок доставки - от 1 до 7 дней, в зависимости от региона доставки"
-    },
-    {
         icon: IconStarFilled,
         title: "Гарантия качества",
         description: "Мы предоставляем гарантию на все наши товары. При несоответствии - возврат или замена"
@@ -79,11 +74,11 @@ export const Main = () => {
                 <Stack gap="xl" classNames={{root: styles.whyUsDiv}}>
                     <Title order={2} classNames={{root: styles.whyUsTxt}}>Почему мы?</Title>
                     <Group justify="space-between">
-                        <SimpleGrid cols={4} spacing="xl">
+                        <Group grow gap="xl">
                             {advantages.map(a => (
                                 <ReasonCard key={a.title} title={a.title} description={a.description}></ReasonCard>
                             ))}
-                        </SimpleGrid>
+                        </Group>
                     </Group>
                 </Stack>
                 <Stack gap="xl">
