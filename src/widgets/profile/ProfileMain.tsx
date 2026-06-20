@@ -1,6 +1,6 @@
 import { UsersRepo } from "@/data/repos/UsersRepo"
 import { useProfile } from "@/features/users/useProfile";
-import { Button, Center, Container, Group, InputBase, Loader, Stack, Text, TextInput, Title } from "@mantine/core"
+import { Box, Button, Center, Container, Group, InputBase, Loader, Stack, Text, TextInput, Title } from "@mantine/core"
 import styles from "@/shared/styles/profile/profile.module.scss";
 import { useUpdateProfile } from "@/features/users/useUpdateProfile";
 import { Controller, useForm } from "react-hook-form";
@@ -68,7 +68,7 @@ export const ProfileMain = () => {
                                 form.formState.errors.phoneNumber?.message
                             } mask="+7 (000) 000-00-00" {...field}></InputBase>
                         )}></Controller>    
-                        <Group grow>
+                        <Box className={styles.btnsDiv}>
                             {(normalizeRole(profile.role) === UserRole.Admin || normalizeRole(profile.role) === UserRole.Creator) && (
                                 <Button classNames={{
                                     root: `${styles.submitBtn} ${styles.adminBtn}`
@@ -78,7 +78,7 @@ export const ProfileMain = () => {
                             <Button variant="outline" classNames={{
                                 root: `${styles.submitBtn} ${styles.passBtn}`
                             }} c="blue" onClick={() => setModalOpened(true)}>Изменить пароль</Button>
-                        </Group>
+                        </Box>
                     </Stack>
                 </form>
             )}

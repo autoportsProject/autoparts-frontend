@@ -9,11 +9,19 @@
     padding: 20px 24px;
     background-color: $bg-header;
     position: relative;
+
+    @include mobile600 {
+        padding: 12px 16px;
+    }
+    @include mobile375 {
+        padding: 10px 12px;
+    }
 }
 
 .companyGroup {
     gap: 12px;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .companyName {
@@ -57,13 +65,13 @@
     padding-inline: 16px;
     z-index: 1;
     @include mobile600 {
-        width: 75%;
+        width: 100%;
         &[data-visible="true"] {
             display: block;
         }
     }
     @include mobile375 {
-        width: 62.5%;
+        width: 100%;
         &[data-visible="true"] {
             display: block;
         }
@@ -74,6 +82,19 @@
     top: 25%;
     left: 16px;
     width: 100%;
+
+    @include mobile600 {
+        position: static;
+        order: 3;
+        width: 100%;
+        margin-top: 8px;
+    }
+    @include mobile375 {
+        position: static;
+        order: 3;
+        width: 100%;
+        margin-top: 8px;
+    }
 }
 .searchSection {
     margin-right: 8px;

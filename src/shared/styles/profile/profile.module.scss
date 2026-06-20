@@ -35,3 +35,18 @@
     background-color: unset;
     color: unset;
 }
+
+.btnsDiv {
+    display: flex;
+    gap: 12px;
+    @include mobile600 {
+        flex-direction: column;
+    }
+    @include mobile375 {
+        flex-direction: column;
+    }
+
+    & button {
+        flex: 1;
+    }
+}
