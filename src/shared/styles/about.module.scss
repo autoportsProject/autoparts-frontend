@@ -14,6 +14,10 @@
     font-weight: 700;
     line-height: 120%;
     color: $bg-button;
+    
+    @include mobile375 {
+        font-size: 26px;
+    }
 }
 .statLabel {
     font-size: 16px;
@@ -26,6 +30,13 @@
     background-color: $bg-card-2;
     padding: 32px 40px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+    @include mobile600 {
+        padding: 24px 20px;
+    }
+    @include mobile375 {
+        padding: 20px 16px;
+    }
 }
 .aboutBlock {
     background-color: $bg;
@@ -43,9 +54,20 @@
     background: $bg-whyus-card;
 }
 .advantageCard {
+    height: 125px;
     padding: 20px;
     background-color: $bg;
     border-radius: 8px;
+
+    @include mobile600 {
+        height: auto;
+        min-height: 100px;
+    }
+    @include mobile375 {
+        height: auto;
+        min-height: 90px;
+        padding: 16px;
+    }
 }
 
 .advantageTitle {
@@ -63,6 +85,9 @@
     padding: 24px 16px;
     border: 1px solid $text-4;
     border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: $bg;
     cursor: pointer;
     transition: box-shadow 0.2s ease;
@@ -72,11 +97,16 @@
     }
 }
 .certIcon {
+    width: 50%;
     color: $bg-button;
 }
 .certName {
-    font-size: 13px;
+    font-size: 18px;
     font-weight: 500;
     line-height: 130%;
     color: $text-3;
+
+    @include mobile375 {
+        font-size: 15px;
+    }
 }

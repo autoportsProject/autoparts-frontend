@@ -21,6 +21,17 @@
     }
 }
 
+.findDiv {
+    gap: 16px;
+    display: flex;
+    @include mobile600 {
+        flex-direction: column;
+    }
+    @include mobile375 {
+        flex-direction: column;
+    }
+}
+
 .input {
     height: 48px;
     padding: 8px 16px;
@@ -40,4 +51,11 @@
     letter-spacing: 3%;
     height: 48px;
     padding: 15px 42px 15px 40px;
+
+    @include mobile600 {
+        width: 100%;
+    }
+    @include mobile375 {
+        width: 100%;
+    }
 }

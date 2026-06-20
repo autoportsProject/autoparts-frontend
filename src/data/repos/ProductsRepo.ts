@@ -1,10 +1,15 @@
 import { IProductsRepo, PagedList, ProductCreateDto, ProductDto, ProductListItemDto, ProductPriceUpdateDto, ProductQuery, ProductStockUpdateDto, ProductUpdateDto } from "@/domain";
 import api from "../api/axiosInstance";
+import qs from "qs";
 
 export class ProductsRepo implements IProductsRepo {
     async getAll(query: ProductQuery): Promise<PagedList<ProductListItemDto>> {
         const res = await api.get<PagedList<ProductListItemDto>>("/products", {
-            params: query
+            params: query,
+            paramsSerializer: (params) => qs.stringify(params, {
+                allowDots: true,
+                encode: false
+            })
         });
         return res.data;
     }

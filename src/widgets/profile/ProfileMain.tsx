@@ -1,17 +1,23 @@
 import { UsersRepo } from "@/data/repos/UsersRepo"
 import { useProfile } from "@/features/users/useProfile";
-import { Button, Center, Container, InputBase, Loader, Stack, Text, TextInput, Title } from "@mantine/core"
+import { Box, Button, Center, Container, Group, InputBase, Loader, Stack, Text, TextInput, Title } from "@mantine/core"
 import styles from "@/shared/styles/profile/profile.module.scss";
 import { useUpdateProfile } from "@/features/users/useUpdateProfile";
 import { Controller, useForm } from "react-hook-form";
 import { UpdateProfileFormValues, updateProfileSchema } from "@/domain/schemas/profile/updateProfile";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { IMaskInput } from "react-imask";
+import { normalizeRole } from "@/shared/utils/normalizeRole";
+import { UserRole } from "@/domain";
+import { useRouter } from "next/navigation";
+import { ChangePasswordModal } from "./ChangePasswordModal";
 
 const repo = new UsersRepo();
 
 export const ProfileMain = () => {
+    const nav = useRouter();
+    const [modalOpened, setModalOpened] = useState(false);
     const {profile, isLoading, serverError} = useProfile(repo);
     const update = useUpdateProfile(repo);
     const form = useForm<UpdateProfileFormValues>({
@@ -39,7 +45,7 @@ export const ProfileMain = () => {
                 <Center py="xl">
                     <Loader size="xl"></Loader>
                 </Center>
-            ) : !profile ? (
+            ) : (serverError || !profile) ? (
                 <Text c="red" fw={700} ta="center">Вы не авторизованы в системе. Зайдите в систему</Text>
             ) : (
                 <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -61,11 +67,22 @@ export const ProfileMain = () => {
                             }} component={IMaskInput} error={
                                 form.formState.errors.phoneNumber?.message
                             } mask="+7 (000) 000-00-00" {...field}></InputBase>
-                        )}></Controller>
-                        <Button type="submit" classNames={{root: styles.submitBtn}}>Обновить сведения</Button>
+                        )}></Controller>    
+                        <Box className={styles.btnsDiv}>
+                            {(normalizeRole(profile.role) === UserRole.Admin || normalizeRole(profile.role) === UserRole.Creator) && (
+                                <Button classNames={{
+                                    root: `${styles.submitBtn} ${styles.adminBtn}`
+                                }} bg="green" onClick={() => nav.push("/admin")}>Администрирование</Button>
+                            )}
+                            <Button type="submit" classNames={{root: styles.submitBtn}}>Обновить сведения</Button>
+                            <Button variant="outline" classNames={{
+                                root: `${styles.submitBtn} ${styles.passBtn}`
+                            }} c="blue" onClick={() => setModalOpened(true)}>Изменить пароль</Button>
+                        </Box>
                     </Stack>
                 </form>
             )}
+            <ChangePasswordModal opened={modalOpened} onClose={() => setModalOpened(false)}></ChangePasswordModal>
         </Container>
     )
 }

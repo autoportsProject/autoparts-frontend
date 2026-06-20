@@ -95,9 +95,21 @@ export interface AttributeFilterQuery {
 export interface ProductQuery {
     brandId?: string;
     categoryId?: string;
+    name?: string;
+    inStock?: boolean;
     page: number;
     pageSize: number;
     sortBy: string;
     sortOrder: string;
     attributeFilters?: AttributeFilterQuery[];
+}
+
+export interface ProductFilterParams {
+    name?: string;
+    brandId?: string;
+    inStock?: boolean;
+    sortBy: string;
+    sortOrder: string;
+    page: number;
+    pageSize: number;
 }

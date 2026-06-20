@@ -71,6 +71,9 @@ export const NewsCard = ({news}: Props) => {
             </Group>
             <Stack gap="sm">
                 <Text classNames={{root: styles.title}}>{news.name}</Text>
+                {news.imagePath && (
+                    <img src={news.imagePath} alt={news.name} className={styles.cardImg}></img>
+                )}
                 <Text>{news.description || "Нет описания"}</Text>
             </Stack>
             <Modal title="Изменение новости" opened={modalOpened} onClose={() => setModalOpened(false)}>

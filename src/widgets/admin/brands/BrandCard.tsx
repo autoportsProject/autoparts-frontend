@@ -18,7 +18,6 @@ interface CardProps {
 const repo = new BrandsRepo();
 
 export const BrandCard = ({brand}: CardProps) => {
-    const nav = useRouter();
     const [modalOpened, setModalOpened] = useState(false);
     const update = useUpdateBrand(repo);
     const del = useDeleteBrand(repo);

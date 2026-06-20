@@ -11,9 +11,9 @@ export const useUpdateNews = (repo: INewsRepo) => {
 
     const update = useMutation({
         mutationFn: ({id, req}: Props) => repo.update(id, req),
-        onSuccess: (_, id) => {
+        onSuccess: (_, vars) => {
             queryClient.invalidateQueries({
-                queryKey: ["news", id]
+                queryKey: ["news", vars.id]
             });
             queryClient.invalidateQueries({
                 queryKey: ["news-list"]

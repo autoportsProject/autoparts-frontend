@@ -1,11 +1,11 @@
 import { CatalogPage } from "@/views/catalog/catalog";
 
 interface Props {
-    params: Promise<{slug: string}>;
+    params: Promise<{id: string}>;
 }
 
 export default async function CatalogRoute({params}: Props) {
-    const {slug} = await params;
+    const {id} = await params;
 
-    return <CatalogPage slug={slug}></CatalogPage>
+    return <CatalogPage id={id}></CatalogPage>
 }

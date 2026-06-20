@@ -1,0 +1,62 @@
+@use "@/shared/styles/properties/vars" as *;
+@use "@/shared/styles/properties/mixins" as *;
+
+.input {
+    height: 48px;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 120%;
+    color: $text-3;
+}
+.textarea {
+    padding: 12px 16px;
+    height: unset;
+}
+
+.changeRoleBtn {
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 3%;
+}
+
+.submitBtn {
+    height: 48px;
+    padding: 15px 42px 15px 40px;
+    background-color: $bg-button;
+    color: $text-button;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 3%;
+}
+
+.userCard {
+    width: 100%;
+    background-color: $bg;
+    padding: 24px 32px;
+    border-radius: 8px;
+    border: 1px solid $shadow;
+
+    &:hover {
+        background-color: $bg-card;
+        color: $bg-button;
+        box-shadow: 0 4px 12px $shadow;
+    }
+}
+
+.h1 {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 120%;
+    color: $text-3;
+}
+
+.info {
+    font-size: 18px;
+    font-weight: 500;
+    color: $text-4;
+}
+.info span {
+    color: $text-3;
+}
