@@ -25,7 +25,7 @@ export const NewsMain = () => {
                 ) : (newsList.length === 0) ? (
                     <Text c="blue" fw={500} ta="center" size="lg">Пока нет новостей!</Text>
                 ) : newsList.map(n => (
-                    <ContentCard key={n.id} type="News" title={n.name} description={n.description} createdAt={n.publishedAt}></ContentCard>
+                    <ContentCard key={n.id} type="News" title={n.name} description={n.description} createdAt={n.publishedAt} imagePath={n.imagePath}></ContentCard>
                 ))}
             </Stack>
         </Container>

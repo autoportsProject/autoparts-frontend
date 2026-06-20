@@ -10,7 +10,7 @@ import { AppealType } from "@/domain";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCreateClientQuestion } from "@/features/appeals/useCreateAppealQuestion";
 import { IMaskInput } from "react-imask";
-import { IconArrowRight } from "@tabler/icons-react";
+import { IconArrowDown, IconArrowRight } from "@tabler/icons-react";
 
 const repo = new ContactsRepo();
 const aRepo = new AppealsRepo();
@@ -65,7 +65,9 @@ export const ContactsMain = () => {
                 </Group>
                 <Group classNames={{root: styles.mapSection}}>
                     <Stack classNames={{root: styles.selectRegion}}>
-                        <Title order={3} ta="center">Мы находимся здесь <IconArrowRight></IconArrowRight></Title>
+                        <Title order={3} ta="center">
+                            Мы находимся здесь <IconArrowRight className={styles.rightIcon}></IconArrowRight><IconArrowDown className={styles.downIcon}></IconArrowDown>
+                        </Title>
                         <Text ta="center">
                             Пункт выдачи в <strong>г.Томск, ул. Смирнова 44/2</strong>
                         </Text>

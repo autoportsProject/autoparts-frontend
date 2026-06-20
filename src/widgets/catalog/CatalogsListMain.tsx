@@ -1,4 +1,4 @@
-import { Accordion, Button, Center, Container, Divider, Group, Loader, Stack, Text, TextInput, Title } from "@mantine/core"
+import { Accordion, Box, Button, Center, Container, Divider, Group, Loader, Stack, Text, TextInput, Title } from "@mantine/core"
 import { AppLinkText } from "../AppLinkText"
 import { useCategoriesList } from "@/features/catalogs/useCategoriesList"
 import { CatalogCard } from "./CatalogCard";
@@ -19,7 +19,7 @@ export const CatalogsListMain = () => {
     const letters = [...new Set(filtered?.map(c => c.name[0].toUpperCase()))]
         .sort((a,b) => a.localeCompare(b, "ru"));
     return (
-        <Container size="100%" px={40} py="xl">
+        <Container size="100%" px={{base: 16, sm: 40}} py="xl">
             {isLoading ? (
                 <Center py="xl">
                     <Loader size="xl"></Loader>
@@ -32,7 +32,7 @@ export const CatalogsListMain = () => {
                         <AppLinkText></AppLinkText>
                         <Title order={1} ta="center">Выберите категорию</Title>
                     </Stack>
-                    <Group gap="md" px={100}>
+                    <Box className={styles.findDiv} px={{base: 0, sm: 100}}>
                         <TextInput flex={1} classNames={{
                             input: styles.input
                         }} placeholder="Поиск по названию" value={value} onChange={
@@ -43,8 +43,8 @@ export const CatalogsListMain = () => {
                         <Button classNames={{root: styles.submitBtn}} onClick={
                             () => setQuery(value)
                         }>Поиск</Button>
-                    </Group>
-                    <Stack gap={40} px={100}>
+                    </Box>
+                    <Stack gap={40} px={{base: 0, sm: 100}}>
                         {letters.map((l,i) => (
                             <Stack key={i} gap="sm">
                                 <Title order={3} ml="xl">{l}</Title>

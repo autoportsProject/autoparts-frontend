@@ -52,12 +52,12 @@ export const AboutMain = () => {
                 <Text c="red" fw={700} ta="center">Произошла ошибка при загрузке раздела "О нас"</Text>
             ) : (
                 <Stack gap={60}>
-                    <Stack gap="sm" px={40}>
+                    <Stack gap="sm" px={{base: 16, sm: 40}}>
                         <AppLinkText></AppLinkText>
                         <Title order={1} mb="sm" ta="center">О нас</Title>
                         <Text ta="center" size="20px" c="dimmed">20 лет на рынке автозапчастей для спецтехники</Text>
                     </Stack>
-                    <SimpleGrid cols={stats.length} px={140} spacing="lg">
+                    <SimpleGrid cols={{base: 1, xs: 1, sm: Math.max(2, stats.length), md: Math.max(3, stats.length)}} px={{base: 16, sm: 40, md: 140}} spacing="lg">
                         {stats.map(s => (
                             <Stack key={s.value} classNames={{root: styles.statCard}} gap={8} align="center">
                                 <Text classNames={{root: styles.statValue}}>{s.value}</Text>
@@ -98,8 +98,8 @@ export const AboutMain = () => {
                         </Stack>
                     </Stack>
                     <Stack gap="xl" classNames={{root: styles.advantagesDiv}}>
-                        <Title order={2} px={40} c="white">Почему выбирают нас?</Title>
-                        <Group grow px={40} gap="lg">
+                        <Title order={2} px={{base: 16, sm: 40}} c="white">Почему выбирают нас?</Title>
+                        <SimpleGrid cols={{base: 1, sm: 2, md: 3}} px={{base: 16, sm: 40}} spacing="lg">
                             {advantages.map(({icon: Icon, title, description}) => (
                                 <Group key={title} classNames={{root: styles.advantageCard}} gap="md">
                                     <ThemeIcon size={48} radius="md" classNames={{root: styles.advantageIcon}}>
@@ -111,9 +111,9 @@ export const AboutMain = () => {
                                     </Stack>
                                 </Group>
                             ))}
-                        </Group>
+                        </SimpleGrid>
                     </Stack>
-                    <Stack gap="xl" px={40}>
+                    <Stack gap="xl" px={{base: 16, sm: 40}}>
                         <Title order={2}>Сертификаты</Title>
                         {areCertsLoading ? (
                             <Group gap="md" justify="center">
@@ -125,7 +125,7 @@ export const AboutMain = () => {
                         ) : certificates.length === 0 ? (
                             <Text c="blue" fw={500} size="xl" ta="center">Пока нет сертификатов</Text>
                         ) : (
-                            <SimpleGrid cols={4} spacing="lg">
+                            <SimpleGrid cols={{base: 2, sm: 3, md: 4}} spacing="lg">
                                 {certificates.map(c => (
                                     <Fragment key={c.id}>
                                         <Stack classNames={{root: styles.certCard}} onClick={

@@ -27,6 +27,17 @@
     border-bottom-right-radius: 8px;
 }
 
+.enterNameDiv {
+    display: flex;
+    gap: 16px;
+    @include mobile600 {
+        flex-direction: column;
+    }
+    @include mobile375 {
+        flex-direction: column;
+    }
+}
+
 .input {
     height: 43px;
     padding: 8px 16px;
@@ -39,6 +50,12 @@
     font-weight: 500;
     line-height: 120%;
     letter-spacing: 3%;
+    @include mobile600 {
+        width: 100%;
+    }
+    @include mobile375 {
+        width: 100%;
+    }
 }
 .submitBtn {
     background-color: $bg-button;
@@ -61,13 +78,38 @@
     line-height: 120%;
 }
 
+.reasonCardsDiv {
+    display: flex;
+    gap: 32px;
+
+    @include tablet900 {
+        gap: 16px;
+    }
+    @include mobile600 {
+        flex-direction: column;
+        gap: 16px;
+    }
+    @include mobile375 {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
 .reasonDiv {
-    height: 155px;
     border-radius: 8px;
     padding: 20px;
     background-color: $bg;
     color: $text-2;
     gap: 16px;
+
+    @include mobile600 {
+        width: 100%;
+        min-height: 120px;
+    }
+    @include mobile375 {
+        width: 100%;
+        min-height: 110px;
+    }
 }
 .reasonDescr {
     font-size: 18px;

@@ -105,9 +105,9 @@ export const CatalogMain = ({categoryId}: CatalogProps) => {
                         <Title order={1} ta="center">Найти запчасти</Title>
                     </Stack>
                     {category.attributes && category.attributes.length > 0 && (
-                        <Stack gap="lg" mx={250} classNames={{root: styles.filterDiv}}>
+                        <Stack gap="lg" mx={{base: 16, sm: 60, lg: 250}} classNames={{root: styles.filterDiv}}>
                             <Title order={2}>Фильтры</Title>
-                            <SimpleGrid cols={3} spacing="lg">
+                            <SimpleGrid cols={{base: 1, sm: 2, md: 3}} spacing="lg">
                                 <TextInput label="Название" classNames={{
                                     input: styles.input
                                 }} placeholder="Поиск по названию" value={data.name ?? ""} onChange={
@@ -208,8 +208,8 @@ export const CatalogMain = ({categoryId}: CatalogProps) => {
                     ) : (!products || products.items.length === 0) ? (
                         <Text c="blue" size="lg" fw={500} ta="center">По вашему запросу товары не найдены</Text>
                     ) : (
-                        <Stack gap="md" mx={250}>
-                            <SimpleGrid cols={3} spacing="lg">
+                        <Stack gap="md" mx={{base: 16, sm: 50, lg: 250}}>
+                            <SimpleGrid cols={{base: 1, xs: 2, sm: 2, md: 3}} spacing="lg">
                                 {products.items.map(p => (
                                     <ProductCard key={p.id} product={p}></ProductCard>
                                 ))}

@@ -13,11 +13,14 @@ interface CardProps {
 export const ContentCard = ({type, title, description, createdAt, imagePath}: CardProps) => {
     return (
         <Stack gap="md" classNames={{root: styles.card}}>
-            <Group justify="space-between">
-                <Text c="dimmed">Дата публикации: {dayjs(createdAt).format("DD.MM.YYYY в HH:mm")}</Text>
+            <Group justify="space-between" wrap="wrap" gap="xs">
+                <Text c="dimmed" size="sm">Дата публикации: {dayjs(createdAt).format("DD.MM.YYYY в HH:mm")}</Text>
                 <Text classNames={{root: `${styles.cardType} ${styles[type]}`}}>{type === "News" ? "Новость" : "Акция"}</Text>
             </Group>
             <Text classNames={{root: styles.title}}>{title}</Text>
+            {imagePath && (
+                <img src={imagePath} alt={title} className={styles.cardImg}></img>
+            )}
             <Text>{description || "Описания нет, но скоро будет"}</Text>
         </Stack>
     )

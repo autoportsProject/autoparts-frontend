@@ -26,6 +26,34 @@
     color: $text-3;
 }
 
+.detailsWrap {
+    display: flex;
+    flex-direction: row;
+
+    @include mobile600 {
+        flex-direction: column;
+        align-items: center;
+    }
+    @include mobile375 {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.detailsImg {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    flex-shrink: 0;
+
+    @include mobile600 {
+        max-width: 280px;
+    }
+    @include mobile375 {
+        max-width: 220px;
+    }
+}
+
 .cardDescr {
     font-size: 18px;
     font-weight: 500;
@@ -51,4 +79,13 @@
     color: $text-button;
     height: 48px;
     padding: 15px 42px 15px 40px;
+
+    @include mobile600 {
+        width: 100%;
+        padding: 5px 12px 5px 10px;
+    }
+    @include mobile375 {
+        width: 100%;
+        padding: 5px 10px 5px 8px;
+    }
 }

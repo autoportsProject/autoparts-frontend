@@ -57,7 +57,7 @@ export const ForSuppliersMain = () => {
                             <Text classNames={{root: styles.description}}>{page.content}</Text>
                         </Stack>
                     </Stack>
-                    <Stack gap="lg" align="center" classNames={{root: styles.conditionsDiv}}>
+                    <Stack align="center" classNames={{root: styles.conditionsDiv}}>
                         <form onSubmit={form.handleSubmit(onSubmit)}>
                             <Stack gap={8} classNames={{root: styles.form}}>
                                 <Title order={3} mb={8} ta="center">Заполните форму ниже</Title>

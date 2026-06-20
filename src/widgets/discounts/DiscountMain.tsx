@@ -25,7 +25,7 @@ export const DiscountMain = () => {
                 ) : (promotions.length === 0) ? (
                     <Text c="blue" ta="center" size="lg" fw={500}>Пока нет акций!</Text>
                 ) : promotions.map(p => (
-                    <ContentCard key={p.id} type="Promo" title={p.name} description={p.description} createdAt={p.publishedAt}></ContentCard>
+                    <ContentCard key={p.id} type="Promo" title={p.name} description={p.description} createdAt={p.publishedAt} imagePath={p.imagePath}></ContentCard>
                 ))}
             </Stack>
         </Container>

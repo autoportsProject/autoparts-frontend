@@ -15,15 +15,32 @@
     background: $bg-whyus-card;
     padding: 32px 40px;
     color: $text;
+
+    @include mobile600 {
+        padding: 20px 28px;
+    }
+    @include mobile375 {
+        padding: 20px;
+    }
 }
 
 .form {
-    width: 750px;
+    width: 900px;
     padding: 16px 24px;
     background-color: $bg;
     border-radius: 8px;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
     color: $text-3;
+
+    @include tablet900 {
+        width: 750px;
+    }
+    @include mobile600 {
+        width: 100%;
+    }
+    @include mobile375 {
+        width: 100%;
+    }
 }
 
 .submitBtn, .cancelBtn {
@@ -36,6 +53,13 @@
     font-weight: 500;
     line-height: 100%;
     letter-spacing: 3%;
+
+    @include mobile600 {
+        padding: 5px 14px 5px 13px;
+    }
+    @include mobile375 {
+        padding: 5px 14px 5px 13px;
+    }
 }
 .cancelBtn {
     border: 1px solid $text-3;

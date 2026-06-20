@@ -25,9 +25,9 @@ export const ProductDetailsModal = ({productId, opened, onClose}: Props) => {
             ) : (serverError || !product) ? (
                 <Text c="red" fw={700} ta="center">Произошла ошибка при загрузке карточки товара. Возможно, такого товара не существует</Text>
             ) : (
-                <Group grow gap={75} px={24}>
-                    <img src={product.imagePath || noImage.src} alt={product.name} width={400} height={400} style={{objectFit: "fill"}}></img>
-                    <Stack gap="lg">
+                <Stack gap={75} classNames={{root: styles.detailsWrap}}>
+                    <img src={product.imagePath || noImage.src} alt={product.name} className={styles.detailsImg} style={{objectFit: "fill"}}></img>
+                    <Stack gap="lg" flex={1}>
                         <Group justify="space-between">
                             <Title order={1}>{product.name}</Title>
                             <Title order={1} c="red">{product.price} руб.</Title>
@@ -55,7 +55,7 @@ export const ProductDetailsModal = ({productId, opened, onClose}: Props) => {
                             <Text classNames={{root: styles.cardDescr}}>В наличии: <span>{product.quantity} шт.</span></Text>
                         )}
                     </Stack>
-                </Group>
+                </Stack>
             )}
         </Modal>
     )

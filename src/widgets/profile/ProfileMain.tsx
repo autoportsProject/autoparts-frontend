@@ -6,16 +6,18 @@ import { useUpdateProfile } from "@/features/users/useUpdateProfile";
 import { Controller, useForm } from "react-hook-form";
 import { UpdateProfileFormValues, updateProfileSchema } from "@/domain/schemas/profile/updateProfile";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { IMaskInput } from "react-imask";
 import { normalizeRole } from "@/shared/utils/normalizeRole";
 import { UserRole } from "@/domain";
 import { useRouter } from "next/navigation";
+import { ChangePasswordModal } from "./ChangePasswordModal";
 
 const repo = new UsersRepo();
 
 export const ProfileMain = () => {
     const nav = useRouter();
+    const [modalOpened, setModalOpened] = useState(false);
     const {profile, isLoading, serverError} = useProfile(repo);
     const update = useUpdateProfile(repo);
     const form = useForm<UpdateProfileFormValues>({
@@ -70,13 +72,17 @@ export const ProfileMain = () => {
                             {(normalizeRole(profile.role) === UserRole.Admin || normalizeRole(profile.role) === UserRole.Creator) && (
                                 <Button classNames={{
                                     root: `${styles.submitBtn} ${styles.adminBtn}`
-                                }} bg="green" onClick={() => nav.push("/admin")}>Перейти в Администрирование</Button>
+                                }} bg="green" onClick={() => nav.push("/admin")}>Администрирование</Button>
                             )}
                             <Button type="submit" classNames={{root: styles.submitBtn}}>Обновить сведения</Button>
+                            <Button variant="outline" classNames={{
+                                root: `${styles.submitBtn} ${styles.passBtn}`
+                            }} c="blue" onClick={() => setModalOpened(true)}>Изменить пароль</Button>
                         </Group>
                     </Stack>
                 </form>
             )}
+            <ChangePasswordModal opened={modalOpened} onClose={() => setModalOpened(false)}></ChangePasswordModal>
         </Container>
     )
 }

@@ -42,23 +42,23 @@ export const Main = () => {
             <Stack gap={60}>
                 <Stack gap="xl" px={40}>
                     <Title order={1}>Подобрать запчасти:</Title>
-                    <Group gap="md">
+                    <Box className={styles.enterNameDiv}>
                         <TextInput flex={1} size="lg" value={query} onChange={
                             (e) => setQuery(e.currentTarget.value)
                         } placeholder="Введите название или артикул запчасти" onKeyDown={
                             (e) => e.key === "Enter" && onSearch()
                         }></TextInput>
                         <Button classNames={{root: styles.submitBtn}} onClick={onSearch}>Найти</Button>
-                    </Group>
+                    </Box>
                 </Stack>
                 <Stack gap="xl" classNames={{root: styles.whyUsDiv}}>
                     <Title order={2} classNames={{root: styles.whyUsTxt}}>Почему мы?</Title>
                     <Group justify="space-between">
-                        <Group grow gap="xl">
+                        <Box className={styles.reasonCardsDiv}>
                             {advantages.map(a => (
                                 <ReasonCard key={a.title} title={a.title} description={a.description}></ReasonCard>
                             ))}
-                        </Group>
+                        </Box>
                     </Group>
                 </Stack>
                 {isLoading ? (

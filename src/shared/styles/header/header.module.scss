@@ -145,6 +145,13 @@
     flex-grow: 1;
     gap: 0;
     background-color: $bg-navigation;
+
+    @include mobile600 {
+        display: none;
+    }
+    @include mobile375 {
+        display: none;
+    }
 }
 .navBtns button {
     border: 1px solid rgba(0,0,0,0.1);
@@ -157,6 +164,16 @@
     align-items: center;
     padding: 15px 20px;
     color: $text-button;
+}
+
+.burgerNav {
+    display: none;
+    @include mobile600 {
+        display: block;
+    }
+    @include mobile375 {
+        display: block;
+    }
 }
 
 .categories {

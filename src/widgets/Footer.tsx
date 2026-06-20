@@ -20,7 +20,7 @@ export const Footer = () => {
         <Box className={styles.footer}>
             <Center>
                 <Stack justify="center">
-                    <SimpleGrid cols={3} spacing={75} classNames={{root: styles.grid}}>
+                    <SimpleGrid cols={{base: 1, xs: 1, sm: 2, md: 3}} spacing={{base: 32, sm: 50, md: 75}} classNames={{root: styles.grid}}>
                         <Stack gap="md">
                             <Text size="24px" fw={600} c="white">АвтоИноМир</Text>
                             <Text c="rgba(255,255,255,0.6)" fw={500} maw={280} lh={1.7}>Продажа автозапчастей для иномарок в г. Томске. Более 40 000 позиций в каталоге.</Text>

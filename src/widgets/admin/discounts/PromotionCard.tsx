@@ -71,6 +71,9 @@ export const PromotionCard = ({promotion}: CardProps) => {
             </Group>
             <Stack gap="sm">
                 <Text classNames={{root: styles.title}}>{promotion.name}</Text>
+                {promotion.imagePath && (
+                    <img src={promotion.imagePath} alt={promotion.name} className={styles.cardImg}></img>
+                )}
                 <Text>{promotion.description || "Нет описания"}</Text>
             </Stack>
             <Modal title="Изменение акции" opened={modalOpened} onClose={() => setModalOpened(false)}>

@@ -6,7 +6,6 @@ import { ProductQuery } from "@/domain";
 import { useProductsList } from "@/features/products/useProductsList";
 import styles from "@/shared/styles/catalog/catalog.module.scss";
 import { ProductCard } from "./ProductCard";
-import { ProductDetailsModal } from "./ProductDetailsModal";
 
 interface Props {
     query: string;
@@ -31,7 +30,7 @@ export const SearchResultMain = ({query}: Props) => {
     return (
         <Container size="100%" px={0} py="xl">
             <Stack gap={45}>
-                <Stack gap="sm" px={40}>
+                <Stack gap="sm" px={{base: 16, sm: 40}}>
                     <AppLinkText></AppLinkText>
                     <Title order={1} ta="center">Результаты поиска по запросу "{query}"</Title>
                 </Stack>
@@ -45,8 +44,8 @@ export const SearchResultMain = ({query}: Props) => {
                 ) : products.items.length === 0 ? (
                     <Text size="xl" c="blue" fw={500} ta="center">По вашему запросу ничего не найдено</Text>
                 ) : (
-                    <Stack gap="xl" mx={140}>
-                        <SimpleGrid cols={3} spacing="md">
+                    <Stack gap="xl" mx={{base: 16, sm: 60, lg: 140}}>
+                        <SimpleGrid cols={{base: 1, xs: 2, sm: 2, md: 3}} spacing="md">
                             {products.items.map(p => (
                                 <ProductCard key={p.id} product={p}></ProductCard>
                             ))}
