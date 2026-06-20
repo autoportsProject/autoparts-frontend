@@ -1,4 +1,4 @@
-import { Badge, Button, Card, Container, Group, Loader, NumberInput, Pagination, Select, SimpleGrid, Stack, Switch, Text, TextInput, Title } from "@mantine/core"
+import { Badge, Button, Card, Center, Container, Group, Loader, NumberInput, Pagination, Select, SimpleGrid, Stack, Switch, Text, TextInput, Title } from "@mantine/core"
 import styles from "@/shared/styles/catalog/catalog.module.scss";
 import { AppLinkText } from "../AppLinkText";
 import { AttributeFilterQuery, AttributeType, ProductFilterParams, ProductQuery } from "@/domain";
@@ -14,6 +14,12 @@ import { useBrandsList } from "@/features/brands/useBrandsList";
 
 interface CatalogProps {
     categoryId: string;
+}
+
+interface AttrFilterValue {
+    min?: string;
+    max?: string;
+    value?: string;
 }
 
 const repo = new CategoriesRepo();
@@ -33,10 +39,13 @@ export const CatalogMain = ({categoryId}: CatalogProps) => {
 
     const [data, setData] = useState<ProductFilterParams>(defaultFilters);
     const [filters, setFilters] = useState<ProductFilterParams>(defaultFilters);
+    const [attrFilters, setAttrFilters] = useState<Record<string, AttrFilterValue>>({});
+    const [appliedAttrs, setAppliedAttrs] = useState<AttributeFilterQuery[]>([]);
 
     const query: ProductQuery = {
         categoryId,
-        ...filters
+        ...filters,
+        attributeFilters: appliedAttrs
     };
 
     const {products, isLoading: areProductsLoading, serverError: prodError} = useProductsList(query, pRepo);
@@ -46,6 +55,12 @@ export const CatalogMain = ({categoryId}: CatalogProps) => {
             ...prev,
             ...patch,
             page: 1
+        }));
+    }
+    const updateAttrFilter = (attributeId: string, patch: Partial<AttrFilterValue>) => {
+        setAttrFilters(prev => ({
+            ...prev,
+            [attributeId]: {...prev[attributeId], ...patch}
         }));
     }
     const onPageChange = (page: number) => {
@@ -58,8 +73,21 @@ export const CatalogMain = ({categoryId}: CatalogProps) => {
     const onReset = () => {
         setData(defaultFilters);
         setFilters(defaultFilters);
+        setAttrFilters({});
+        setAppliedAttrs([]);
     }
-    const onSearch = () => setFilters({...data, page: 1});
+    const onSearch = () => {
+        const attributeFilters: AttributeFilterQuery[] = Object.entries(attrFilters)
+            .filter(([, v]) => v.min || v.max || v.value)
+            .map(([id, x]) => ({
+                attributeId: id,
+                min: x.min,
+                max: x.max,
+                value: x.value
+            }));
+        setAppliedAttrs(attributeFilters);
+        setFilters({...data, page: 1});
+    };
     const total = Math.ceil((products?.totalCount ?? 0) / filters.pageSize);
     return (
         <Container size="100%" px={0} py="xl">
@@ -101,6 +129,48 @@ export const CatalogMain = ({categoryId}: CatalogProps) => {
                                 ]} value={data.inStock === undefined ? null : String(data.inStock)} onChange={
                                     (x) => updateFilter({inStock: x === null ? undefined : x === "true"})
                                 }></Select>
+                                {category.attributes.map(a => {
+                                    if (a.type === AttributeType.Boolean) {
+                                        return (
+                                            <Select key={a.id} label={a.name} classNames={{
+                                                input: styles.input
+                                            }} clearable placeholder="Любое" data={[
+                                                {value: "true", label: "Да"},
+                                                {value: "false", label: "Нет"}
+                                            ]} value={attrFilters[a.id].value ?? null} onChange={
+                                                (x) => updateAttrFilter(a.id, {value: x ?? undefined})
+                                            }></Select>
+                                        );
+                                    }
+                                    if (a.type === AttributeType.Number) {
+                                        return (
+                                            <Stack key={a.id} gap={4}>
+                                                <Text size="sm" fw={500}>
+                                                    {a.name}{a.unit ? ` (${a.unit})` : ""}
+                                                </Text>
+                                                <Group gap="xs" grow>
+                                                    <NumberInput placeholder="От" classNames={{
+                                                        input: styles.input
+                                                    }} value={attrFilters[a.id]?.min !== undefined ? Number(attrFilters[a.id].min) : ""} onChange={
+                                                        (x) => updateAttrFilter(a.id, {min: x !== "" ? String(x) : undefined})
+                                                    }></NumberInput>
+                                                    <NumberInput placeholder="До" classNames={{
+                                                        input: styles.input
+                                                    }} value={attrFilters[a.id]?.max !== undefined ? Number(attrFilters[a.id].max) : ""} onChange={
+                                                        (x) => updateAttrFilter(a.id, {max: x !== "" ? String(x) : undefined})
+                                                    }></NumberInput>
+                                                </Group>
+                                            </Stack>
+                                        )
+                                    }
+                                    return (
+                                        <TextInput key={a.id} label={`${a.name}${a.unit ? `(${a.unit})` : ""}`} classNames={{
+                                            input: styles.input
+                                        }} placeholder="Поиск..." onChange={
+                                            (e) => updateAttrFilter(a.id, {value: e.currentTarget.value || undefined})
+                                        } value={attrFilters[a.id].value ?? ""}></TextInput>
+                                    )
+                                })}
                             </SimpleGrid>
                             <Group justify="space-between">
                                 <NumberInput label="Товаров на странице" value={data.pageSize} onChange={
@@ -144,8 +214,10 @@ export const CatalogMain = ({categoryId}: CatalogProps) => {
                                     <ProductCard key={p.id} product={p}></ProductCard>
                                 ))}
                             </SimpleGrid>
-                            {products.totalCount > 12 && (
-                                <Pagination total={total} value={products.page} onChange={onPageChange}></Pagination>
+                            {products.totalCount > filters.pageSize && (
+                                <Center>
+                                    <Pagination total={total} value={products.page} onChange={onPageChange}></Pagination>
+                                </Center>
                             )}
                         </Stack>
                     )}

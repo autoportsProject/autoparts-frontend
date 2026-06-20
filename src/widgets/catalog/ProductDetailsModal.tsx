@@ -35,6 +35,19 @@ export const ProductDetailsModal = ({productId, opened, onClose}: Props) => {
                         <Text classNames={{root: styles.cardDescr}}>Описание: <span>{product.description}</span></Text>
                         <Text classNames={{root: styles.cardDescr}}>Артикул: <span>{product.article}</span></Text>
                         <Text classNames={{root: styles.cardDescr}}>Бренд: <span>{product.brand.name}</span></Text>
+                        {product.attributeValues && product.attributeValues.length > 0 && (
+                            <Stack gap={4}>
+                                <Text fw={500}>Характеристики:</Text>
+                                {product.attributeValues.map(x => (
+                                    <Text key={x.attributeId} classNames={{root: styles.cardDescr}}>
+                                        {x.attributeName}: <span>
+                                            {x.value === "true" ? "Да" : x.value === "false" ? "Нет" : x.value}
+                                            {x.unit ? ` ${x.unit}` : ""}
+                                        </span>
+                                    </Text>
+                                ))}
+                            </Stack>
+                        )}
                         <Text bg={product.inStock ? "green" : "red"} classNames={{root: styles.inStock}}>
                             {product.inStock ? "Товар сейчас в наличии" : "Товара сейчас нет в наличии"}
                         </Text>

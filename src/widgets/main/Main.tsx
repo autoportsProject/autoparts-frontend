@@ -39,7 +39,7 @@ export const Main = () => {
     }
     return (
         <Container size="100%" px={0} py={60}>
-            <Stack gap={100}>
+            <Stack gap={60}>
                 <Stack gap="xl" px={40}>
                     <Title order={1}>Подобрать запчасти:</Title>
                     <Group gap="md">
