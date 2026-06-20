@@ -1,9 +1,5 @@
-import { Box, Button, Container, Group, Image, InputBase, Loader, Select, Stack, Text, Textarea, TextInput, Title } from "@mantine/core"
+import { Button, Container, Group, InputBase, Loader, Select, Stack, Text, Textarea, TextInput, Title } from "@mantine/core"
 import styles from "@/shared/styles/contacts.module.scss";
-import { CitySearch } from "./CitySearch";
-import { CoordsDto } from "@/domain/dto/CitySearch/CoordsDto";
-import { useState } from "react";
-import { CompanyInfo } from "@/shared/mocks/companyInfo";
 import { AppLinkText } from "../AppLinkText";
 import { ContactsRepo } from "@/data/repos/ContactsRepo";
 import { useContactsList } from "@/features/company/contacts/useContactsList";
@@ -14,19 +10,14 @@ import { AppealType } from "@/domain";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCreateClientQuestion } from "@/features/appeals/useCreateAppealQuestion";
 import { IMaskInput } from "react-imask";
-
-const DEFAULT: CoordsDto = {
-    lat: "56.526733",
-    lon: "84.983375"
-};
+import { IconArrowRight } from "@tabler/icons-react";
 
 const repo = new ContactsRepo();
 const aRepo = new AppealsRepo();
 
 export const ContactsMain = () => {
     const {contacts, isLoading, serverError} = useContactsList(repo);
-    const [coords, setCoords] = useState<CoordsDto>(DEFAULT);
-    const mapSrc = `https://maps.google.com/maps?q=${coords.lat},${coords.lon}&z=12&output=embed`;
+    const mapSrc = `https://maps.google.com/maps?q=56.526733,84.983375&z=12&output=embed`;
     
     const create = useCreateClientQuestion(aRepo);
     const form = useForm<AddClientQuestionFormValues>({
@@ -74,8 +65,13 @@ export const ContactsMain = () => {
                 </Group>
                 <Group classNames={{root: styles.mapSection}}>
                     <Stack classNames={{root: styles.selectRegion}}>
-                        <Title order={3} ta="center">Выберите город</Title>
-                        <CitySearch onCitySelect={setCoords}></CitySearch>
+                        <Title order={3} ta="center">Мы находимся здесь <IconArrowRight></IconArrowRight></Title>
+                        <Text ta="center">
+                            Пункт выдачи в <strong>г.Томск, ул. Смирнова 44/2</strong>
+                        </Text>
+                        <Text c="dimmed" ta="center">
+                            Также у нас есть несколько складов в городе для оперативной доставки заказов.
+                        </Text>
                     </Stack>
                     <iframe src={mapSrc} className={styles.map} allowFullScreen></iframe>
                 </Group>

@@ -1,5 +1,6 @@
 export enum AttributeType {
     String = 0,
-    Number = 1,
-    Boolean = 2
+    Int = 1,
+    Float = 2,
+    Bool = 3
 };

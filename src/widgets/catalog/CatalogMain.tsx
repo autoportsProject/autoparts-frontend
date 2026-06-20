@@ -130,19 +130,19 @@ export const CatalogMain = ({categoryId}: CatalogProps) => {
                                     (x) => updateFilter({inStock: x === null ? undefined : x === "true"})
                                 }></Select>
                                 {category.attributes.map(a => {
-                                    if (a.type === AttributeType.Boolean) {
+                                    if (a.type === AttributeType.Bool) {
                                         return (
                                             <Select key={a.id} label={a.name} classNames={{
                                                 input: styles.input
                                             }} clearable placeholder="Любое" data={[
                                                 {value: "true", label: "Да"},
                                                 {value: "false", label: "Нет"}
-                                            ]} value={attrFilters[a.id].value ?? null} onChange={
+                                            ]} value={attrFilters[a.id]?.value ?? null} onChange={
                                                 (x) => updateAttrFilter(a.id, {value: x ?? undefined})
                                             }></Select>
                                         );
                                     }
-                                    if (a.type === AttributeType.Number) {
+                                    if (a.type === AttributeType.Int || a.type === AttributeType.Float) {
                                         return (
                                             <Stack key={a.id} gap={4}>
                                                 <Text size="sm" fw={500}>
@@ -168,7 +168,7 @@ export const CatalogMain = ({categoryId}: CatalogProps) => {
                                             input: styles.input
                                         }} placeholder="Поиск..." onChange={
                                             (e) => updateAttrFilter(a.id, {value: e.currentTarget.value || undefined})
-                                        } value={attrFilters[a.id].value ?? ""}></TextInput>
+                                        } value={attrFilters[a.id]?.value ?? ""}></TextInput>
                                     )
                                 })}
                             </SimpleGrid>

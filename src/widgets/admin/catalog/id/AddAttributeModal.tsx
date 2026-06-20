@@ -41,8 +41,9 @@ export const AddAttributeModal = ({categoryId, opened, onClose}: Props) => {
                     <Controller control={createForm.control} name="type" render={({field}) => (
                         <Select label="Тип значения" data={[
                             {value: String(AttributeType.String), label: "Текст"},
-                            {value: String(AttributeType.Number), label: "Число"},
-                            {value: String(AttributeType.Boolean), label: "\"Да/Нет\""}
+                            {value: String(AttributeType.Int), label: "Целое число"},
+                            {value: String(AttributeType.Float), label: "Дробное число"},
+                            {value: String(AttributeType.Bool), label: "\"Да/Нет\""}
                         ]} value={String(field.value)} onChange={
                             (x) => field.onChange(x ? Number(x) : null)
                         } classNames={{

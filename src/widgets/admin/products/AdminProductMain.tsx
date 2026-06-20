@@ -149,14 +149,14 @@ export const AdminProductMain = ({id}: Props) => {
                             {attribs?.map((a,i) => (
                                 <Controller key={a.id} control={form.control} name={`attributeValues.${i}.value`} render={({field}) => {
                                     form.setValue(`attributeValues.${i}.attributeId`, a.id);
-                                    if (a.type === AttributeType.Boolean) {
+                                    if (a.type === AttributeType.Bool) {
                                         return (
                                             <Switch label={a.name} mt="sm" checked={field.value === "true"} onChange={
                                                 (e) => field.onChange(e.currentTarget.checked)
                                             } size="lg" error={form.formState.errors.attributeValues?.[i]?.value?.message}></Switch>
                                         )
                                     }
-                                    if (a.type === AttributeType.Number) {
+                                    if (a.type === AttributeType.Int || a.type === AttributeType.Float) {
                                         return (
                                             <NumberInput label={`${a.name} ${a.unit ? `(${a.unit})` : ""}`} value={
                                                 field.value ? Number(field.value) : ""
