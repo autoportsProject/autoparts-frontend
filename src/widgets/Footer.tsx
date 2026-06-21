@@ -1,20 +1,27 @@
 "use client";
 
-import { Anchor, Box, Center, Group, SimpleGrid, Stack, Text } from "@mantine/core"
+import { Anchor, Box, Group, Stack, Text } from "@mantine/core"
 import styles from "@/shared/styles/footer/footer.module.scss";
 import { useRouter } from "next/navigation";
 import { IconClock, IconMapPin, IconPhone } from "@tabler/icons-react";
+import { UsersRepo } from "@/data/repos/UsersRepo";
+import { useProfile } from "@/features/users/useProfile";
+import { UserRole } from "@/domain";
 
 const links = [
-    { label: "Каталог", href: "/catalog" },
-    { label: "Новости", href: "/news" },
-    { label: "Акции", href: "/discounts" },
-    { label: "О компании", href: "/about" },
-    { label: "Поставщикам", href: "/for_suppliers" },
-    { label: "Контакты", href: "/contacts" },
+    { label: "Администрирование", href: "/admin", admin: true },
+    { label: "Каталог", href: "/catalog", admin: false },
+    { label: "Новости", href: "/news", admin: false },
+    { label: "Акции", href: "/discounts", admin: false },
+    { label: "О компании", href: "/about", admin: false },
+    { label: "Поставщикам", href: "/for_suppliers", admin: false },
+    { label: "Контакты", href: "/contacts", admin: false },
 ];
 
+const repo = new UsersRepo();
+
 export const Footer = () => {
+    const {profile} = useProfile(repo);
     const nav = useRouter();
     return (
         <Box className={styles.footer}>
@@ -26,7 +33,11 @@ export const Footer = () => {
                     </Stack>
                     <Stack gap={8}>
                         <Text classNames={{root: styles.sectionTitle}} mb={6}>Разделы</Text>
-                        {links.map(l => (
+                        {links.map(l => l.admin ? (profile?.role === UserRole.Admin || profile?.role === UserRole.Creator) && (
+                            <Anchor key={l.href} classNames={{root: styles.link}} style={{cursor: "pointer"}} onClick={() => nav.push(l.href)}>
+                                {l.label}
+                            </Anchor>
+                        ) : (
                             <Anchor key={l.href} classNames={{root: styles.link}} style={{cursor: "pointer"}} onClick={() => nav.push(l.href)}>
                                 {l.label}
                             </Anchor>

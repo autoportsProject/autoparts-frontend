@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { AuthRepo } from "@/data/repos/AuthRepo";
 import { useLogin } from "@/features/auth/useLogin";
 import { getErrorMessage } from "@/shared/utils/getError";
+import { Header } from "@/widgets/Header";
 
 const repo = new AuthRepo();
 
@@ -22,6 +23,7 @@ export const LoginPage = () => {
     const onSubmit = (data: LoginFormValues) => login.mutate(data);
     return (
         <Box className={styles.container}>
+            <Header></Header>
             <Container py="xl">
                 <form onSubmit={form.handleSubmit(onSubmit)}>
                     <Stack classNames={{root: styles.loginCard}}>
