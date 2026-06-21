@@ -38,18 +38,21 @@
     font-size: 16px;
     font-weight: 500;
     line-height: 120%;
-    color: $text-3;
 }
 .New {
+    color: $text;
     background-color: $bg-status-New;
 }
 .Accepted {
+    color: $text-3;
     background-color: $bg-status-Accepted;
 }
 .Cancelled {
+    color: $text;
     background-color: $bg-status-Cancelled;
 }
 .Completed {
+    color: $text-3;
     background-color: $bg-status-Completed;
 }
 

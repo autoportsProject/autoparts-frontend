@@ -68,7 +68,9 @@ export const SupplierRequestCard = ({request}: CardProps) => {
                     {value: AppealStatus.Completed, label: "Завершено"},
                     {value: AppealStatus.Cancelled, label: "Отменено"}
                 ]} classNames={{input: `${styles.input} ${styles[getStatusColor(status)]}`}} rightSection={
-                    <IconChevronDown color="white"></IconChevronDown>
+                    <IconChevronDown color={
+                        (status !== AppealStatus.Cancelled && status !== AppealStatus.New) ? "black" : "white"
+                    }></IconChevronDown>
                 }></Select>
             </Group>
             <Stack gap={8}>

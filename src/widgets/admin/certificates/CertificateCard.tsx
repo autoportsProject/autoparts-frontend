@@ -18,6 +18,7 @@ const repo = new CertificatesRepo();
 
 export const CertificateCard = ({certificate}: CardProps) => {
     const [modalOpened, setModalOpened] = useState(false);
+    const [certOpened, setCertOpened] = useState(false);
     const update = useUpdateCertificate(repo);
     const del = useDeleteCertificate(repo);
     const form = useForm<UpdateCertificateFormValues>({
@@ -48,21 +49,31 @@ export const CertificateCard = ({certificate}: CardProps) => {
         }
     }, [form, certificate]);
     return (
-        <Group classNames={{root: styles.certificateCard}}>
-            <Text>{certificate.name}</Text>
-            <Group justify="space-between">
-                <Stack gap={4}>
-                    <ActionIcon size="xl" onClick={
-                        () => setModalOpened(true)
-                    } color="green">
-                        <IconPencil></IconPencil>
-                    </ActionIcon>
-                    <ActionIcon size="xl" onClick={
-                        () => onDelete(certificate.id)
-                    } color="red">
-                        <IconTrash></IconTrash>
-                    </ActionIcon>
-                </Stack>
+        <>
+            <Group classNames={{
+                root: `${styles.certificateCard} ${!!certificate.imagePath && styles.yes}`
+            }} onClick={() => certificate.imagePath && setCertOpened(true)}>
+                <Text>{certificate.name}</Text>
+                <Group justify="space-between">
+                    <Stack gap={4}>
+                        <ActionIcon size="xl" onClick={
+                            (e) => {
+                                e.stopPropagation();
+                                setModalOpened(true);
+                            }
+                        } color="green">
+                            <IconPencil></IconPencil>
+                        </ActionIcon>
+                        <ActionIcon size="xl" onClick={
+                            (e) => {
+                                e.stopPropagation();
+                                onDelete(certificate.id)
+                            }
+                        } color="red">
+                            <IconTrash></IconTrash>
+                        </ActionIcon>
+                    </Stack>
+                </Group>
             </Group>
             <Modal title="Изменение сертификата" opened={modalOpened} onClose={() => setModalOpened(false)}>
                 <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -83,6 +94,9 @@ export const CertificateCard = ({certificate}: CardProps) => {
                     </Stack>
                 </form>
             </Modal>
-        </Group>
+            <Modal title="Фото сертификата" opened={certOpened} onClose={() => setCertOpened(false)}>
+                <img src={certificate.imagePath} alt={certificate.name} width="100%"></img>
+            </Modal>
+        </>
     )
 }
