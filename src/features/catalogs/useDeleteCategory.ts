@@ -1,4 +1,5 @@
 import { ICategoriesRepo } from "@/domain";
+import { notifications } from "@mantine/notifications";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useDeleteCategory = (repo: ICategoriesRepo) => {
@@ -12,6 +13,12 @@ export const useDeleteCategory = (repo: ICategoriesRepo) => {
             });
             queryClient.invalidateQueries({
                 queryKey: ["category", id]
+            });
+            notifications.show({
+                title: "Успех",
+                message: "Категория успешно удалена",
+                color: "green",
+                position: "top-right"
             });
         },
         onError: (error) => {

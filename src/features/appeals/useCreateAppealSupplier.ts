@@ -14,12 +14,6 @@ export const useCreateSupplierRequest = (repo: IAppealsRepo) => {
             });
         },
         onError: (error) => {
-            notifications.show({
-                title: "Ошибка",
-                message: "Ошибка создания заявки поставщика",
-                color: "red",
-                position: "top-right"
-            });
             console.error("Ошибка создания заявки поставщика", error);
         }
     });

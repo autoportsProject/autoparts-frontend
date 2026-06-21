@@ -1,4 +1,5 @@
 import { CategoryCreateDto, ICategoriesRepo } from "@/domain";
+import { notifications } from "@mantine/notifications";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useCreateCategory = (repo: ICategoriesRepo) => {
@@ -9,6 +10,12 @@ export const useCreateCategory = (repo: ICategoriesRepo) => {
         onSuccess: () => {
             queryClient.invalidateQueries({
                 queryKey: ["categories"]
+            });
+            notifications.show({
+                title: "Успех",
+                message: "Категория успешно создана",
+                color: "green",
+                position: "top-right"
             });
         },
         onError: (error) => {

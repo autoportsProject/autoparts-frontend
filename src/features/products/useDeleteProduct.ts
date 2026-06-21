@@ -22,12 +22,6 @@ export const useDeleteProduct = (repo: IProductsRepo) => {
             });
         },
         onError: (error) => {
-            notifications.show({
-                title: "Ошибка",
-                message: "Ошибка удаления товара",
-                color: "red",
-                position: "top-right"
-            });
             console.error("Ошибка удаления товара", error);
         }
     });

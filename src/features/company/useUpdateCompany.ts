@@ -19,12 +19,6 @@ export const useUpdateCompany = (repo: ICompanyRepo) => {
             });
         },
         onError: (error) => {
-            notifications.show({
-                title: "Ошибка",
-                message: "Ошибка обновления информации",
-                color: "red",
-                position: "top-right"
-            });
             console.error("Ошибка изменения информации о компании", error);
         }
     });

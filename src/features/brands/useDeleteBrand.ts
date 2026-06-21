@@ -1,4 +1,5 @@
 import { IBrandsRepo } from "@/domain";
+import { notifications } from "@mantine/notifications";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useDeleteBrand = (repo: IBrandsRepo) => {
@@ -12,6 +13,12 @@ export const useDeleteBrand = (repo: IBrandsRepo) => {
             });
             queryClient.invalidateQueries({
                 queryKey: ["brand", id]
+            });
+            notifications.show({
+                title: "Успех",
+                message: "Бренд успешно удален",
+                color: "green",
+                position: "top-right"
             });
         },
         onError: (error) => {

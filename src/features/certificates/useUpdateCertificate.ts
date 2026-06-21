@@ -27,12 +27,6 @@ export const useUpdateCertificate = (repo: ICertificatesRepo) => {
             });
         },
         onError: (error) => {
-            notifications.show({
-                title: "Ошибка",
-                message: "Ошибка обновления сертификата",
-                color: "red",
-                position: "top-right"
-            });
             console.error("Ошибка обновления сертификата", error);
         }
     });

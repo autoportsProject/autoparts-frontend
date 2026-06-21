@@ -1,4 +1,5 @@
 import { IUsersRepo, ProfileUpdateDto } from "@/domain";
+import { notifications } from "@mantine/notifications";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useUpdateProfile = (repo: IUsersRepo) => {
@@ -10,7 +11,12 @@ export const useUpdateProfile = (repo: IUsersRepo) => {
             queryClient.invalidateQueries({
                 queryKey: ["profile"]
             });
-            alert("Успешно!");
+            notifications.show({
+                title: "Успех",
+                message: "Профиль успешно обновлен",
+                color: "green",
+                position: "top-right"
+            });
         },
         onError: (error) => {
             console.error("Ошибка обновления профиля", error);

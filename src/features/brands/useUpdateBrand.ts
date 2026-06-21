@@ -1,4 +1,5 @@
 import { BrandUpdateDto, IBrandsRepo } from "@/domain";
+import { notifications } from "@mantine/notifications";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface Props {
@@ -17,6 +18,12 @@ export const useUpdateBrand = (repo: IBrandsRepo) => {
             });
             queryClient.invalidateQueries({
                 queryKey: ["brands"]
+            });
+            notifications.show({
+                title: "Успех",
+                message: "Бренд успешно обновлен",
+                color: "green",
+                position: "top-right"
             });
         },
         onError: (error) => {

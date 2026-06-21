@@ -14,12 +14,6 @@ export const useCreateClientQuestion = (repo: IAppealsRepo) => {
             });
         },
         onError: (error) => {
-            notifications.show({
-                title: "Ошибка",
-                message: "Произошла ошибка при создании обращения",
-                color: "red",
-                position: "top-right"
-            });
             console.log("Ошибка создания обращения клиента", error);
         }
     });

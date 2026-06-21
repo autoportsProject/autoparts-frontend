@@ -1,4 +1,5 @@
 import { ContactUpdateDto, IContactsRepo } from "@/domain";
+import { notifications } from "@mantine/notifications";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface Props {
@@ -20,6 +21,12 @@ export const useUpdateContact = (repo: IContactsRepo) => {
             });
             queryClient.invalidateQueries({
                 queryKey: ["company"]
+            });
+            notifications.show({
+                title: "Успех",
+                message: "Контакт успешно обновлен",
+                color: "green",
+                position: "top-right"
             });
         },
         onError: (error) => {

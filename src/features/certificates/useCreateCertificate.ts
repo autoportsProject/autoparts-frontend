@@ -19,12 +19,6 @@ export const useCreateCertificate = (repo: ICertificatesRepo) => {
             });
         },
         onError: (error) => {
-            notifications.show({
-                title: "Ошибка",
-                message: "Ошибка добавления сертификата",
-                color: "red",
-                position: "top-right"
-            });
             console.error("Ошибка добавления сертификата", error);
         }
     });

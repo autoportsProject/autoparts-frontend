@@ -27,12 +27,6 @@ export const useUpdateProductStock = (repo: IProductsRepo) => {
             });
         },
         onError: (error) => {
-            notifications.show({
-                title: "Ошибка",
-                message: "Ошибка обновления наличия товара",
-                color: "red",
-                position: "top-right"
-            });
             console.error("Ошибка обновления наличия товара", error);
         }
     });

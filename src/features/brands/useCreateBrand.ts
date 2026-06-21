@@ -1,4 +1,5 @@
 import { BrandCreateDto, IBrandsRepo } from "@/domain";
+import { notifications } from "@mantine/notifications";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useCreateBrand = (repo: IBrandsRepo) => {
@@ -9,6 +10,12 @@ export const useCreateBrand = (repo: IBrandsRepo) => {
         onSuccess: () => {
             queryClient.invalidateQueries({
                 queryKey: ["brands"]
+            });
+            notifications.show({
+                title: "Успех",
+                message: "Бренд успешно создан",
+                color: "green",
+                position: "top-right"
             });
         },
         onError: (error) => {

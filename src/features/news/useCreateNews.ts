@@ -1,4 +1,5 @@
 import { INewsRepo, NewsCreateDto } from "@/domain";
+import { notifications } from "@mantine/notifications";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useCreateNews = (repo: INewsRepo) => {
@@ -9,6 +10,12 @@ export const useCreateNews = (repo: INewsRepo) => {
         onSuccess: () => {
             queryClient.invalidateQueries({
                 queryKey: ["news-list"]
+            });
+            notifications.show({
+                title: "Успех",
+                message: "Новость успешно создана",
+                color: "green",
+                position: "top-right"
             });
         },
         onError: (error) => {

@@ -1,4 +1,5 @@
 import { CategoryUpdateDto, ICategoriesRepo } from "@/domain";
+import { notifications } from "@mantine/notifications";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface UpdateProps {
@@ -17,6 +18,12 @@ export const useUpdateCategory = (repo: ICategoriesRepo) => {
             });
             queryClient.invalidateQueries({
                 queryKey: ["categories"]
+            });
+            notifications.show({
+                title: "Успех",
+                message: "Категория успешно обновлена",
+                color: "green",
+                position: "top-right"
             });
         },
         onError: (error) => {
