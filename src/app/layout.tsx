@@ -7,11 +7,18 @@ import "@mantine/dates/styles.css";
 import "@mantine/notifications/styles.css";
 import { QueryProvider } from "@/shared/providers/QueryProvider";
 import { Notifications } from "@mantine/notifications";
+import { Nunito } from "next/font/google";
 
 export const metadata: Metadata = {
     title: "Магазин автозапчастей",
     description: "Интернет-магазин автозапчастей для иномарок",
 };
+
+const nunito = Nunito({
+    subsets: ["latin", "cyrillic"],
+    weight: ["400", "500", "600", "700"],
+    variable: "--font-nunito"
+});
 
 export default function RootLayout({
     children,
@@ -19,9 +26,9 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="ru" suppressHydrationWarning>
+        <html lang="ru" className={nunito.variable} suppressHydrationWarning>
             <body>
-                <MantineProvider>
+                <MantineProvider theme={{fontFamily: "var(--font-nunito), sans-serif"}}>
                     <Notifications></Notifications>
                     <QueryProvider>
                         <Flex direction="column" mih="100vh">

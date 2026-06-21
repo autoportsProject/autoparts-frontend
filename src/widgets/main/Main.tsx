@@ -39,8 +39,8 @@ export const Main = () => {
     }
     return (
         <Container size="100%" px={0} py={60}>
-            <Stack gap={60}>
-                <Stack gap="xl" px={40}>
+            <Stack gap={0}>
+                <Stack gap="xl" px={40} mb={80}>
                     <Title order={1}>Подобрать запчасти:</Title>
                     <Box className={styles.enterNameDiv}>
                         <TextInput flex={1} size="lg" value={query} onChange={
@@ -51,7 +51,7 @@ export const Main = () => {
                         <Button classNames={{root: styles.submitBtn}} onClick={onSearch}>Найти</Button>
                     </Box>
                 </Stack>
-                <Stack gap="xl" classNames={{root: styles.whyUsDiv}}>
+                <Stack gap="xl" classNames={{root: styles.whyUsDiv}} mb={80}>
                     <Title order={2} classNames={{root: styles.whyUsTxt}}>Почему мы?</Title>
                     <Group justify="space-between">
                         <Box className={styles.reasonCardsDiv}>

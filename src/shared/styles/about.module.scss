@@ -1,5 +1,6 @@
 @use "@/shared/styles/properties/vars" as *;
 @use "@/shared/styles/properties/mixins" as *;
+@use "@/shared/styles/properties/fonts" as *;
 
 .statCard {
     padding: 24px 16px;
@@ -20,9 +21,7 @@
     }
 }
 .statLabel {
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 120%;
+    @include p1;
     color: $text-3;
 }
 
@@ -44,9 +43,8 @@
     padding: 20px 26px;
 }
 .aboutTxt {
-    line-height: 150%;
+    @include p1;
     color: $text-3;
-    max-width: 800px;
 }
 
 .advantagesDiv {
@@ -76,8 +74,7 @@
     color: $text-2;
 }
 .advantageDescr {
-    font-size: 14px;
-    line-height: 140%;
+    @include p2;
     color: $text-3;
 }
 

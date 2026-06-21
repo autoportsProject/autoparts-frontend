@@ -1,27 +1,39 @@
+$brand-darkest: #0D0221;
+$brand-dark: #0E0536;
+$brand-dark-2: #0F084B;
+$brand-accent-dark: #1B246B;
+$brand-primary: #26408B;
+$brand-secondary: #34618B;
+$brand-tertiary: #41818B;
+$brand-light: #82B4B2;
+$brand-lightest: #C2E7D9;
+
 $bg: #F9F9F9;
 $bg-card: #FFFFFF;
-$bg-card-2: #d2e1e7;
+$bg-card-2: $brand-lightest;
+
 $text: #FFFFFF;
-$text-2: #000000;
+$text-2: #0D0221;
 $text-3: #333333;
 $text-4: #666666;
 
-$bg-header: darkblue;
-$bg-header-2: #228BE6;
-$bg-navigation: #1A237E;
-$bg-whyus-card: linear-gradient(45deg, #1642c7, #a8f4fd);
+$bg-header: $brand-dark;
+$bg-header-2: $brand-dark;
+$bg-navigation: $brand-dark;
+$bg-whyus-card: linear-gradient(45deg, $brand-primary, $brand-light);
 
-$bg-button: #375FFF;
+$bg-button: $brand-primary;
+$bg-button-hover: $brand-accent-dark;
 $text-button: #FFFFFF;
 
-$bg-news-title: #1120c5;
-$bg-promo-title: #07ac07;
+$bg-news-title: $brand-secondary;
+$bg-promo-title: $brand-tertiary;
 
-$shadow: rgba(0,0,0,0.1);
+$shadow: rgba(13, 2, 33, 0.12);
 $bg-catalog-card: #F2F2F2;
 $bg-catalog-card-hover: #FBFBFB;
 
-$bg-status-New: #2196F3;
+$bg-status-New: $brand-primary;
 $bg-status-Accepted: #FFE100;
 $bg-status-Cancelled: #FF5757;
 $bg-status-Completed: #00E300;

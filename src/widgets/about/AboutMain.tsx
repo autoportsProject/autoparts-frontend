@@ -51,13 +51,12 @@ export const AboutMain = () => {
             ) : (!company || serverError) ? (
                 <Text c="red" fw={700} ta="center">Произошла ошибка при загрузке раздела "О нас"</Text>
             ) : (
-                <Stack gap={60}>
-                    <Stack gap="sm" px={{base: 16, sm: 40}}>
+                <Stack gap={0}>
+                    <Stack gap="sm" px={{base: 16, sm: 40}} mb={60}>
                         <AppLinkText></AppLinkText>
-                        <Title order={1} mb="sm" ta="center">О нас</Title>
-                        <Text ta="center" size="20px" c="dimmed">20 лет на рынке автозапчастей для спецтехники</Text>
+                        <Title order={1} mb="sm" ta="center">О компании</Title>
                     </Stack>
-                    <SimpleGrid cols={{base: 1, xs: 1, sm: Math.max(2, stats.length), md: Math.max(3, stats.length)}} px={{base: 16, sm: 40, md: 140}} spacing="lg">
+                    <SimpleGrid cols={{base: 1, xs: 1, sm: Math.max(2, stats.length), md: Math.max(3, stats.length)}} px={{base: 16, sm: 40, md: 140}} spacing="lg" mb={80}>
                         {stats.map(s => (
                             <Stack key={s.value} classNames={{root: styles.statCard}} gap={8} align="center">
                                 <Text classNames={{root: styles.statValue}}>{s.value}</Text>
@@ -65,8 +64,7 @@ export const AboutMain = () => {
                             </Stack>
                         ))}
                     </SimpleGrid>
-                    <Stack gap="lg" classNames={{root: styles.aboutDiv}}>
-                        <Title order={2}>О компании</Title>
+                    <SimpleGrid spacing="lg" cols={{base: 1, md: 2}} classNames={{root: styles.aboutDiv}} mb={80}>
                         <Stack gap="md" classNames={{root: styles.aboutBlock}}>
                             <Title order={3}>Кто мы?</Title>
                             <Stack gap={5}>
@@ -96,8 +94,8 @@ export const AboutMain = () => {
                                 ))}
                             </Stack>
                         </Stack>
-                    </Stack>
-                    <Stack gap="xl" classNames={{root: styles.advantagesDiv}}>
+                    </SimpleGrid>
+                    <Stack gap="xl" classNames={{root: styles.advantagesDiv}} mb={80}>
                         <Title order={2} px={{base: 16, sm: 40}} c="white">Почему выбирают нас?</Title>
                         <SimpleGrid cols={{base: 1, sm: 2, md: 3}} px={{base: 16, sm: 40}} spacing="lg">
                             {advantages.map(({icon: Icon, title, description}) => (

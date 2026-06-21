@@ -1,10 +1,9 @@
 @use "@/shared/styles/properties/vars" as *;
 @use "@/shared/styles/properties/mixins" as *;
+@use "@/shared/styles/properties/fonts" as *;
 
 .description {
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 120%;
+    @include h4;
     border-radius: 8px;
     padding: 16px 20px;
     background-color: $bg;
@@ -45,14 +44,12 @@
 
 .submitBtn, .cancelBtn {
     background-color: $bg-button;
-    color: $text-button;
     width: 250px;
     height: 48px;
     padding: 15px 42px 15px 40px;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 100%;
+    @include button;
     letter-spacing: 3%;
+    color: $text-button;
 
     @include mobile600 {
         padding: 5px 14px 5px 13px;
@@ -70,9 +67,7 @@
 .input {
     height: 48px;
     padding: 8px 16px;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 120%;
+    @include button;
     color: $text-3;
 }
 .textarea {

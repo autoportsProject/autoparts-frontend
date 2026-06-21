@@ -1,5 +1,6 @@
 @use "@/shared/styles/properties/vars" as *;
 @use "@/shared/styles/properties/mixins" as *;
+@use "@/shared/styles/properties/fonts" as *;
 
 .footer {
     width: 100%;
@@ -7,7 +8,6 @@
     background-color: $bg-header;
     display: flex;
     justify-content: center;
-    align-items: center;
 
     @include mobile600 {
         padding: 24px 16px;
@@ -17,17 +17,64 @@
     }
 }
 
+.inner {
+    width: 100%;
+    max-width: 1200px;
+    padding-inline: 24px;
+}
+
+.companyName {
+    @include h3;
+    @include mobile375 {
+        @include h3-mobile;
+    }
+    color: $text;
+}
 .companyDescr {
-    font-size: 16px;
-    font-weight: 500;
+    @include p1;
     max-width: 280px;
-    line-height: 150%;
+    color: rgba(255,255,255,0.7);
+}
+
+.sectionTitle {
+    @include p2;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.45);
+}
+
+.link {
+    @include p1;
+    color: rgba(255,255,255,0.8) !important;
+}
+
+.contactTxt {
+    @include p1;
+    color: rgba(255,255,255,0.8);
 }
 
 .grid {
     padding-bottom: 16px;
     border-bottom: 0.5px solid rgba(255,255,255,0.45);
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+
+    @include mobile600 {
+        flex-direction: column;
+        gap: 24px;
+    }
+    @include mobile375 {
+        flex-direction: column;
+        gap: 20px;
+    }
 }
 .bottom {
     border-top: none;
+}
+
+.copyright {
+    @include p2;
+    color: rgba(255,255,255,0.4);
 }
