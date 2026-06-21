@@ -33,7 +33,6 @@ export const LoginPage = () => {
                         {login.error && (
                             <Text c="red" fw={700} ta="center">{getErrorMessage(login.error)}</Text>
                         )}
-                        <Anchor component={Link} href="#">Забыли пароль?</Anchor>
                         <Button type="submit" mt="sm" classNames={{
                             root: styles.loginBtn
                         }} loading={login.isPending}>Войти в систему</Button>
