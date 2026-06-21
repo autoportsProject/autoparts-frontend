@@ -1,4 +1,5 @@
 import { IUsersRepo } from "@/domain";
+import { notifications } from "@mantine/notifications";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useDeleteUser = (repo: IUsersRepo) => {
@@ -12,6 +13,12 @@ export const useDeleteUser = (repo: IUsersRepo) => {
             });
             queryClient.invalidateQueries({
                 queryKey: ["users"]
+            });
+            notifications.show({
+                title: "Успех",
+                message: "Пользователь успешно удален",
+                color: "green",
+                position: "top-right"
             });
         },
         onError: (error) => {

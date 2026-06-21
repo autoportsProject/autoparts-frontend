@@ -1,4 +1,5 @@
 import { IContactsRepo } from "@/domain";
+import { notifications } from "@mantine/notifications";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useDeleteContact = (repo: IContactsRepo) => {
@@ -15,6 +16,12 @@ export const useDeleteContact = (repo: IContactsRepo) => {
             });
             queryClient.invalidateQueries({
                 queryKey: ["company"]
+            });
+            notifications.show({
+                title: "Успех",
+                message: "Контакт успешно удален",
+                color: "green",
+                position: "top-right"
             });
         },
         onError: (error) => {

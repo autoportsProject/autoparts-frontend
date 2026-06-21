@@ -22,12 +22,6 @@ export const useDeleteCertificate = (repo: ICertificatesRepo) => {
             });
         },
         onError: (error) => {
-            notifications.show({
-                title: "Ошибка",
-                message: "Ошибка удаления сертификата",
-                color: "red",
-                position: "top-right"
-            });
             console.error("Ошибка удаления сертификата", error);
         }
     });

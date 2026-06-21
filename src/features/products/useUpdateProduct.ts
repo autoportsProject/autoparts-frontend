@@ -27,12 +27,6 @@ export const useUpdateProduct = (repo: IProductsRepo) => {
             });
         },
         onError: (error) => {
-            notifications.show({
-                title: "Ошибка",
-                message: "Ошибка обновления товара",
-                color: "red",
-                position: "top-right"
-            });
             console.error("Ошибка обновления товара", error);
         }
     });

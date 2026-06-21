@@ -27,12 +27,6 @@ export const useUpdateAttrib = (repo: IAttributesRepo) => {
             });
         },
         onError: (error) => {
-            notifications.show({
-                title: "Ошибка",
-                message: "Ошибка обновления атрибута",
-                color: "red",
-                position: "top-right"
-            });
             console.error("Ошибка обновления атрибута", error);
         }
     });

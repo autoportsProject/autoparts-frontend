@@ -1,4 +1,5 @@
 import { AppealContactsUpdateDto, IAppealsRepo } from "@/domain";
+import { notifications } from "@mantine/notifications";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface Props {
@@ -17,6 +18,12 @@ export const useUpdateAppealContacts = (repo: IAppealsRepo) => {
             });
             queryClient.invalidateQueries({
                 queryKey: ["appeals"]
+            });
+            notifications.show({
+                title: "Успех",
+                message: "Контакты успешно обновлены",
+                color: "green",
+                position: "top-right"
             });
         },
         onError: (error) => {

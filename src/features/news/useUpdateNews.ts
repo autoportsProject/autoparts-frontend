@@ -1,4 +1,5 @@
 import { INewsRepo, NewsUpdateDto } from "@/domain";
+import { notifications } from "@mantine/notifications";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface Props {
@@ -17,6 +18,12 @@ export const useUpdateNews = (repo: INewsRepo) => {
             });
             queryClient.invalidateQueries({
                 queryKey: ["news-list"]
+            });
+            notifications.show({
+                title: "Успех",
+                message: "Новость успешно обновлена",
+                color: "green",
+                position: "top-right"
             });
         },
         onError: (error) => {

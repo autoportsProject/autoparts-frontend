@@ -20,12 +20,6 @@ export const useUpdateForSuppliersPage = (repo: IForSuppliersPageRepo) => {
             });
         },
         onError: (error) => {
-            notifications.show({
-                title: "Ошибка",
-                message: "Ошибка обновления страницы поставщикам",
-                color: "red",
-                position: "top-right"
-            });
             console.error("Ошибка обновления информации поставщикам", error);
         }
     });

@@ -1,3 +1,4 @@
+import { notifications } from "@mantine/notifications";
 import axios from "axios";
 
 const api = axios.create({
@@ -26,11 +27,20 @@ api.interceptors.response.use(
     },
     (error) => {
         if (typeof window !== "undefined") {
-            if (error.response && error.response.status === 401) {
+            if (error.response?.status === 401) {
                 localStorage.removeItem("token");
                 const path = window.location.pathname;
                 if (path !== "/login" && path !== "/register")
                     window.location.href = "/login";
+            }
+            else {
+                const msg = error.response?.data?.message ?? error.message ?? "Произошла неизвестная ошибка";
+                notifications.show({
+                    title: "Ошибка",
+                    message: msg,
+                    color: "red",
+                    position: "top-right"
+                });
             }
         }
         return Promise.reject(error);

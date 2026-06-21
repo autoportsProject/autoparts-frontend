@@ -22,12 +22,6 @@ export const useDeleteAttrib = (repo: IAttributesRepo) => {
             });
         },
         onError: (error) => {
-            notifications.show({
-                title: "Ошибка",
-                message: "Ошибка удаления атрибута",
-                color: "red",
-                position: "top-right"
-            });
             console.error("Ошибка удаления атрибута", error);
         }
     });

@@ -1,4 +1,5 @@
 import { IUsersRepo, UserRoleUpdateDto } from "@/domain";
+import { notifications } from "@mantine/notifications";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface Props {
@@ -17,6 +18,12 @@ export const useUpdateRole = (repo: IUsersRepo) => {
             });
             queryClient.invalidateQueries({
                 queryKey: ["users"]
+            });
+            notifications.show({
+                title: "Успех",
+                message: "Роль пользователя успешно обновлена",
+                color: "green",
+                position: "top-right"
             });
         },
         onError: (error) => {

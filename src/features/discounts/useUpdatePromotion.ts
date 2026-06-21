@@ -1,4 +1,5 @@
 import { PromotionUpdateDto, IPromotionsRepo } from "@/domain";
+import { notifications } from "@mantine/notifications";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface UpdateProps {
@@ -17,6 +18,12 @@ export const useUpdatePromotion = (repo: IPromotionsRepo) => {
             });
             queryClient.invalidateQueries({
                 queryKey: ["promotions"]
+            });
+            notifications.show({
+                title: "Успех",
+                message: "Акция успешно обновлена",
+                color: "green",
+                position: "top-right"
             });
         },
         onError: (error) => {

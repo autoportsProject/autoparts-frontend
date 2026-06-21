@@ -19,12 +19,6 @@ export const useCreateAttrib = (repo: IAttributesRepo) => {
             });
         },
         onError: (error) => {
-            notifications.show({
-                title: "Ошибка",
-                message: "Ошибка создания атрибута",
-                color: "red",
-                position: "top-right"
-            });
             console.error("Ошибка создания атрибута", error);
         }
     });

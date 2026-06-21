@@ -1,4 +1,5 @@
 import { IPromotionsRepo } from "@/domain";
+import { notifications } from "@mantine/notifications";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useDeletePromotion = (repo: IPromotionsRepo) => {
@@ -12,6 +13,12 @@ export const useDeletePromotion = (repo: IPromotionsRepo) => {
             });
             queryClient.invalidateQueries({
                 queryKey: ["promotion", id]
+            });
+            notifications.show({
+                title: "Успех",
+                message: "Акция успешно удалена",
+                color: "green",
+                position: "top-right"
             });
         },
         onError: (error) => {

@@ -1,4 +1,5 @@
 import { INewsRepo } from "@/domain";
+import { notifications } from "@mantine/notifications";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useDeleteNews = (repo: INewsRepo) => {
@@ -12,6 +13,12 @@ export const useDeleteNews = (repo: INewsRepo) => {
             });
             queryClient.invalidateQueries({
                 queryKey: ["news", id]
+            });
+            notifications.show({
+                title: "Успех",
+                message: "Новость успешно удалена",
+                color: "green",
+                position: "top-right"
             });
         },
         onError: (error) => {

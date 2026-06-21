@@ -1,4 +1,5 @@
 import { IUsersRepo, UserCreateDto } from "@/domain";
+import { notifications } from "@mantine/notifications";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useCreateUser = (repo: IUsersRepo) => {
@@ -9,6 +10,12 @@ export const useCreateUser = (repo: IUsersRepo) => {
         onSuccess: () => {
             queryClient.invalidateQueries({
                 queryKey: ["users"]
+            });
+            notifications.show({
+                title: "Успех",
+                message: "Пользователь успешно создан",
+                color: "green",
+                position: "top-right"
             });
         },
         onError: (error) => {
