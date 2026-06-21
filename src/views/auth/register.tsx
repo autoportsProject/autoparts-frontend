@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { IMaskInput } from "react-imask";
 import { useRegister } from "@/features/auth/useRegister";
 import { AuthRepo } from "@/data/repos/AuthRepo";
+import { Header } from "@/widgets/Header";
 
 const repo = new AuthRepo();
 
@@ -28,6 +29,7 @@ export const RegisterPage = () => {
     }
     return (
         <Box className={styles.container}>
+            <Header></Header>
             <Container py="xl">
                 <form onSubmit={form.handleSubmit(onSubmit)}>
                     <Stack classNames={{root: styles.loginCard}}>

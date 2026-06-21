@@ -9,12 +9,14 @@ import { UsersRepo } from "@/data/repos/UsersRepo";
 import { useAuthCheck } from "@/features/auth/useAuthCheck";
 import { CategoriesRepo } from "@/data/repos/CategoriesRepo";
 import { useCategoriesList } from "@/features/catalogs/useCategoriesList";
+import { useQueryClient } from "@tanstack/react-query";
 
 const repo = new UsersRepo();
 const cRepo = new CategoriesRepo();
 
 export const Header = () => {
     const nav = useRouter();
+    const queryClient = useQueryClient();
     const {authorized, user} = useAuthCheck(repo);
     const {categories} = useCategoriesList(cRepo);
     const [inputOpened, setInputOpened] = useState(false);
@@ -92,6 +94,9 @@ export const Header = () => {
                                     <MenuItem onClick={() => nav.push("/profile")}>Профиль</MenuItem>
                                     <MenuItem onClick={() => {
                                         localStorage.removeItem("token");
+                                        queryClient.removeQueries({
+                                            queryKey: ["profile"]
+                                        });
                                         nav.refresh();
                                     }}>Выйти</MenuItem>
                                 </MenuDropdown>
