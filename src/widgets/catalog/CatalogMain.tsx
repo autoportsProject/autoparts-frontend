@@ -1,4 +1,4 @@
-import { Badge, Button, Card, Center, Container, Group, Loader, NumberInput, Pagination, Select, SimpleGrid, Stack, Switch, Text, TextInput, Title } from "@mantine/core"
+import { Button, Center, Container, Group, Loader, NumberInput, Pagination, Select, SimpleGrid, Stack, Switch, Text, TextInput, Title } from "@mantine/core"
 import styles from "@/shared/styles/catalog/catalog.module.scss";
 import { AppLinkText } from "../AppLinkText";
 import { AttributeFilterQuery, AttributeType, ProductFilterParams, ProductQuery } from "@/domain";
@@ -8,7 +8,6 @@ import { useState } from "react";
 import { ProductsRepo } from "@/data/repos/ProductsRepo";
 import { useProductsList } from "@/features/products/useProductsList";
 import { ProductCard } from "./ProductCard";
-import { ProductDetailsModal } from "./ProductDetailsModal";
 import { BrandsRepo } from "@/data/repos/BrandsRepo";
 import { useBrandsList } from "@/features/brands/useBrandsList";
 
