@@ -1,5 +1,6 @@
 @use "@/shared/styles/properties/vars" as *;
 @use "@/shared/styles/properties/mixins" as *;
+@use "@/shared/styles/properties/fonts" as *;
 
 .filterDiv {
     background-color: $bg;
@@ -10,14 +11,12 @@
 
 .submitBtn, .cancelBtn {
     background-color: $bg-button;
-    color: $text-button;
     width: 250px;
     height: 48px;
     padding: 15px 42px 15px 40px;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 100%;
+    @include button;
     letter-spacing: 3%;
+    color: $text-button;
 
     @include mobile600 {
         width: 100%;

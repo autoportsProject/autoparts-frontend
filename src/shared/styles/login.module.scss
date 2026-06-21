@@ -1,5 +1,6 @@
 @use "@/shared/styles/properties/vars" as *;
 @use "@/shared/styles/properties/mixins" as *;
+@use "@/shared/styles/properties/fonts" as *;
 
 .container {
     background-color: $bg;
@@ -19,11 +20,9 @@
 .loginBtn {
     height: 48px;
     background-color: $bg-button;
-    color: $text-button;
+    @include button;
     letter-spacing: 3%;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 120%;
+    color: $text-button;
 }
 
 .link {

@@ -135,7 +135,14 @@
 }
 .brandsDiv {
     width: max-content;
-    animation: marque 15s linear infinite;
+    display: flex;
+    gap: 40px;
+    animation: marque 25s linear infinite;
+    will-change: transform;
+
+    &:hover {
+        animation-play-state: paused;
+    }
 }
 
 @keyframes marque {

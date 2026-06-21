@@ -1,5 +1,6 @@
 @use "@/shared/styles/properties/vars" as *;
 @use "@/shared/styles/properties/mixins" as *;
+@use "@/shared/styles/properties/fonts" as *;
 
 .card {
     padding: 24px 32px;
@@ -16,9 +17,7 @@
 }
 
 .descr {
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 120%;
+    @include p2;
     color: $text-4;
 }
 .descr span {
@@ -76,9 +75,10 @@
 
 .submitBtn {
     background-color: $bg-button;
+    @include button;
     color: $text-button;
     height: 48px;
-    padding: 15px 42px 15px 40px;
+    padding: 10px 20px;
 
     @include mobile600 {
         width: 100%;
