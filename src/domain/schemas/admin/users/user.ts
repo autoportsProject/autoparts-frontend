@@ -7,7 +7,7 @@ export const updateUserRoleSchema = z.object({
 export const addUserSchema = z.object({
     name: z.string().min(1, "Введите имя пользователя"),
     email: z.email("Некорректный формат почты"),
-    password: z.string().min(6, "Пароль хотя бы 6 символов"),
+    password: z.string().min(8, "Пароль должен быть хотя бы 8 символов"),
     phoneNumber: z.string().optional(),
     role: z.enum(UserRole, "Некорректная роль")
 });

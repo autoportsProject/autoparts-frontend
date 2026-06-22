@@ -63,7 +63,7 @@ export const Header = () => {
                         </ActionIcon>
                     } value={query} onChange={
                         (e) => setQuery(e.currentTarget.value)
-                    }></TextInput>
+                    } type="search" inputMode="search"></TextInput>
                     <TextInput data-visible={inputOpened} classNames={{
                         root: styles.inputMob,
                         input: styles.searchInputMob,
@@ -72,7 +72,7 @@ export const Header = () => {
                         (e) => setQuery(e.currentTarget.value)
                     } value={query} onKeyDown={
                         (e) => e.key === "Enter" && onSearch()
-                    }></TextInput>
+                    } type="search" inputMode="search"></TextInput>
                      <Group gap="sm">
                         <ActionIcon variant="filled" onKeyDown={
                             (e) => e.key === "Enter" && onSearch()
