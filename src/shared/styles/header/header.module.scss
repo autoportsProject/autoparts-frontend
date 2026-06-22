@@ -10,12 +10,20 @@
     padding: 20px 24px;
     background-color: $bg-header;
     position: relative;
-
     @include mobile600 {
         padding: 12px 16px;
     }
     @include mobile375 {
         padding: 10px 12px;
+    }
+}
+.headerMain > div {
+    flex-wrap: nowrap;
+    @include mobile600 {
+        flex-wrap: wrap;
+    }
+    @include mobile375 {
+        flex-wrap: wrap;
     }
 }
 
@@ -41,10 +49,10 @@
     padding-inline: 16px;
 
     @include desktop1200 {
-        width: 750px;
+        max-width: 750px;
     }
     @include tablet900 {
-        width: 450px;
+        max-width: 450px;
     }
     @include mobile600 {
         display: none;

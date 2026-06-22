@@ -41,7 +41,7 @@ export const Header = () => {
                 </Group>
             </Box>
             <Box className={styles.headerMain}>
-                <Group justify="space-between" align="center" wrap="wrap" gap="xs">
+                <Group justify="space-between" align="center" gap="xs">
                     <Group classNames={{root: styles.companyGroup}} onClick={() => nav.push("/")}>
                         <Burger color="white" classNames={{root: styles.burgerNav}} opened={navOpened} onClick={(e) => {
                             e.stopPropagation();
