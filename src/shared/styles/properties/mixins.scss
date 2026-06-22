@@ -17,7 +17,7 @@
 }
 
 @mixin tablet900 {
-    @media (min-width: 900px) and (max-width: 1199px) {
+    @media (min-width: 900px) and (max-width: 1199.9px) {
         @content;
     }
 }
