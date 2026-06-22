@@ -41,7 +41,7 @@ export const Main = () => {
         <Container size="100%" px={0} py={60}>
             <Stack gap={0}>
                 <Stack gap="xl" px={40} mb={80}>
-                    <Title order={1}>Подобрать запчасти:</Title>
+                    <Title order={1}>Найти запчасти:</Title>
                     <Box className={styles.enterNameDiv}>
                         <TextInput flex={1} size="lg" value={query} onChange={
                             (e) => setQuery(e.currentTarget.value)

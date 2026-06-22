@@ -29,9 +29,6 @@ api.interceptors.response.use(
         if (typeof window !== "undefined") {
             if (error.response?.status === 401) {
                 localStorage.removeItem("token");
-                const path = window.location.pathname;
-                if (path !== "/login" && path !== "/register")
-                    window.location.href = "/login";
             }
             else {
                 const msg = error.response?.data?.message ?? error.message ?? "Произошла неизвестная ошибка";

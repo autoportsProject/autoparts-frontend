@@ -11,12 +11,17 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useCreateClientQuestion } from "@/features/appeals/useCreateAppealQuestion";
 import { IMaskInput } from "react-imask";
 import { IconArrowDown, IconArrowRight } from "@tabler/icons-react";
+import { UsersRepo } from "@/data/repos/UsersRepo";
+import { useProfile } from "@/features/users/useProfile";
+import { useEffect } from "react";
 
+const pRepo = new UsersRepo();
 const repo = new ContactsRepo();
 const aRepo = new AppealsRepo();
 
 export const ContactsMain = () => {
     const {contacts, isLoading, serverError} = useContactsList(repo);
+    const {profile} = useProfile(pRepo);
     const mapSrc = `https://maps.google.com/maps?q=56.526733,84.983375&z=12&output=embed`;
     
     const create = useCreateClientQuestion(aRepo);
@@ -41,6 +46,14 @@ export const ContactsMain = () => {
             }
         });
     }
+    useEffect(() => {
+        if (profile) {
+            form.reset({
+                contactEmail: profile.email,
+                contactPhone: profile.phoneNumber
+            });
+        }
+    }, [form, profile]);
     return (
         <Container size="100%" px={0} py="xl">
             <Stack gap={60}>
