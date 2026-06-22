@@ -69,6 +69,8 @@ export const ContactsMain = () => {
                         </Group>
                     ) : (serverError || !contacts) ? (
                         <Text c="red" fw={700} ta="center">Произошла ошибка при загрузке контактов компании</Text>
+                    ) : contacts.length === 0 ? (
+                        <Text c="blue" fw={500} ta="center" size="lg">Пока нет контактов</Text>
                     ) : contacts.map((c,i) => (
                         <Stack key={i} classNames={{root: styles.contactDiv}}>
                             <Title order={2} classNames={{root: styles.name}}>{c.description}</Title>

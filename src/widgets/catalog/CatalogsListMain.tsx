@@ -25,7 +25,9 @@ export const CatalogsListMain = () => {
                     <Loader size="xl"></Loader>
                 </Center>
             ) : (serverError || !categories) ? (
-                <Text c="red" fw={700} ta="center">Ошибка загрузки категорий{serverError && `${getErrorMessage(serverError)}`}</Text>
+                <Text c="red" fw={700} ta="center">Произошла ошибка при загрузке списка категорий</Text>
+            ) : categories.length === 0 ? (
+                <Text c="blue" fw={500} ta="center" size="lg">Пока нет категорий</Text>
             ) : (
                 <Stack gap={45}>
                     <Stack gap="sm">

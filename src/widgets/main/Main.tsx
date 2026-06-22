@@ -73,7 +73,9 @@ export const Main = () => {
                         <Title order={2} ml={40}>Бренды</Title>
                         <Box className={styles.brandsTrack}>
                             <Group gap={40} classNames={{root: styles.brandsDiv}}>
-                                {[...brands, ...brands].map((b,i) => (
+                                {brands.length === 0 ? (
+                                    <Text c="blue" fw={500} ta="center" size="lg">Пока нет брендов</Text>
+                                ) : [...brands, ...brands].map((b,i) => (
                                     <Text key={i} fw={700} size="lg" classNames={{root: styles.brandLogo}}>
                                         {b.name}
                                     </Text>

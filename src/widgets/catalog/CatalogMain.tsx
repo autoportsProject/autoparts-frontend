@@ -202,9 +202,9 @@ export const CatalogMain = ({categoryId}: CatalogProps) => {
                             <Loader size="xl"></Loader>
                             <Text c="blue" size="lg">Пожалуйста, подождите...</Text>
                         </Group>
-                    ) : (prodError) ? (
+                    ) : (!products || prodError) ? (
                         <Text c="red" fw={700} ta="center">Произошла ошибка при загрузке товаров</Text>
-                    ) : (!products || products.items.length === 0) ? (
+                    ) : (products.items.length === 0) ? (
                         <Text c="blue" size="lg" fw={500} ta="center">По вашему запросу товары не найдены</Text>
                     ) : (
                         <Stack gap="md" mx={{base: 16, sm: 50, lg: 250}}>
